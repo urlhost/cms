@@ -1,0 +1,117 @@
+name: Generate Sitemap
+
+concurrency:
+  group: "pages-deploy"
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install cheerio
+
+      - name: Determine site URL from CNAME
+        id: siteurl
+        run: |
+          if [ -f CNAME ]; then
+            domain=$(cat CNAME | tr -d '[:space:]')
+            if [ -z "$domain" ]; then
+              echo "CNAME is empty. Skipping sitemap generation."
+              echo "skip=true" >> $GITHUB_OUTPUT
+            else
+              echo "url=https://$domain" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "CNAME file not found. Skipping sitemap generation."
+            echo "skip=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Generate sitemap from repo
+        if: steps.siteurl.outputs.skip != 'true'
+        run: |
+          node - <<'EOF'
+          const fs = require('fs');
+          const path = require('path');
+          const cheerio = require('cheerio');
+
+          const baseUrl = '${{ steps.siteurl.outputs.url }}';
+          if (!baseUrl) {
+            console.log("No base URL found, exiting.");
+            process.exit(0);
+          }
+
+          function getAllHtmlFiles(dir) {
+            let results = [];
+            const list = fs.readdirSync(dir);
+            list.forEach(file => {
+              const filePath = path.join(dir, file);
+              const stat = fs.statSync(filePath);
+
+              // Skip hidden and irrelevant folders
+              if (stat && stat.isDirectory()) {
+                if (!file.startsWith('.') && !['node_modules', '.git', '.github', 'hidden'].includes(file)) {
+                  results = results.concat(getAllHtmlFiles(filePath));
+                }
+              } else if (file.endsWith('.html')) {
+                results.push(filePath);
+              }
+            });
+            return results;
+          }
+
+          const htmlFiles = getAllHtmlFiles('./');
+          let sitemap = '<?xml version="1.0" encoding="utf-8" standalone="yes"?>\n';
+          sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+
+          htmlFiles.forEach(f => {
+            const content = fs.readFileSync(f, 'utf8');
+            const $ = cheerio.load(content);
+
+            const title = $('title').first().text().trim();
+            const nav = $('meta[name="nav"][content="true"]').length > 0;
+
+            let relative = path.relative('.', f).replace(/\\/g, '/');
+            let url = baseUrl;
+            if (relative !== 'index.html') {
+              url += '/' + relative.replace('index.html', '');
+            } else {
+              url += '/';
+            }
+
+            sitemap += `  <url>\n    <loc>${url}</loc>\n`;
+            if (title) sitemap += `    <title>${title}</title>\n`;
+            if (nav) sitemap += `    <nav>true</nav>\n`;
+            sitemap += '  </url>\n';
+          });
+
+          sitemap += '</urlset>\n';
+          fs.writeFileSync('sitemap.xml', sitemap, 'utf8');
+          EOF
+
+      - name: Commit and push sitemap
+        if: steps.siteurl.outputs.skip != 'true'
+        env:
+          FG_PAT_TOKEN: ${{ secrets.FG_PAT_TOKEN }}
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add sitemap.xml
+          git commit -m "Update sitemap.xml" || echo "No changes to commit"
+          git push https://x-access-token:${FG_PAT_TOKEN}@github.com/${{ github.repository }}.git HEAD:main
