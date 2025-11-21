@@ -1,1 +1,20 @@
-
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.frl.frl/404.html</loc>
+    <title>404</title>
+  </url>
+  <url>
+    <loc>https://www.frl.frl/cms_login.html</loc>
+    <title>CMS Login</title>
+  </url>
+  <url>
+    <loc>https://www.frl.frl/</loc>
+    <title>FRL.FRL</title>
+    <nav>true</nav>
+  </url>
+  <url>
+    <loc>https://www.frl.frl/test.html</loc>
+    <title>Testing</title>
+  </url>
+</urlset>
