@@ -68,14 +68,24 @@ async function insertImageUpload(htmlContent) {
 
 function insertLayoutElement(htmlContent) {
     if (currentlySelected) {
-        const allBuildingContainers = document.querySelectorAll(".building-container");
+        // The '>' ensures we ignore any containers nested inside columns
+        const topLevelContainers = document.querySelectorAll(".building-environment > .building-container");
 
-        if (allBuildingContainers.length > 0) {
-            const lastBuildingContainer = allBuildingContainers[allBuildingContainers.length - 1];
-            lastBuildingContainer.insertAdjacentHTML('afterend', htmlContent);
+        if (topLevelContainers.length > 0) {
+            // Case A: We have existing containers, put this after the last one
+            const lastContainer = topLevelContainers[topLevelContainers.length - 1];
+            lastContainer.insertAdjacentHTML('afterend', htmlContent);
         } else {
-            console.warn("No '.building-container' found.");
-            return;
+            // Case B: The environment is empty (no containers yet)
+            // We need to append the content directly into the environment wrapper
+            const environment = document.querySelector(".building-environment");
+            
+            if (environment) {
+                environment.insertAdjacentHTML('beforeend', htmlContent);
+            } else {
+                console.warn("Parent container '.building-environment' not found.");
+                return;
+            }
         }
 
         deselectAll();
