@@ -68,22 +68,23 @@ async function insertImageUpload(htmlContent) {
 
 function insertLayoutElement(htmlContent) {
     if (currentlySelected) {
-        const directParentContainer = currentlySelected.closest('.building-container');
-        const isNestedDeeply = directParentContainer && directParentContainer.parentElement.closest('.building-container');
+        // The '>' ensures we ignore any containers nested inside columns
+        const topLevelContainers = document.querySelectorAll(".building-environment > .building-container");
 
-        if (isNestedDeeply) {
-            currentlySelected.insertAdjacentHTML('beforebegin', htmlContent);
+        if (topLevelContainers.length > 0) {
+            // Case A: We have existing containers, put this after the last one
+            const lastContainer = topLevelContainers[topLevelContainers.length - 1];
+            lastContainer.insertAdjacentHTML('afterend', htmlContent);
         } else {
-            const topLevelContainers = document.querySelectorAll(".building-environment > .building-container");
-
-            if (topLevelContainers.length > 0) {
-                const lastContainer = topLevelContainers[topLevelContainers.length - 1];
-                lastContainer.insertAdjacentHTML('afterend', htmlContent);
+            // Case B: The environment is empty (no containers yet)
+            // We need to append the content directly into the environment wrapper
+            const environment = document.querySelector(".building-environment");
+            
+            if (environment) {
+                environment.insertAdjacentHTML('beforeend', htmlContent);
             } else {
-                const environment = document.querySelector(".building-environment");
-                if (environment) {
-                    environment.insertAdjacentHTML('beforeend', htmlContent);
-                }
+                console.warn("Parent container '.building-environment' not found.");
+                return;
             }
         }
 
