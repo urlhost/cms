@@ -57,6 +57,9 @@ function updateMovementArrows() {
       if (currentlySelected.classList.contains('building-column')) {
          moveUp.innerHTML = '◀';
          moveDown.innerHTML = '▶';
+      } else {
+         moveUp.innerHTML = '▲';
+         moveDown.innerHTML = '▼';
       }
    }
 }
