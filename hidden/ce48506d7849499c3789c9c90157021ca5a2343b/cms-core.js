@@ -52,6 +52,17 @@ function updateSelectedLabel() {
    }
 }
 
+function updateMovementArrows() {
+   if (currentlySelected) {
+      if (currentlySelected.classList.contains('building-column')) {
+         moveUp.innerHTML = '◀';
+         moveDown.innerHTML = '▶';
+      }
+   } else {
+      return;
+   }
+}
+
 function deleteElement() {
    if (currentlySelected) {
       if (confirm('Are you sure you want to delete this element?')) {
@@ -379,6 +390,7 @@ document.addEventListener("click", (e) => {
    }
    
    updateSelectedLabel();
+   updateMovementArrows();
 });
 
 document.addEventListener("keydown", e => {
