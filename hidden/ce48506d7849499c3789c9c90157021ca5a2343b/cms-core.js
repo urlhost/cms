@@ -31,17 +31,22 @@ function selectBuildingBlock(blockToSelect, originalTarget) {
    if (originalTarget.closest('.placeholder-block')) {
       deselectAll();
       currentlySelected = originalTarget;
-      updateSelectedLabel();
       invokeCMSMenu();
       return;
    }
    deselectAll();
    currentlySelected = blockToSelect;
    currentlySelected.classList.add('selected');
+   updateSelectedLabel();
 }
 
 function updateSelectedLabel() {
    if (currentlySelected) {
+      if (currentlySelected.dataset.name === null) {
+         selectedElementLabel.innerText = '';
+         return;
+      }
+
       selectedElementLabel.innerText = currentlySelected.dataset.name;
    }
 }
