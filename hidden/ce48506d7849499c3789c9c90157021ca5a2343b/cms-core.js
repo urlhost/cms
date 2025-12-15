@@ -1,5 +1,6 @@
 const cms = document.querySelector(".cms-menu");
 const cmsMenuBar = document.querySelector(".cms-menu-bar");
+const selectedElementLabel = document.getElementById("selected-element-label");
 const styles = document.getElementById("style-editor-sidebar");
 const styleButton = document.getElementById("style-element");
 const deleteButton = document.getElementById("delete-element");
@@ -35,6 +36,10 @@ function selectBuildingBlock(blockToSelect, originalTarget) {
    deselectAll();
    currentlySelected = blockToSelect;
    currentlySelected.classList.add('selected');
+}
+
+function getCurrentlySelected() {
+
 }
 
 function deleteElement() {
