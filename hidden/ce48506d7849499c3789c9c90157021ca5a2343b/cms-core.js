@@ -11,10 +11,6 @@ const previewPage = document.getElementById("preview-page");
 const loadedPage = document.getElementById("loaded-page");
 
 let currentlySelected = null;
-let clipboard = {
-   html: null,
-   sourceElement: null
-};
 
 function deselectAll() {
    if (currentlySelected) {
@@ -48,6 +44,11 @@ function updateSelectedLabel() {
       selectedElementLabel.innerText = currentlySelected.dataset.name;
    }
 }
+
+let clipboard = {
+   html: null,
+   sourceElement: null
+};
 
 function deleteElement() {
    if (currentlySelected) {
@@ -376,7 +377,7 @@ document.addEventListener("click", (e) => {
    } else {
       deselectAll();
    }
-   
+
    updateSelectedLabel();
 });
 
