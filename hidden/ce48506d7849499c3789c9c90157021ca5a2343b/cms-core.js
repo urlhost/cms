@@ -207,6 +207,7 @@ async function savePage() {
 
         // ----- Step 3: Remove unwanted CMS/extension elements -----
         const unwantedSelectors = [
+            '[data-name="cms menu bar"]',
             '[data-name="cms environment"]',
             '[data-name="cms stylesheet"]',
             '[data-name="cms javascript"]',
