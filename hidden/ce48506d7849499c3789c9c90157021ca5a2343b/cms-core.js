@@ -61,6 +61,9 @@ function updateMovementArrows() {
          moveUp.innerHTML = '▲';
          moveDown.innerHTML = '▼';
       }
+   } else {
+      moveUp.innerHTML = '▲';
+      moveDown.innerHTML = '▼';
    }
 }
 
