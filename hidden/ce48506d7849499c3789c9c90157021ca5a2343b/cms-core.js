@@ -15,6 +15,7 @@ let clipboard = {
    html: null,
    sourceElement: null
 };
+let cmsPreviewCounter = 0;
 
 function deselectAll() {
    if (currentlySelected) {
@@ -132,8 +133,6 @@ function pasteElement() {
       deselectAll();
    }
 }
-
-let cmsPreviewCounter = 0;
 
 function checkCMSVisibilityState() {
    if (cmsPreviewCounter == 0) {
