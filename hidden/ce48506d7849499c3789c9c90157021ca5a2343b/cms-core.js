@@ -58,8 +58,6 @@ function updateMovementArrows() {
          moveUp.innerHTML = '◀';
          moveDown.innerHTML = '▶';
       }
-   } else {
-      return;
    }
 }
 
