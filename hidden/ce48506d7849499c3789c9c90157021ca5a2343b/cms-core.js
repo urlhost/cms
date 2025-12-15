@@ -6,6 +6,7 @@ const deleteButton = document.getElementById("delete-element");
 const moveUp = document.getElementById("move-element-up");
 const moveDown = document.getElementById("move-element-down");
 const saveButton = document.getElementById("save-and-copy");
+const previewPage = document.getElementById("preview-page");
 const loadedPage = document.getElementById("loaded-page");
 
 let currentlySelected = null;
@@ -119,6 +120,68 @@ function pasteElement() {
       deselectAll();
    }
 }
+
+let cmsPreviewCounter = 0;
+
+function checkCMSVisibilityState() {
+   if (cmsPreviewCounter == 0) {
+      disableCMS();
+      setTimeout(() => {
+         cmsPreviewCounter = 1;
+      }, 0);
+   } else {
+      enableCMS();
+      setTimeout(() => {
+         cmsPreviewCounter = 0;
+      }, 0);
+   }
+}
+
+function disableCMS() {
+  // 1. Unload the CSS file
+  // We target the link tag with the specific href and data-name
+  const stylesheet = document.querySelector('link[href="cms.css"][data-name="cms stylesheet"]');
+  
+  if (stylesheet) {
+    stylesheet.remove();
+    console.log('CMS Stylesheet unloaded.');
+  }
+
+  // 2. Hide the element with data-name "cms environment"
+  const cmsEnvElement = document.querySelector('[data-name="cms environment"]');
+  
+  if (cmsEnvElement) {
+    cmsEnvElement.style.display = 'none';
+    console.log('CMS Environment element hidden.');
+  }
+}
+
+function enableCMS() {
+  // 1. Reload the CSS file
+  // First, check if it already exists to prevent adding duplicates
+  if (!document.querySelector('link[href="cms.css"][data-name="cms stylesheet"]')) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'cms.css';
+    link.setAttribute('data-name', 'cms stylesheet'); // Restore the data attribute
+    
+    // Append it back to the <head>
+    document.head.appendChild(link);
+    console.log('CMS Stylesheet restored.');
+  }
+
+  // 2. Show the data-name 'cms environment' element
+  const cmsEnvElement = document.querySelector('[data-name="cms environment"]');
+  
+  if (cmsEnvElement) {
+    // Setting display to an empty string removes the inline 'display: none',
+    // allowing the element's default CSS (block, flex, grid, etc.) to take over.
+    cmsEnvElement.style.display = ''; 
+    console.log('CMS Environment element visible.');
+  }
+}
+
+previewPage.addEventListener('click', checkCMSVisibilityState);
 
 // NEW, CORRECTED HELPER FUNCTION
 function formatHtml(node, level = 0, indentChar = '  ') {
