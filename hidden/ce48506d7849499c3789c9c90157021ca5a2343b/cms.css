@@ -58,6 +58,8 @@
   white-space: nowrap;
 } */
 
+/*CMS Element Visibility*/
+
 .selected {
   position: relative;
   outline: 2px solid magenta !important;
@@ -76,7 +78,7 @@
   white-space: nowrap;
 }
 
-.building-environment,
+/* .building-environment,
 .building-container,
 .building-column,
 .building-block {
@@ -132,7 +134,9 @@
     margin-right: 1rem;
     width: 100%;
     max-width: calc(100% - 2rem) !important;
-}
+} */
+
+/*EMD CMS Element Visibility*/
 
         .placeholder-block {
             display: block;
