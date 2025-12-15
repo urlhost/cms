@@ -42,7 +42,7 @@ function selectBuildingBlock(blockToSelect, originalTarget) {
 
 function updateSelectedLabel() {
    if (currentlySelected) {
-      if (currentlySelected.dataset.name === null) {
+      if (currentlySelected.dataset.name === undefined) {
          selectedElementLabel.innerText = '';
          return;
       }
