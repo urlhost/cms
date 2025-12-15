@@ -47,6 +47,8 @@ function updateSelectedLabel() {
       }
 
       selectedElementLabel.innerText = currentlySelected.dataset.name;
+   }  else {
+      selectedElementLabel.innerText = '';
    }
 }
 
