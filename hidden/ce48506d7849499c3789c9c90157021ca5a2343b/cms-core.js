@@ -95,6 +95,7 @@ function pasteElement() {
       const tempDiv = document.createElement('div');
       tempDiv.innerHTML = clipboard.html;
       const copiedElement = tempDiv.firstElementChild;
+      let parentColumn = null;
 
       if (copiedElement) {
          if (currentlySelected.classList.contains('placeholder-block')) {
@@ -136,17 +137,20 @@ function pasteElement() {
       }
 
       if (currentlySelected.classList.contains('building-column')) {
-         currentlySelected.insertAdjacentHTML('beforeend', clipboard.html);
-         return;
+         parentColumn = currentlySelected;
+         const placeholder = parentColumn.querySelector('.placeholder-block');
+         if (placeholder) {
+            placeholder.insertAdjacentHTML('beforebegin', clipboard.html);
+            return;
+         } else {
+            currentlySelected.insertAdjacentHTML('beforeend', clipboard.html);
+            return;
+         }
       } else {
-         const parentColumn = currentlySelected.closest('.building-column');
+         parentColumn = currentlySelected.closest('.building-column');
          if (parentColumn) {
-            const placeholder = parentColumn.querySelector('.placeholder-block');
-            if (placeholder) {
-               placeholder.insertAdjacentHTML('beforebegin', clipboard.html);
-            } else {
-               currentlySelected.insertAdjacentHTML('afterend', clipboard.html);
-            }
+            currentlySelected.insertAdjacentHTML('afterend', clipboard.html);
+            return;
          } else {
             alert('Content blocks can only be pasted inside a "building-column".');
             return;
