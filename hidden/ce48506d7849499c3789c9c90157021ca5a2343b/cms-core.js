@@ -141,7 +141,7 @@ function pasteElement() {
       } else {
          const parentColumn = currentlySelected.closest('.building-column');
          if (parentColumn) {
-            currentlySelected.insertAdjacentHTML('afterend', clipboard.html);
+            currentlySelected.insertAdjacentHTML('beforebegin', clipboard.html);
             return;
          } else {
             alert('Content blocks can only be pasted inside a "building-column".');
