@@ -99,18 +99,18 @@ function pasteElement() {
 
       if (copiedElement) {
          if (currentlySelected.classList.contains('placeholder-block')) {
-            alert('Cannot paste an element here. Please select a valid building container, column, or block, not the placeholder.');
+            alert('Paste canceled. Please select a valid building container, column, or block, not the placeholder.');
             return;
          }
       }
 
       if (copiedElement.classList.contains('building-column')) {
          if (!currentlySelected.classList.contains('building-column')) {
-            alert('A column can only be pasted to overwrite another column. Please select a column.');
+            alert('A building column can only be pasted to overwrite another building column. Please select a building column.');
             return;
          }
          if (currentlySelected === clipboard.sourceElement) {
-            alert('Cannot overwrite the same column. Please select a different column to replace.');
+            alert('Cannot overwrite the same building column. Please select a different building column to replace.');
             return;
          }
 
@@ -152,7 +152,7 @@ function pasteElement() {
             currentlySelected.insertAdjacentHTML('afterend', clipboard.html);
             return;
          } else {
-            alert('Content blocks can only be pasted inside a "building-column".');
+            alert('Content blocks can only be pasted inside a "building column".');
             return;
          }
       }
