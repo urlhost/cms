@@ -141,8 +141,12 @@ function pasteElement() {
       } else {
          const parentColumn = currentlySelected.closest('.building-column');
          if (parentColumn) {
-            currentlySelected.insertAdjacentHTML('beforebegin', clipboard.html);
-            return;
+            const placeholder = parentColumn.querySelector('.placeholder-block');
+            if (placeholder) {
+               placeholder.insertAdjacentHTML('beforebegin', clipboard.html);
+            } else {
+               currentlySelected.insertAdjacentHTML('afterend', clipboard.html);
+            }
          } else {
             alert('Content blocks can only be pasted inside a "building-column".');
             return;
