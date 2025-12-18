@@ -445,42 +445,36 @@ document.addEventListener("keydown", e => {
       return;
    }
 
-   if (currentlySelected) {
-      if (e.key === 'ArrowUp') {
-         e.preventDefault();
-         const prev = currentlySelected.previousElementSibling;
-         if (prev) {
-            currentlySelected.parentElement.insertBefore(currentlySelected, prev);
-         }
-      } else if (e.key === 'ArrowDown') {
-         e.preventDefault();
-         const next = currentlySelected.nextElementSibling;
-         if (next.classList.contains("placeholder-block") || next.classList.contains("accordion-content")) {
-            return;
-         } else {
-            currentlySelected.parentElement.insertBefore(currentlySelected, next.nextElementSibling);
-         }
-      }  else if (e.key === 'ArrowLeft' && currentlySelected.classList.contains("building-column")) {
-         e.preventDefault();
-         const next = currentlySelected.nextElementSibling;
-         if (next.classList.contains("placeholder-block") || next.classList.contains("accordion-content")) {
-            return;
-         } else {
-            currentlySelected.parentElement.insertBefore(currentlySelected, next.nextElementSibling);
-         }
-      }  else if (e.key === 'ArrowRight' && currentlySelected.classList.contains("building-column")) {
-         e.preventDefault();
-         const next = currentlySelected.nextElementSibling;
-         if (next.classList.contains("placeholder-block") || next.classList.contains("accordion-content")) {
-            return;
-         } else {
-            currentlySelected.parentElement.insertBefore(currentlySelected, next.nextElementSibling);
-         }
-      }  else if (e.key.toLowerCase() === 'd') {
-         e.preventDefault();
-         deleteElement();
+if (currentlySelected) {
+   if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      const prev = currentlySelected.previousElementSibling;
+      if (prev) {
+         currentlySelected.parentElement.insertBefore(currentlySelected, prev);
       }
+   } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      const next = currentlySelected.nextElementSibling;
+      if (next && !next.classList.contains("placeholder-block") && !next.classList.contains("accordion-content")) {
+         currentlySelected.parentElement.insertBefore(currentlySelected, next.nextElementSibling);
+      }
+   } else if (e.key === 'ArrowLeft' && currentlySelected.classList.contains("building-column")) {
+      e.preventDefault();
+      const prev = currentlySelected.previousElementSibling;
+      if (prev && !prev.classList.contains("placeholder-block") && !prev.classList.contains("accordion-content")) {
+         currentlySelected.parentElement.insertBefore(currentlySelected, prev);
+      }
+   } else if (e.key === 'ArrowRight' && currentlySelected.classList.contains("building-column")) {
+      e.preventDefault();
+      const next = currentlySelected.nextElementSibling;
+      if (next && !next.classList.contains("placeholder-block") && !next.classList.contains("accordion-content")) {
+         currentlySelected.parentElement.insertBefore(currentlySelected, next.nextElementSibling);
+      }
+   } else if (e.key.toLowerCase() === 'd') {
+      e.preventDefault();
+      deleteElement();
    }
+}
 });
 
 deleteButton.addEventListener("click", deleteElement);
