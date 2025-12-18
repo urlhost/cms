@@ -407,6 +407,10 @@ function loadImageValues() {
             inlineStyle.height = displayHeight + "px";
         }
 
+        if (currentlySelected.classList.contains("ratio-image")) {
+            inlineStyle.height = auto;
+        }
+
         imageRatioWidthInput.value = displayWidth;
         imageCropWidthInput.value = displayWidth;
         imageCropHeightInput.value = displayHeight;
@@ -512,7 +516,6 @@ imageRatio.addEventListener("click", () => {
     currentlySelected.style.removeProperty('width');
     currentlySelected.style.removeProperty('height');
     currentlySelected.style.removeProperty('object-position');
-    currentlySelected.style.height = auto;
     loadImageValues();
     setTimeout(checkRestrictedControls, 0);
 });
