@@ -512,6 +512,7 @@ imageRatio.addEventListener("click", () => {
     currentlySelected.style.removeProperty('width');
     currentlySelected.style.removeProperty('height');
     currentlySelected.style.removeProperty('object-position');
+    currentlySelected.style.height = auto;
     loadImageValues();
     setTimeout(checkRestrictedControls, 0);
 });
