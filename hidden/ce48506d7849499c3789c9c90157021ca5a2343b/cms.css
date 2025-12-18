@@ -822,11 +822,11 @@
             border-left: none;
         }
 
-        .sidebar .sidebar-segmented-control button:hover {
+        /* .sidebar .sidebar-segmented-control button:hover {
             background: magenta;
             border-color: magenta;
             color: #fff;
-        }
+        } */
 
         .sidebar .sidebar-segmented-control .active {
             background: magenta;

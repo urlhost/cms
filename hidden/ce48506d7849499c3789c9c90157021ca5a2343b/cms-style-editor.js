@@ -39,9 +39,11 @@ const paddingBottomInput = document.getElementById("style-editor-padding-bottom-
 // Image Options
 const imageDefault = document.getElementById("style-editor-image-default-button");
 const imageCrop = document.getElementById("style-editor-image-crop-button");
-const imageWidthInput = document.getElementById("style-editor-crop-width-input");
-const imageHeightInput = document.getElementById("style-editor-crop-height-input");
-const imagePositionInput = document.getElementById("style-editor-crop-position-input");
+const imageRatio = document.getElementById("style-editor-image-ratio-button");
+const imageRatioWidthInput = document.getElementById("style-editor-ratio-width-input");
+const imageCropWidthInput = document.getElementById("style-editor-crop-width-input");
+const imageCropHeightInput = document.getElementById("style-editor-crop-height-input");
+const imageCropPositionInput = document.getElementById("style-editor-crop-position-input");
 
 // ===============================
 // HELPERS
@@ -119,10 +121,19 @@ widthInput.addEventListener("input", () => {
 // ===============================
 // IMAGE WIDTH CONTROL (direct input)
 // ===============================
-imageWidthInput.addEventListener("input", () => {
+imageRatioWidthInput.addEventListener("input", () => {
   if (currentlySelected) {
     currentlySelected.classList.add("custom-styles");
-    let width = parseFloat(imageWidthInput.value) || 100;
+    let width = parseFloat(imageRatioWidthInput.value) || 100;
+    width = Math.max(10, Math.min(9999, width));
+    currentlySelected.style.width = width + "px";
+  }
+});
+
+imageCropWidthInput.addEventListener("input", () => {
+  if (currentlySelected) {
+    currentlySelected.classList.add("custom-styles");
+    let width = parseFloat(imageCropWidthInput.value) || 100;
     width = Math.max(10, Math.min(9999, width));
     currentlySelected.style.width = width + "px";
   }
@@ -131,10 +142,10 @@ imageWidthInput.addEventListener("input", () => {
 // ===============================
 // IMAGE HEIGHT CONTROL (direct input)
 // ===============================
-imageHeightInput.addEventListener("input", () => {
+imageCropHeightInput.addEventListener("input", () => {
   if (currentlySelected) {
     currentlySelected.classList.add("custom-styles");
-    let height = parseFloat(imageHeightInput.value) || 100;
+    let height = parseFloat(imageCropHeightInput.value) || 100;
     height = Math.max(10, Math.min(9999, height));
     currentlySelected.style.height = height + "px";
   }
@@ -143,10 +154,10 @@ imageHeightInput.addEventListener("input", () => {
 // ===============================
 // IMAGE POSITION CONTROL (direct input)
 // ===============================
-imagePositionInput.addEventListener("input", () => {
+imageCropPositionInput.addEventListener("input", () => {
   if (currentlySelected) {
     currentlySelected.classList.add("custom-styles");
-    let position = parseFloat(imagePositionInput.value) || 100;
+    let position = parseFloat(imageCropPositionInput.value) || 100;
     position = Math.max(5, Math.min(100, position));
     currentlySelected.style.objectPosition = position + "%";
   }
@@ -381,12 +392,13 @@ function loadCroppedImageValues() {
             inlineStyle.height = displayHeight + "px";
         }
 
-        imageWidthInput.value = displayWidth;
-        imageHeightInput.value = displayHeight;
+        imageRatioWidthInput.value = displayWidth;
+        imageCropWidthInput.value = displayWidth;
+        imageCropHeightInput.value = displayHeight;
         
         const objectPositionValue = computedStyle.objectPosition;
         const positionX = objectPositionValue.split(' ')[0];
-        imagePositionInput.value = parseFloat(positionX) || 50;
+        imageCropPositionInput.value = parseFloat(positionX) || 50;
     }
 }
 
