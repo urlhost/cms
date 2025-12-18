@@ -170,7 +170,7 @@ function highlightActiveControls() {
   if (!currentlySelected) return;
 
   // Clear old actives
-  [alignLeft, alignCenter, alignRight, alignTop, alignMiddle, alignBottom, imageCrop, imageDefault]
+  [alignLeft, alignCenter, alignRight, alignTop, alignMiddle, alignBottom, imageDefault, imageRatio, imageCrop]
     .forEach(btn => btn.classList.remove("active"));
 
   // Horizontal
@@ -192,8 +192,10 @@ function highlightActiveControls() {
   }
 
   // Image
-  if (currentlySelected.classList.contains("crop-image")) {
+  if (currentlySelected.classList.contains("ratio-image")) {
     imageCrop.classList.add("active");
+  } else if (currentlySelected.classList.contains("crop-image")) {
+    imageDefault.classList.add("active");
   } else if (currentlySelected.classList.contains("default-image")) {
     imageDefault.classList.add("active");
   }
@@ -256,10 +258,20 @@ alignBottom.addEventListener("click", wrapWithHighlight(() => {
   }
 }));
 
+imageRatio.addEventListener("click", wrapWithHighlight(() => {
+  if (currentlySelected) {
+    currentlySelected.classList.add("custom-styles");
+    currentlySelected.classList.remove("default-image");
+    currentlySelected.classList.remove("crop-image");
+    currentlySelected.classList.add("ratio-image");
+  }
+}));
+
 imageCrop.addEventListener("click", wrapWithHighlight(() => {
   if (currentlySelected) {
     currentlySelected.classList.add("custom-styles");
     currentlySelected.classList.remove("default-image");
+    currentlySelected.classList.remove("ratio-image");
     currentlySelected.classList.add("crop-image");
   }
 }));
@@ -268,6 +280,7 @@ imageDefault.addEventListener("click", wrapWithHighlight(() => {
   if (currentlySelected) {
     currentlySelected.classList.add("custom-styles");
     currentlySelected.classList.remove("crop-image");
+    currentlySelected.classList.remove("ratio-image");
     currentlySelected.classList.add("default-image");
   }
 }));
@@ -455,7 +468,8 @@ highlightActiveControls();
 function checkRestrictedControls() {
   const verticalAlignControls = document.getElementById("style-editor-vertical-align-controls");
   const imageControls = document.getElementById("style-editor-image-controls");
-  const imageCropControls = document.getElementById("style-editor-image-crop-controls")
+  const imageRatioControls = document.getElementById("style-editor-image-ratio-controls");
+  const imageCropControls = document.getElementById("style-editor-image-crop-controls");
   if (!verticalAlignControls || !imageControls) return;
 
   if (currentlySelected?.classList.contains("building-column")) {
@@ -475,6 +489,12 @@ function checkRestrictedControls() {
   } else {
     imageCropControls.classList.add("content-hide");
   }
+
+  if (currentlySelected?.classList.contains("ratio-image")) {
+    imageRatioControls.classList.remove("content-hide");
+  } else {
+    imageRatioControls.classList.add("content-hide");
+  }
 }
 
 // Custom Event Listeners
@@ -482,6 +502,14 @@ imageDefault.addEventListener("click", () => {
     currentlySelected.style.removeProperty('width');
     currentlySelected.style.removeProperty('height');
     currentlySelected.style.removeProperty('object-position');
+    setTimeout(checkRestrictedControls, 0);
+});
+
+imageRatio.addEventListener("click", () => {
+    currentlySelected.style.removeProperty('width');
+    currentlySelected.style.removeProperty('height');
+    currentlySelected.style.removeProperty('object-position');
+    loadCroppedImageValues();
     setTimeout(checkRestrictedControls, 0);
 });
 
