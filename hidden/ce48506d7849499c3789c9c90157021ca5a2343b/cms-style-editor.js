@@ -401,14 +401,14 @@ function loadImageValues() {
         }
 
         if (currentlySelected.classList.contains("ratio-image")) {
-          return;
+            inlineStyle.height = auto;
         } else {
-           if (inlineStyle.height && inlineStyle.height.includes("px")) {
-              displayHeight = parseFloat(inlineStyle.height);
+            if (inlineStyle.height && inlineStyle.height.includes("px")) {
+                displayHeight = parseFloat(inlineStyle.height);
             } else {
-              displayHeight = Math.round(parseFloat(computedStyle.height));
-              // THE FIX: Add the "px" unit to the number
-              inlineStyle.height = displayHeight + "px";
+                displayHeight = Math.round(parseFloat(computedStyle.height));
+                // THE FIX: Add the "px" unit to the number
+                inlineStyle.height = displayHeight + "px";
             }
         }
 
