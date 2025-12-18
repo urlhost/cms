@@ -460,6 +460,22 @@ document.addEventListener("keydown", e => {
          } else {
             currentlySelected.parentElement.insertBefore(currentlySelected, next.nextElementSibling);
          }
+      }  else if (e.key === 'ArrowLeft' && currentlySelected.classList.contains("building-column")) {
+         e.preventDefault();
+         const next = currentlySelected.nextElementSibling;
+         if (next.classList.contains("placeholder-block") || next.classList.contains("accordion-content")) {
+            return;
+         } else {
+            currentlySelected.parentElement.insertBefore(currentlySelected, next.nextElementSibling);
+         }
+      }  else if (e.key === 'ArrowRight' && currentlySelected.classList.contains("building-column")) {
+         e.preventDefault();
+         const next = currentlySelected.nextElementSibling;
+         if (next.classList.contains("placeholder-block") || next.classList.contains("accordion-content")) {
+            return;
+         } else {
+            currentlySelected.parentElement.insertBefore(currentlySelected, next.nextElementSibling);
+         }
       }  else if (e.key.toLowerCase() === 'd') {
          e.preventDefault();
          deleteElement();
