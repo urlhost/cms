@@ -400,7 +400,7 @@ function loadImageValues() {
         }
 
         if (currentlySelected.classList.contains("ratio-image")) {
-            inlineStyle.height = auto;
+            inlineStyle.height = "auto";
         } else {
             if (inlineStyle.height && inlineStyle.height.includes("px")) {
                 displayHeight = parseFloat(inlineStyle.height);
