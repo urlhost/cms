@@ -541,7 +541,7 @@ imageCrop.addEventListener("click", () => {
 backgroundColorRemove.addEventListener("click", function() {
   if (currentlySelected) {
     if (currentlySelected.style.backgroundColor !== '') {
-      currentlySelected.style.backgroundColor = '';
+      currentlySelected.style.backgroundColor = 'transparent';
       loadStylesFromSelected();
     } else {
       return;
@@ -552,7 +552,7 @@ backgroundColorRemove.addEventListener("click", function() {
 borderColorRemove.addEventListener("click", function() {
   if (currentlySelected) {
     if (currentlySelected.style.borderColor !== '') {
-      currentlySelected.style.borderColor = '';
+      currentlySelected.style.borderColor = 'transparent';
       loadStylesFromSelected();
     } else {
       return;
