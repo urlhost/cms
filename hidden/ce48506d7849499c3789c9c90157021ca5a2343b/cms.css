@@ -937,7 +937,7 @@
   transition: background 0.2s, border-color 0.2s;
 }
 
-.sidebar-checkbox:checked + .sidebar-checkbox-input {
+.sidebar-checkbox-input:checked + .sidebar-checkbox {
   background-color: magenta;
   border-color: #7f8c8d;
 }
@@ -955,7 +955,8 @@
   transform: rotate(45deg);
 }
 
-.sidebar-checkbox:checked + .sidebar-checkbox-input::after {
+/* 2. Show the checkmark inside the visual box when the input is checked */
+.sidebar-checkbox-input:checked + .sidebar-checkbox::after {
   display: block;
 }
 
