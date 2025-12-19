@@ -903,6 +903,10 @@
             color: #fff;
         }
 
+        .sidebar-spacer {
+            padding-top: 20px;
+        }
+
         .accordion-content {
             display: block !important;
         }
