@@ -540,10 +540,8 @@ imageCrop.addEventListener("click", () => {
 
 backgroundColorRemove.addEventListener("click", function() {
   if (currentlySelected) {
-    const computedStyle = window.getComputedStyle(currentlySelected);
-    const bgColor = computedStyle.getPropertyValue("background-color");
-    if (currentlySelected.bgColor) {
-      currentlySelected.backgroundColor = '';
+    if (currentlySelected.style.backgroundColor !== '') {
+      currentlySelected.style.backgroundColor = '';
     } else {
       return;
     }
