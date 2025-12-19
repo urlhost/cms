@@ -9,6 +9,11 @@ function invokeStyleMenu() {
 }
 
 // === STYLE EDITOR LOGIC ===
+//Behavior Options
+const hideOnDesktop = document.getElementById("style-editor-hide-on-desktop-checkbox");
+const hideOnMobile = document.getElementById("style-editor-hide-on-mobile-checkbox");
+const responsiveCollapse = document.getElementById("style-editor-responsive-collapse-checkbox");
+
 // Background color input
 const backgroundColorInput = document.getElementById("style-editor-bg-color-input");
 const backgroundColorValueSpan = document.getElementById("style-editor-bg-color-input-value");
@@ -536,6 +541,24 @@ imageCrop.addEventListener("click", () => {
     loadImageValues();
     setTimeout(checkRestrictedControls, 0);
 });
+
+hideOnDesktop.addEventListener("change", function() {
+  if (currentlySelected && hideOnDesktop.checked) {
+      //code here
+      loadStylesFromSelected();
+    } else {
+      return;
+    }
+  });
+
+  hideOnMobile.addEventListener("change", function() {
+  if (currentlySelected && hideOnMobile.checked) {
+      //code here
+      loadStylesFromSelected();
+    } else {
+      return;
+    }
+  });
 
 backgroundColorRemove.addEventListener("click", function() {
   if (currentlySelected) {
