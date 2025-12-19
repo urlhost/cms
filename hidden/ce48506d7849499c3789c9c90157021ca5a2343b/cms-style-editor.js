@@ -542,6 +542,18 @@ backgroundColorRemove.addEventListener("click", function() {
   if (currentlySelected) {
     if (currentlySelected.style.backgroundColor !== '') {
       currentlySelected.style.backgroundColor = '';
+      loadStylesFromSelected();
+    } else {
+      return;
+    }
+  }
+});
+
+borderColorRemove.addEventListener("click", function() {
+  if (currentlySelected) {
+    if (currentlySelected.style.borderColor !== '') {
+      currentlySelected.style.borderColor = '';
+      loadStylesFromSelected();
     } else {
       return;
     }
