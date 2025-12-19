@@ -69,7 +69,7 @@ async function insertImageUpload(htmlContent) {
 }
 
 function insertLayoutElement(htmlContent) {
-    if (currentlySelected) {
+    if (currentlySelected && layoutElementInstanceCheckbox.checked) {
         // The '>' ensures we ignore any containers nested inside columns
         const topLevelContainers = document.querySelectorAll(".building-environment > .building-container");
 
@@ -91,6 +91,8 @@ function insertLayoutElement(htmlContent) {
         }
 
         deselectAll();
+    } else {
+        currentlySelected.insertAdjacentHTML("beforebegin", htmlContent);
     }
 }
 
