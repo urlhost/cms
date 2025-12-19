@@ -540,7 +540,7 @@ imageCrop.addEventListener("click", () => {
 backgroundColorRemove.addEventListener("click", function() {
   if (currentlySelected) {
     if (currentlySelected.style.backgroundColor !== '') {
-      currentlySelected.style.backgroundColor = 'transparent';
+      currentlySelected.style.backgroundColor = '';
       loadStylesFromSelected();
     } else {
       return;
