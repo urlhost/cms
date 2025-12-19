@@ -908,18 +908,20 @@
         }
 
 .sidebar-checkbox-container {
-  display: inline-block;
+  display: inline-flex;
   position: relative;
+  align-items: center;
   width: 24px;
   height: 24px;
+  gap: 10px;
 }
 
 .sidebar-checkbox-input {
-  position: absolute;
+  position: relative;
   opacity: 0;
   cursor: pointer;
-  height: 100%;
-  width: 100%;
+  width: 24px;
+  height: 24px;
   margin: 0;
   z-index: 2;
 }
