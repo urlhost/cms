@@ -555,20 +555,16 @@ imageCrop.addEventListener("click", () => {
 hideOnDesktop.addEventListener("change", function() {
   if (currentlySelected && hideOnDesktop.checked) {
       currentlySelected.classList.add("hide-on-desktop");
-      loadStylesFromSelected();
     } else {
       currentlySelected.classList.remove("hide-on-desktop");
-      loadStylesFromSelected();
     }
   });
 
   hideOnMobile.addEventListener("change", function() {
   if (currentlySelected && hideOnMobile.checked) {
       currentlySelected.classList.add("hide-on-mobile");
-      loadStylesFromSelected();
     } else {
       currentlySelected.classList.remove("hide-on-mobile");
-      loadStylesFromSelected();
     }
   });
 
