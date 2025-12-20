@@ -199,6 +199,8 @@ function disableCMS() {
     cmsEnvElement.style.display = 'none';
     console.log('CMS Environment element hidden.');
   }
+
+   reloadScripts('scriptToReload');
 }
 
 function enableCMS() {
@@ -229,7 +231,7 @@ function enableCMS() {
 previewPage.addEventListener('click', checkCMSVisibilityState);
 
 function reloadScripts(id) {
-    const oldScript = document.getElementById('scriptToReload');
+    const oldScript = document.getElementById(id);
     const src = oldScript.src.split('?')[0]; // Get clean URL (remove old timestamp)
     
     // Create new script tag
