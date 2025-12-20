@@ -479,10 +479,14 @@ if (borderColorValueSpan) borderColorValueSpan.textContent = finalBorderColor.to
 
 if (currentlySelected.classList.contains("hide-on-desktop")) {
   hideOnDesktop.checked;
+} else {
+  hideOnDesktop.checked = false;
 }
 
 if (currentlySelected.classList.contains("hide-on-mobile")) {
   hideOnMobile.checked;
+} else {
+  hideOnMobile.checked = false;
 }
 
 highlightActiveControls();
