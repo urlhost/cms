@@ -707,6 +707,13 @@ footer {
         grid-column: auto;
     }
 }
+    .hide-on-desktop {
+        display: block;
+    }
+
+    .hide-on-mobile {
+        display: none;
+    }
 }
 
 /* Column content alignment */

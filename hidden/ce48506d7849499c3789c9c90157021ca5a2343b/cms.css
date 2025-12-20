@@ -1245,7 +1245,6 @@
     transform: rotate(45deg);
 }
 
-/* 2. Show the checkmark inside the visual box when the input is checked */
 .sidebar-checkbox-input:checked+.sidebar-checkbox::after {
     display: block;
 }

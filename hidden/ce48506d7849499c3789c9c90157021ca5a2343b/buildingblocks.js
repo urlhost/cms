@@ -216,17 +216,3 @@ const accordion = `
     </div>
 </div>
 `;
-
-// const placeHolderInitial = `
-// <div class="building-container building-block building-block-align-left">
-//     <div class="building-column-span-1">
-//         <div class="building-column building-block building-block-align-left building-column-content-center">
-//             <div class="placeholder-block"></div>
-//         </div>
-//     </div>
-// </div>
-// `;
-
-// const placeHolder = `
-// <div class="placeholder-block"></div>
-// `;
