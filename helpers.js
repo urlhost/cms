@@ -26,11 +26,12 @@ function initHelpers() {
     });
   }
 
-  if (params.get('mode') !== 'editing') {
-    var accordions = document.querySelectorAll(".accordion-label");
-    for (var i = 0; i < accordions.length; i++) {
-      accordions[i].onclick = function() {
-        // The content div is the next sibling of the label
+  var accordions = document.querySelectorAll(".accordion-label");
+  for (var i = 0; i < accordions.length; i++) {
+    accordions[i].onclick = function() {
+      if (params.get('mode') === 'editing') {
+        return;
+      } else {
         var content = this.nextElementSibling;
         if (content.style.display === "block") {
           // If it's visible, hide it
@@ -41,7 +42,7 @@ function initHelpers() {
           content.style.display = "block";
           this.firstElementChild.classList.add("accordion-active");
         }
-      };
+      }
     }
   }
 
