@@ -478,13 +478,13 @@ if (borderColorValueSpan) borderColorValueSpan.textContent = finalBorderColor.to
 //Behavior
 
 if (currentlySelected.classList.contains("hide-on-desktop")) {
-  hideOnDesktop.checked;
+  hideOnDesktop.checked = true;
 } else {
   hideOnDesktop.checked = false;
 }
 
 if (currentlySelected.classList.contains("hide-on-mobile")) {
-  hideOnMobile.checked;
+  hideOnMobile.checked = true;
 } else {
   hideOnMobile.checked = false;
 }
