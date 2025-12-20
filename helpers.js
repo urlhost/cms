@@ -77,6 +77,130 @@ function initHelpers() {
 
   mobileMediaQuery.addEventListener('change', handleMobileChange);
   handleMobileChange(mobileMediaQuery);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Register the ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Configuration for all animations
+    const defaults = {
+      duration: 0.8,
+      ease: "power2.out",
+      toggleActions: "play none none reverse", // Play on enter, reverse on leave
+      start: "top 85%", // Trigger when top of element hits 85% of viewport height
+    };
+
+    // Select all elements with the data-anim attribute
+    const elements = document.querySelectorAll("[data-anim]");
+
+    elements.forEach((el) => {
+      const type = el.getAttribute("data-anim");
+      const delay = el.getAttribute("data-delay") || 0; // Optional delay
+
+      // Base object for GSAP .from()
+      let settings = {
+        scrollTrigger: {
+          trigger: el,
+          toggleActions: defaults.toggleActions,
+          start: defaults.start,
+        },
+        duration: defaults.duration,
+        ease: defaults.ease,
+        delay: delay,
+      };
+
+      // --- ANIMATION LOGIC --- //
+      switch (type) {
+
+        // === FADES (Subtle movement + Opacity) ===
+        case "fade-in":
+          settings.opacity = 0;
+          break;
+
+        case "fade-in-up":
+          settings.opacity = 0;
+          settings.y = 50; // Coming from 50px below
+          break;
+
+        case "fade-in-down":
+          settings.opacity = 0;
+          settings.y = -50; // Coming from 50px above
+          break;
+
+        case "fade-in-left":
+          settings.opacity = 0;
+          settings.x = -50;
+          break;
+
+        case "fade-in-right":
+          settings.opacity = 0;
+          settings.x = 50;
+          break;
+
+          // === FLY INS (Large movement, usually "Elastic" or "Back" ease) ===
+        case "fly-in-up":
+          settings.opacity = 0;
+          settings.y = 200;
+          settings.ease = "back.out(1.7)"; // Boing effect
+          break;
+
+        case "fly-in-down":
+          settings.opacity = 0;
+          settings.y = -200;
+          settings.ease = "back.out(1.7)";
+          break;
+
+        case "fly-in-left":
+          settings.opacity = 0;
+          settings.x = -200;
+          settings.ease = "back.out(1.7)";
+          break;
+
+        case "fly-in-right":
+          settings.opacity = 0;
+          settings.x = 200;
+          settings.ease = "back.out(1.7)";
+          break;
+
+          // === GROWS (Scale effects) ===
+          // Note: "Grow Up" usually means growing FROM the bottom UP.
+
+        case "grow-up":
+          settings.opacity = 0;
+          settings.scaleY = 0;
+          settings.transformOrigin = "bottom center";
+          break;
+
+        case "grow-down":
+          settings.opacity = 0;
+          settings.scaleY = 0;
+          settings.transformOrigin = "top center";
+          break;
+
+        case "grow-right": // Grows from left to right
+          settings.opacity = 0;
+          settings.scaleX = 0;
+          settings.transformOrigin = "left center";
+          break;
+
+        case "grow-left": // Grows from right to left
+          settings.opacity = 0;
+          settings.scaleX = 0;
+          settings.transformOrigin = "right center";
+          break;
+
+        case "pop-in":
+          settings.opacity = 0;
+          settings.scale = 0.5;
+          settings.ease = "elastic.out(1, 0.5)";
+          break;
+      }
+
+      // Apply the animation
+      gsap.from(el, settings);
+    });
+  });
+
 }
 
 if (document.readyState === 'loading') {
