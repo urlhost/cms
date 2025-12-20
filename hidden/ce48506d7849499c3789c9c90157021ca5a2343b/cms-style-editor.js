@@ -489,10 +489,10 @@ if (currentlySelected.classList.contains("hide-on-mobile")) {
   hideOnMobile.checked = false;
 }
 
-if (currentlySelected.classList.contains("building-container-static")) {
-  responsiveCollapse.checked;
-} else {
+if (currentlySelected.nextElementSibling.classList.contains("unresponsive-collpase")) {
   responsiveCollapse.checked = false;
+} else {
+  responsiveCollapse.checked = true;
 }
 
 highlightActiveControls();
@@ -586,9 +586,9 @@ hideOnDesktop.addEventListener("change", function() {
 
   responsiveCollapse.addEventListener("change", function() {
   if (currentlySelected && responsiveCollapse.checked) {
-      //code
+      currentlySelected.nextElementSibling.classList.add("unresponsive-collpase");
     } else {
-      //code
+      currentlySelected.nextElementSibling.classList.remove("unresponsive-collpase");
     }
   });
 
