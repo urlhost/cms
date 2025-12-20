@@ -29,6 +29,7 @@ function initHelpers() {
   }
 
   if (params.get('mode') === 'editing') {
+	console.log('???');
     return;
   } else {
     var accordions = document.querySelectorAll(".accordion-label");
