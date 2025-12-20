@@ -319,11 +319,6 @@ body {
     /* Center the content */
 }
 
-.custom-styles {
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
-
 /* 3. TYPOGRAPHY STYLES */
 
 /* Headings */
@@ -456,22 +451,6 @@ a:focus {
     height: auto;
     background-color: silver;
 }
-
-/* hr {
-  display: block;
-  position: relative;
-  margin: 20px auto;
-  width: 75%;
-  height: 2px;
-  background-color: silver;
-  border: none;
-} */
-
-/* @media screen and (max-width: 640px) {
-    .custom-styles {
-        max-width: 100% !important;
-    }
-} */
 
 header {
     display: block;
@@ -696,6 +675,11 @@ footer {
     .building-column-span-five:not(.unresponsive-collapse) .building-column:nth-child(5),
     .building-column-span-three:not(.unresponsive-collapse) .building-column:nth-child(3) {
         grid-column: auto;
+    }
+
+    .custom-styles {
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
 }
 
