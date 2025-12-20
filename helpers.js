@@ -1,4 +1,6 @@
 function init() {
+    const params = new URLSearchParams(window.location.search);
+
 	// Recursive function to get the first non-default color
 	function getEffectiveColor(el) {
 		if(!el) return null;
@@ -36,26 +38,36 @@ function init() {
 			}
 		};
 	}
+    
 	const mobileMediaQuery = window.matchMedia('(max-width: 640px)');
 
 	function handleMobileChange(screen) {
 		const hideOnDesktop = document.querySelectorAll('.hide-on-desktop');
 		const hideOnMobile = document.querySelectorAll('.hide-on-mobile');
 		hideOnDesktop.forEach(item => {
-			if(screen.matches) {
-				item.style.display = '';
-			} else {
-				item.style.display = 'none';
-			}
+            if (params.get('mode') === 'editing') {
+                item.style.display = '';
+            } else {
+                if(screen.matches) {
+				    item.style.display = '';
+			    } else {
+				    item.style.display = 'none';
+			    }
+            }
 		});
 		hideOnMobile.forEach(item => {
-			if(screen.matches) {
-				item.style.display = 'none';
-			} else {
-				item.style.display = '';
-			}
+            if (params.get('mode') === 'editing') {
+                item.style.display = '';
+            } else {
+                if(screen.matches) {
+				    item.style.display = 'none';
+			    } else {
+				    item.style.display = '';
+			    }
+            }
 		});
 	}
+  
 	mobileMediaQuery.addListener(handleMobileChange);
 	handleMobileChange(mobileMediaQuery);
 }
