@@ -18,9 +18,7 @@ function initHelpers() {
   }
 
   // Select all first children
-  if (params.get('mode') === 'editing') {
-    return;
-  } else {
+  if (params.get('mode') !== 'editing') {
     const firstChildren = document.querySelectorAll('.accordion-label > :first-child');
     firstChildren.forEach(accordionLabelText => {
       const color = getEffectiveColor(accordionLabelText);
@@ -28,10 +26,7 @@ function initHelpers() {
     });
   }
 
-  if (params.get('mode') === 'editing') {
-	console.log('???');
-    return;
-  } else {
+  if (params.get('mode') !== 'editing') {
     var accordions = document.querySelectorAll(".accordion-label");
     for (var i = 0; i < accordions.length; i++) {
       accordions[i].onclick = function() {
