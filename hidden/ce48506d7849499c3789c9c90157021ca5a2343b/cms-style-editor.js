@@ -505,7 +505,7 @@ function checkRestrictedControls() {
   const imageRatioControls = document.getElementById("style-editor-image-ratio-controls");
   const imageCropControls = document.getElementById("style-editor-image-crop-controls");
 
-  if (currentlySelected?.classList.contains("building-container")) {
+  if (currentlySelected?.classList.contains("building-container") && !currentlySelected?.firstElementChild.matches(".building-column-span-one, .building-column-span-two")) {
     containerResponsiveControls.classList.remove("content-hide");
   } else {
     containerResponsiveControls.classList.add("content-hide");
