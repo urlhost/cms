@@ -616,7 +616,7 @@ footer {
 
 /* Responsive media queries for all spans */
 @media (max-width: 1200px) {
-    :not(.building-container-static) {
+    :not(.unresponsive-collapse) {
     &.building-column-span-six {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
@@ -648,7 +648,7 @@ footer {
 }
 
 @media (max-width: 960px) {
-    :not(.building-container-static) {
+    :not(.unresponsive-collapse) {
     &.building-column-span-six {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -680,7 +680,7 @@ footer {
 }
 
 @media (max-width: 640px) {
-    :not(.building-container-static) {
+    :not(.unresponsive-collapse) {
     &.building-column-span-six,
     &.building-column-span-five,
     &.building-column-span-four,
