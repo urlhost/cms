@@ -714,17 +714,7 @@ footer {
 }
 
 .hide-on-mobile {
-    display: block;
-}
-
-@media (max-width: 640px) {
-    .hide-on-desktop {
-        display: block;
-    }
-
-    .hide-on-mobile {
-        display: none;
-    }
+    display: none;
 }
 
 /* Column content alignment */
