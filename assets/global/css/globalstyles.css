@@ -752,16 +752,6 @@ footer {
     width: 100%;
 }
 
-/*Behavior*/
-
-.hide-on-desktop {
-    display: none;
-}
-
-.hide-on-mobile {
-    display: none;
-}
-
 /*Accordion*/
 
 .accordion-container {

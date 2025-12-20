@@ -46,27 +46,27 @@
 
       const mobileMediaQuery = window.matchMedia('(max-width: 640px)');
 
-      function handleMobileChange(screen) {
-        const hideOnDesktop = document.querySelectorAll('.hide-on-desktop-toggle');
-        const hideOnMobile = document.querySelectorAll('.hide-on-mobile-toggle');
+function handleMobileChange(screen) {
+  const hideOnDesktop = document.querySelectorAll('.hide-on-desktop');
+  const hideOnMobile = document.querySelectorAll('.hide-on-mobile');
 
-        hideOnDesktop.forEach(item => {
-          if (screen.matches) {
-            item.classList.remove('hide-on-desktop');
-          } else {
-            item.classList.add('hide-on-desktop');
-          }
-        });
+  hideOnDesktop.forEach(item => {
+    if (screen.matches) {
+      item.style.display = '';
+    } else {
+      item.style.display = 'none';
+    }
+  });
 
-        hideOnMobile.forEach(item => {
-          if (screen.matches) {
-            item.classList.add('hide-on-mobile');
-          } else {
-            item.classList.remove('hide-on-mobile');
-          }
-        });
-      }
+  hideOnMobile.forEach(item => {
+    if (screen.matches) {
+      item.style.display = 'none';
+    } else {
+      item.style.display = '';
+    }
+  });
+}
 
-      mobileMediaQuery.addListener(handleMobileChange);
-      handleMobileChange(mobileMediaQuery);
+mobileMediaQuery.addListener(handleMobileChange);
+handleMobileChange(mobileMediaQuery);
     });
