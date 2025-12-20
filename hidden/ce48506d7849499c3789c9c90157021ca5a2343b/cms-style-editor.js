@@ -113,15 +113,37 @@ borderRadiusInput?.addEventListener("input", () => {
 widthInput.addEventListener("input", () => {
   if (currentlySelected) {
     currentlySelected.classList.add("custom-styles");
-    let uiPercent = parseFloat(widthInput.value) || 100;
+    
+    let uiPercent = parseFloat(widthInput.value);
+    
+    if (isNaN(uiPercent)) {
+        uiPercent = 5; 
+    }
+
     uiPercent = Math.max(5, Math.min(100, uiPercent));
-    widthInput.value = uiPercent;
+
     if (uiPercent >= 100) {
         currentlySelected.style.width = "";
     } else {
         currentlySelected.style.width = `calc(${uiPercent}% - 2rem)`;
     }
   }
+});
+
+widthInput.addEventListener("change", () => {
+    let finalValue = parseFloat(widthInput.value) || 5;
+    
+    finalValue = Math.max(5, Math.min(100, finalValue));
+    
+    widthInput.value = finalValue; 
+    
+    if (currentlySelected) {
+         if (finalValue >= 100) {
+            currentlySelected.style.width = "";
+        } else {
+            currentlySelected.style.width = `calc(${finalValue}% - 2rem)`;
+        }
+    }
 });
 
 // ===============================
