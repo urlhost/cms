@@ -614,6 +614,14 @@ footer {
     gap: 1rem;
 }
 
+.hide-on-desktop {
+    display: none;
+}
+
+.hide-on-mobile {
+    display: block;
+}
+
 /* Responsive media queries for all spans */
 @media (max-width: 1200px) {
     :not(.building-column-static) {
