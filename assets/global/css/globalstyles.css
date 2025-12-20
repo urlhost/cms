@@ -319,6 +319,11 @@ body {
     /* Center the content */
 }
 
+.custom-styles {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
 /* 3. TYPOGRAPHY STYLES */
 
 /* Headings */
@@ -614,97 +619,83 @@ footer {
 }
 
 /* Responsive media queries for all spans */
+
+/* --- Tablet / Small Laptop (1200px) --- */
 @media (max-width: 1200px) {
-    :not(.unresponsive-collapse) {
-    &.building-column-span-six {
+    .building-column-span-six:not(.unresponsive-collapse) {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    &.building-column-span-five {
+    .building-column-span-five:not(.unresponsive-collapse) {
         grid-template-columns: repeat(6, minmax(0, 1fr));
     }
 
-    &.building-column-span-five .building-column:nth-child(-n+3) {
+    .building-column-span-five:not(.unresponsive-collapse) .building-column:nth-child(-n+3) {
         grid-column: span 2;
     }
 
-    &.building-column-span-five .building-column:nth-child(n+4) {
+    .building-column-span-five:not(.unresponsive-collapse) .building-column:nth-child(n+4) {
         grid-column: span 3;
     }
 
-    &.building-column-span-four {
+    .building-column-span-four:not(.unresponsive-collapse) {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-   &.building-column-span-three {
+    .building-column-span-three:not(.unresponsive-collapse) {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    &.building-column-span-two {
+    .building-column-span-two:not(.unresponsive-collapse) {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
-}
 
+/* --- Tablet Portrait (960px) --- */
 @media (max-width: 960px) {
-    :not(.unresponsive-collapse) {
-    &.building-column-span-six {
+    .building-column-span-six:not(.unresponsive-collapse) {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    &.building-column-span-five {
+    .building-column-span-five:not(.unresponsive-collapse) {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    &.building-column-span-five .building-column:nth-child(-n+3) {
+    .building-column-span-five:not(.unresponsive-collapse) .building-column:nth-child(-n+3),
+    .building-column-span-five:not(.unresponsive-collapse) .building-column:nth-child(n+4) {
         grid-column: auto;
     }
 
-    &.building-column-span-five .building-column:nth-child(n+4) {
-        grid-column: auto;
-    }
-
-    &.building-column-span-five .building-column:nth-child(5) {
+    .building-column-span-five:not(.unresponsive-collapse) .building-column:nth-child(5) {
         grid-column: span 2;
     }
 
-    &.building-column-span-three {
+    .building-column-span-three:not(.unresponsive-collapse) {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    &.building-column-span-three .building-column:nth-child(3) {
+    .building-column-span-three:not(.unresponsive-collapse) .building-column:nth-child(3) {
         grid-column: span 2;
     }
 }
-}
 
+/* --- Mobile (640px) --- */
 @media (max-width: 640px) {
-    :not(.unresponsive-collapse) {
-    &.building-column-span-six,
-    &.building-column-span-five,
-    &.building-column-span-four,
-    &.building-column-span-three,
-    &.building-column-span-two,
-    &.building-column-span-asymm-left,
-    &.building-column-span-asymm-right {
+    .building-column-span-six:not(.unresponsive-collapse),
+    .building-column-span-five:not(.unresponsive-collapse),
+    .building-column-span-four:not(.unresponsive-collapse),
+    .building-column-span-three:not(.unresponsive-collapse),
+    .building-column-span-two:not(.unresponsive-collapse),
+    .building-column-span-asymm-left:not(.unresponsive-collapse),
+    .building-column-span-asymm-right:not(.unresponsive-collapse) {
         grid-template-columns: repeat(1, minmax(0, 1fr));
     }
 
-    &.building-column-span-five .building-column:nth-child(-n+3) {
+    .building-column-span-five:not(.unresponsive-collapse) .building-column:nth-child(-n+3),
+    .building-column-span-five:not(.unresponsive-collapse) .building-column:nth-child(n+4),
+    .building-column-span-five:not(.unresponsive-collapse) .building-column:nth-child(5),
+    .building-column-span-three:not(.unresponsive-collapse) .building-column:nth-child(3) {
         grid-column: auto;
-    }
-
-    &.building-column-span-five .building-column:nth-child(n+4) {
-        grid-column: auto;
-    }
-
-    &.building-column-span-five .building-column:nth-child(5) {
-        grid-column: auto;
-    }
-
-    &.building-column-span-three .building-column:nth-child(3) {
-        grid-column: auto;
-    }
     }
 }
 
