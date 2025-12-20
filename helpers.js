@@ -47,8 +47,8 @@
       const mobileMediaQuery = window.matchMedia('(max-width: 640px)');
 
       function handleMobileChange(screen) {
-        const hideOnDesktop = document.querySelectorAll('.hide-on-desktop');
-        const hideOnMobile = document.querySelectorAll('.hide-on-mobile');
+        const hideOnDesktop = document.querySelectorAll('.hide-on-desktop-toggle');
+        const hideOnMobile = document.querySelectorAll('.hide-on-mobile-toggle');
 
         hideOnDesktop.forEach(item => {
           if (screen.matches) {
