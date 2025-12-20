@@ -199,6 +199,12 @@ function disableCMS() {
     cmsEnvElement.style.display = 'none';
     console.log('CMS Environment element hidden.');
   }
+
+   const url = new URL(window.location.href);
+   
+   url.searchParams.set('mode', 'preview');
+   window.location.href = url.toString();
+   window.history.pushState({}, '', url.toString());
 }
 
 function enableCMS() {
