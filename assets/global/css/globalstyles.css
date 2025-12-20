@@ -714,7 +714,10 @@ footer {
     &.building-column-span-three .building-column:nth-child(3) {
         grid-column: auto;
     }
+    }
 }
+
+@media (max-width: 640px) {
     .hide-on-desktop {
         display: block;
     }
