@@ -475,6 +475,16 @@ if (currentlySelected.style.borderColor) {
 if (borderColorInput) borderColorInput.value = finalBorderColor;
 if (borderColorValueSpan) borderColorValueSpan.textContent = finalBorderColor.toUpperCase();
 
+//Behavior
+
+if (currentlySelected.classList.contains("hide-on-desktop")) {
+  hideOnDesktop.checked;
+}
+
+if (currentlySelected.classList.contains("hide-on-mobile")) {
+  hideOnMobile.checked;
+}
+
 highlightActiveControls();
 }
 
@@ -544,19 +554,21 @@ imageCrop.addEventListener("click", () => {
 
 hideOnDesktop.addEventListener("change", function() {
   if (currentlySelected && hideOnDesktop.checked) {
-      //code here
+      currentlySelected.classList.add("hide-on-desktop");
       loadStylesFromSelected();
     } else {
-      return;
+      currentlySelected.classList.remove("hide-on-desktop");
+      loadStylesFromSelected();
     }
   });
 
   hideOnMobile.addEventListener("change", function() {
   if (currentlySelected && hideOnMobile.checked) {
-      //code here
+      currentlySelected.classList.add("hide-on-mobile");
       loadStylesFromSelected();
     } else {
-      return;
+      currentlySelected.classList.remove("hide-on-mobile");
+      loadStylesFromSelected();
     }
   });
 
