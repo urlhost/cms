@@ -119,6 +119,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                 `;
                 document.body.appendChild(inlineScript);
 
+                //Format the CMS URL
+                const url = new URL(window.location.href);
+
+                url.searchParams.set('mode', 'editing');
+                window.history.pushState({}, '', url.toString());
+
                 // Move and execute the scripts found in the loaded page content
                 scriptsToMove.forEach(script => {
                     const newScript = document.createElement('script');
