@@ -529,8 +529,8 @@ footer {
 .building-container {
     display: grid;
     position: relative;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    margin-left: auto;
+    margin-right: auto;
     width: 100%;
     gap: 1rem;
 }
