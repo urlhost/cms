@@ -633,7 +633,7 @@ backgroundImageLink.addEventListener("click", function() {
     }
 });
 
-backgroundImageUpload.addEventListener("click", function() {
+backgroundImageUpload.addEventListener("click", async function() {
   if (currentlySelected) {
     const imageUpload = await grabImageUpload();
     if (imageUpload) {
