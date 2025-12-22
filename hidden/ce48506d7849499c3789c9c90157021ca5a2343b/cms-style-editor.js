@@ -623,6 +623,23 @@ hideOnDesktop.addEventListener("change", function() {
     }
   });
 
+backgroundImageAdd.addEventListener("click", function() {
+  if (currentlySelected) {
+  const link = prompt("Enter a photo link:");
+  const imageRegex = /\.(jpe?g|png|gif|webp|svg)(\?.*)?(#.*)?$/i;
+
+  if (link && imageRegex.test(link)) {
+    currentlySelected.style.backgroundImage = `url(${link})`;
+  } else if (link) {
+    alert("Please enter a valid image URL (jpg, png, gif, webp, svg).");
+return;
+  }
+  return null;
+    } else {
+      return;
+    }
+});
+
 backgroundColorRemove.addEventListener("click", function() {
   if (currentlySelected) {
     if (currentlySelected.style.backgroundColor !== '') {
