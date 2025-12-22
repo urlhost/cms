@@ -640,6 +640,14 @@ return;
     }
 });
 
+backgroundImageRemove.addEventListener("click", function() {
+  if (currentlySelected && currentlySelected.style.backgroundImage !== '') {
+      currentlySelected.style.backgroundImage = '';
+    } else {
+      return;
+    }
+  });
+
 backgroundColorRemove.addEventListener("click", function() {
   if (currentlySelected) {
     if (currentlySelected.style.backgroundColor !== '') {
