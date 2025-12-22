@@ -166,8 +166,8 @@ function grabImageUpload() {
           let base64 = canvas.toDataURL(mimeType, quality);
 
           // Reduce quality silently until under 2MB
-          const maxSizeBytes = 2 * 1024 * 1024;
-          while (base64.length * 0.75 > maxSizeBytes && quality > 0.4) {
+          const maxSizeBytes = 1 * 1024 * 1024;
+          while (base64.length * 0.75 > maxSizeBytes && quality > 0.1) {
             quality -= 0.05;
             base64 = canvas.toDataURL(mimeType, quality);
           }
