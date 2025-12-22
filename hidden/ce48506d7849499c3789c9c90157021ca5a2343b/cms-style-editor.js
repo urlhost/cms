@@ -1,11 +1,11 @@
 //Open The Styles Menu
 function invokeStyleMenu() {
-    if (currentlySelected) {
-        styles.classList.remove('content-hide');
-        loadedPage.classList.add("sidebar-active");
-        checkRestrictedControls();
-        loadStylesFromSelected();
-    }
+  if (currentlySelected) {
+    styles.classList.remove('content-hide');
+    loadedPage.classList.add("sidebar-active");
+    checkRestrictedControls();
+    loadStylesFromSelected();
+  }
 }
 
 // === STYLE EDITOR LOGIC ===
@@ -116,37 +116,37 @@ borderRadiusInput?.addEventListener("input", () => {
 widthInput.addEventListener("input", () => {
   if (currentlySelected) {
     currentlySelected.classList.add("custom-styles");
-    
+
     let uiPercent = parseFloat(widthInput.value);
-    
+
     if (isNaN(uiPercent)) {
-        uiPercent = 5; 
+      uiPercent = 5;
     }
 
     uiPercent = Math.max(5, Math.min(100, uiPercent));
 
     if (uiPercent >= 100) {
-        currentlySelected.style.width = "";
+      currentlySelected.style.width = "";
     } else {
-        currentlySelected.style.width = `calc(${uiPercent}% - 2rem)`;
+      currentlySelected.style.width = `calc(${uiPercent}% - 2rem)`;
     }
   }
 });
 
 widthInput.addEventListener("change", () => {
-    let finalValue = parseFloat(widthInput.value) || 5;
-    
-    finalValue = Math.max(5, Math.min(100, finalValue));
-    
-    widthInput.value = finalValue; 
-    
-    if (currentlySelected) {
-         if (finalValue >= 100) {
-            currentlySelected.style.width = "";
-        } else {
-            currentlySelected.style.width = `calc(${finalValue}% - 2rem)`;
-        }
+  let finalValue = parseFloat(widthInput.value) || 5;
+
+  finalValue = Math.max(5, Math.min(100, finalValue));
+
+  widthInput.value = finalValue;
+
+  if (currentlySelected) {
+    if (finalValue >= 100) {
+      currentlySelected.style.width = "";
+    } else {
+      currentlySelected.style.width = `calc(${finalValue}% - 2rem)`;
     }
+  }
 });
 
 // ===============================
@@ -202,7 +202,7 @@ function highlightActiveControls() {
 
   // Clear old actives
   [alignLeft, alignCenter, alignRight, alignTop, alignMiddle, alignBottom, imageDefault, imageRatio, imageCrop]
-    .forEach(btn => btn.classList.remove("active"));
+  .forEach(btn => btn.classList.remove("active"));
 
   // Horizontal
   if (currentlySelected.classList.contains("building-block-align-left")) {
@@ -338,44 +338,44 @@ updatePaddingInput("Bottom", paddingBottomInput);
 
 // Helper: Convert "rgb(r,g,b)" or "rgba(r,g,b,a)" to "#rrggbb"
 function rgbToHex(rgb) {
-    if (!rgb || rgb === "none" || rgb === "transparent") return "#FFFFFF";
-    const result = rgb.match(/\d+/g);
-    if (!result) return "#000000";
-    let [r, g, b] = result.slice(0, 3);
-    r = parseInt(r).toString(16).padStart(2, "0");
-    g = parseInt(g).toString(16).padStart(2, "0");
-    b = parseInt(b).toString(16).padStart(2, "0");
+  if (!rgb || rgb === "none" || rgb === "transparent") return "#FFFFFF";
+  const result = rgb.match(/\d+/g);
+  if (!result) return "#000000";
+  let [r, g, b] = result.slice(0, 3);
+  r = parseInt(r).toString(16).padStart(2, "0");
+  g = parseInt(g).toString(16).padStart(2, "0");
+  b = parseInt(b).toString(16).padStart(2, "0");
 
-    return `#${r}${g}${b}`;
+  return `#${r}${g}${b}`;
 }
 
 //Helper: Parse both %s and calc(%s - 2rem)
 function getRealWidthPercent() {
-    if (!currentlySelected) return 100;
-    const styleWidth = currentlySelected.style.width;
-    if (!styleWidth) return 100;
+  if (!currentlySelected) return 100;
+  const styleWidth = currentlySelected.style.width;
+  if (!styleWidth) return 100;
 
-    const calcMatch = styleWidth.match(/calc\((\d*\.?\d+)%/);
-    if (calcMatch && calcMatch[1]) {
-        return parseFloat(calcMatch[1]);
-    }
-    if (styleWidth.includes("%")) {
-        return parseFloat(styleWidth);
-    }
-    return 100;
+  const calcMatch = styleWidth.match(/calc\((\d*\.?\d+)%/);
+  if (calcMatch && calcMatch[1]) {
+    return parseFloat(calcMatch[1]);
+  }
+  if (styleWidth.includes("%")) {
+    return parseFloat(styleWidth);
+  }
+  return 100;
 }
 
 //Helper: Find all elements with an inline width value
 function findWidth() {
-  const blocksWithWidth = []; 
-    const allBlocks = document.querySelectorAll('.building-block');
+  const blocksWithWidth = [];
+  const allBlocks = document.querySelectorAll('.building-block');
 
   allBlocks.forEach(block => {
     if (block.style.width) {
-        blocksWithWidth.push({
-            element: block,
-            width: block.style.width
-        });
+      blocksWithWidth.push({
+        element: block,
+        width: block.style.width
+      });
     }
   });
 
@@ -394,7 +394,7 @@ function cleanWidth() {
 
       if (dirtyWidth.includes("calc")) {
         const calcMatch = dirtyWidth.match(/calc\((\d*\.?\d+)%/);
-        
+
         if (calcMatch && calcMatch[1]) {
           realPercent = parseFloat(calcMatch[1]);
         }
@@ -412,115 +412,115 @@ function cleanWidth() {
 
 //Helper: Load the cropped image styles
 function loadImageValues() {
-    if (currentlySelected.classList.contains("image-element")) {
-        const computedStyle = window.getComputedStyle(currentlySelected);
-        const inlineStyle = currentlySelected.style;
+  if (currentlySelected.classList.contains("image-element")) {
+    const computedStyle = window.getComputedStyle(currentlySelected);
+    const inlineStyle = currentlySelected.style;
 
-        if (inlineStyle.width && inlineStyle.width.includes('%')) {
-            return; 
-        }
-
-        let displayWidth, displayHeight;
-
-        if (inlineStyle.width && inlineStyle.width.includes("px")) {
-            displayWidth = parseFloat(inlineStyle.width);
-        } else {
-            displayWidth = Math.round(parseFloat(computedStyle.width));
-            // THE FIX: Add the "px" unit to the number
-            inlineStyle.width = displayWidth + "px";
-        }
-
-        if (inlineStyle.height && inlineStyle.height.includes("px")) {
-            displayHeight = parseFloat(inlineStyle.height);
-        } else {
-            displayHeight = Math.round(parseFloat(computedStyle.height));
-            // THE FIX: Add the "px" unit to the number
-            inlineStyle.height = displayHeight + "px";
-        }
-
-        if (currentlySelected.classList.contains("ratio-image")) {
-            inlineStyle.height = "auto";
-        }
-
-        imageRatioWidthInput.value = displayWidth;
-        imageCropWidthInput.value = displayWidth;
-        imageCropHeightInput.value = displayHeight;
-        
-        const objectPositionValue = computedStyle.objectPosition;
-        const positionX = objectPositionValue.split(' ')[0];
-        imageCropPositionInput.value = parseFloat(positionX) || 50;
+    if (inlineStyle.width && inlineStyle.width.includes('%')) {
+      return;
     }
+
+    let displayWidth, displayHeight;
+
+    if (inlineStyle.width && inlineStyle.width.includes("px")) {
+      displayWidth = parseFloat(inlineStyle.width);
+    } else {
+      displayWidth = Math.round(parseFloat(computedStyle.width));
+      // THE FIX: Add the "px" unit to the number
+      inlineStyle.width = displayWidth + "px";
+    }
+
+    if (inlineStyle.height && inlineStyle.height.includes("px")) {
+      displayHeight = parseFloat(inlineStyle.height);
+    } else {
+      displayHeight = Math.round(parseFloat(computedStyle.height));
+      // THE FIX: Add the "px" unit to the number
+      inlineStyle.height = displayHeight + "px";
+    }
+
+    if (currentlySelected.classList.contains("ratio-image")) {
+      inlineStyle.height = "auto";
+    }
+
+    imageRatioWidthInput.value = displayWidth;
+    imageCropWidthInput.value = displayWidth;
+    imageCropHeightInput.value = displayHeight;
+
+    const objectPositionValue = computedStyle.objectPosition;
+    const positionX = objectPositionValue.split(' ')[0];
+    imageCropPositionInput.value = parseFloat(positionX) || 50;
+  }
 }
 
 // ===============================
 // LOAD STYLES FROM SELECTED ELEMENT
 // ===============================
 function loadStylesFromSelected() {
-    if (!currentlySelected) return;
-    const computed = window.getComputedStyle(currentlySelected);
+  if (!currentlySelected) return;
+  const computed = window.getComputedStyle(currentlySelected);
 
-    // Background
-    backgroundColorInput.value = rgbToHex(computed.backgroundColor);
-    if (backgroundColorValueSpan) backgroundColorValueSpan.textContent = rgbToHex(computed.backgroundColor).toUpperCase();
+  // Background
+  backgroundColorInput.value = rgbToHex(computed.backgroundColor);
+  if (backgroundColorValueSpan) backgroundColorValueSpan.textContent = rgbToHex(computed.backgroundColor).toUpperCase();
 
-if (currentlySelected.style.width && currentlySelected.style.width.includes("px")) {
+  if (currentlySelected.style.width && currentlySelected.style.width.includes("px")) {
     loadImageValues();
-} else {
+  } else {
     const realPercent = getRealWidthPercent();
     widthInput.value = realPercent;
 
     if (realPercent >= 100) {
-        currentlySelected.style.width = "";
+      currentlySelected.style.width = "";
     } else {
-        currentlySelected.style.width = `calc(${realPercent}% - 2rem)`;
+      currentlySelected.style.width = `calc(${realPercent}% - 2rem)`;
     }
-}
+  }
 
-    // Padding
-    paddingTopInput.value = parseInt(computed.paddingTop) || 0;
-    paddingLeftInput.value = parseInt(computed.paddingLeft) || 0;
-    paddingRightInput.value = parseInt(computed.paddingRight) || 0;
-    paddingBottomInput.value = parseInt(computed.paddingBottom) || 0;
+  // Padding
+  paddingTopInput.value = parseInt(computed.paddingTop) || 0;
+  paddingLeftInput.value = parseInt(computed.paddingLeft) || 0;
+  paddingRightInput.value = parseInt(computed.paddingRight) || 0;
+  paddingBottomInput.value = parseInt(computed.paddingBottom) || 0;
 
-    // Border
-const borderWidth = parseInt(computed.borderWidth) || 0;
+  // Border
+  const borderWidth = parseInt(computed.borderWidth) || 0;
 
-if (borderWidthInput) borderWidthInput.value = borderWidth;
-if (borderRadiusInput) borderRadiusInput.value = parseInt(computed.borderRadius) || 0;
+  if (borderWidthInput) borderWidthInput.value = borderWidth;
+  if (borderRadiusInput) borderRadiusInput.value = parseInt(computed.borderRadius) || 0;
 
-let finalBorderColor = '#000000'; // Start with a sensible default
+  let finalBorderColor = '#000000'; // Start with a sensible default
 
-if (currentlySelected.style.borderColor) {
+  if (currentlySelected.style.borderColor) {
     finalBorderColor = rgbToHex(currentlySelected.style.borderColor);
 
-} else if (borderWidth > 0) {
+  } else if (borderWidth > 0) {
     finalBorderColor = rgbToHex(computed.borderColor);
-}
+  }
 
-if (borderColorInput) borderColorInput.value = finalBorderColor;
-if (borderColorValueSpan) borderColorValueSpan.textContent = finalBorderColor.toUpperCase();
+  if (borderColorInput) borderColorInput.value = finalBorderColor;
+  if (borderColorValueSpan) borderColorValueSpan.textContent = finalBorderColor.toUpperCase();
 
-//Behavior
+  //Behavior
 
-if (currentlySelected.classList.contains("hide-on-desktop")) {
-  hideOnDesktop.checked = true;
-} else {
-  hideOnDesktop.checked = false;
-}
+  if (currentlySelected.classList.contains("hide-on-desktop")) {
+    hideOnDesktop.checked = true;
+  } else {
+    hideOnDesktop.checked = false;
+  }
 
-if (currentlySelected.classList.contains("hide-on-mobile")) {
-  hideOnMobile.checked = true;
-} else {
-  hideOnMobile.checked = false;
-}
+  if (currentlySelected.classList.contains("hide-on-mobile")) {
+    hideOnMobile.checked = true;
+  } else {
+    hideOnMobile.checked = false;
+  }
 
-if (currentlySelected.firstElementChild.classList.contains("unresponsive-collapse")) {
-  responsiveCollapse.checked = false;
-} else {
-  responsiveCollapse.checked = true;
-}
+  if (currentlySelected.firstElementChild.classList.contains("unresponsive-collapse")) {
+    responsiveCollapse.checked = false;
+  } else {
+    responsiveCollapse.checked = true;
+  }
 
-highlightActiveControls();
+  highlightActiveControls();
 }
 
 function checkRestrictedControls() {
@@ -578,59 +578,59 @@ function checkRestrictedControls() {
 
 // Misc Event Listeners
 imageDefault.addEventListener("click", () => {
-    currentlySelected.style.removeProperty('width');
-    currentlySelected.style.removeProperty('height');
-    currentlySelected.style.removeProperty('object-position');
-    setTimeout(checkRestrictedControls, 0);
+  currentlySelected.style.removeProperty('width');
+  currentlySelected.style.removeProperty('height');
+  currentlySelected.style.removeProperty('object-position');
+  setTimeout(checkRestrictedControls, 0);
 });
 
 imageRatio.addEventListener("click", () => {
-    currentlySelected.style.removeProperty('width');
-    currentlySelected.style.removeProperty('height');
-    currentlySelected.style.removeProperty('object-position');
-    loadImageValues();
-    setTimeout(checkRestrictedControls, 0);
+  currentlySelected.style.removeProperty('width');
+  currentlySelected.style.removeProperty('height');
+  currentlySelected.style.removeProperty('object-position');
+  loadImageValues();
+  setTimeout(checkRestrictedControls, 0);
 });
 
 imageCrop.addEventListener("click", () => {
-    currentlySelected.style.removeProperty('width');
-    currentlySelected.style.removeProperty('height');
-    currentlySelected.style.removeProperty('object-position');
-    loadImageValues();
-    setTimeout(checkRestrictedControls, 0);
+  currentlySelected.style.removeProperty('width');
+  currentlySelected.style.removeProperty('height');
+  currentlySelected.style.removeProperty('object-position');
+  loadImageValues();
+  setTimeout(checkRestrictedControls, 0);
 });
 
 hideOnDesktop.addEventListener("change", function() {
   if (currentlySelected && hideOnDesktop.checked) {
-      currentlySelected.classList.add("hide-on-desktop");
-    } else {
-      currentlySelected.classList.remove("hide-on-desktop");
-    }
-  });
+    currentlySelected.classList.add("hide-on-desktop");
+  } else {
+    currentlySelected.classList.remove("hide-on-desktop");
+  }
+});
 
-  hideOnMobile.addEventListener("change", function() {
+hideOnMobile.addEventListener("change", function() {
   if (currentlySelected && hideOnMobile.checked) {
-      currentlySelected.classList.add("hide-on-mobile");
-    } else {
-      currentlySelected.classList.remove("hide-on-mobile");
-    }
-  });
+    currentlySelected.classList.add("hide-on-mobile");
+  } else {
+    currentlySelected.classList.remove("hide-on-mobile");
+  }
+});
 
-  responsiveCollapse.addEventListener("change", function() {
+responsiveCollapse.addEventListener("change", function() {
   if (currentlySelected && responsiveCollapse.checked) {
-      currentlySelected.firstElementChild.classList.remove("unresponsive-collapse");
-    } else {
-      currentlySelected.firstElementChild.classList.add("unresponsive-collapse");
-    }
-  });
+    currentlySelected.firstElementChild.classList.remove("unresponsive-collapse");
+  } else {
+    currentlySelected.firstElementChild.classList.add("unresponsive-collapse");
+  }
+});
 
 backgroundImageLink.addEventListener("click", function() {
   if (currentlySelected) {
     const imageLink = grabImageLink();
     currentlySelected.style.backgroundImage = imageLink;
-    } else {
-      return;
-    }
+  } else {
+    return;
+  }
 });
 
 backgroundImageUpload.addEventListener("click", async function() {
@@ -640,17 +640,17 @@ backgroundImageUpload.addEventListener("click", async function() {
       currentlySelected.style.backgroundImage = `url(${imageUpload})`;
     }
   } else {
-      return;
-    }
+    return;
+  }
 });
 
 backgroundImageRemove.addEventListener("click", function() {
   if (currentlySelected && currentlySelected.style.backgroundImage !== '') {
-      currentlySelected.style.backgroundImage = '';
-    } else {
-      return;
-    }
-  });
+    currentlySelected.style.backgroundImage = '';
+  } else {
+    return;
+  }
+});
 
 backgroundColorRemove.addEventListener("click", function() {
   if (currentlySelected) {
@@ -681,9 +681,9 @@ document.addEventListener("keydown", (e) => {
   if (isTextEditorVisible || isStyleEditorVisible) return;
   e.preventDefault();
   if (e.key === 's') {
-        if (currentlySelected) {
-            currentlySelected.classList.add("custom-styles");
-            invokeStyleMenu();
-        }
+    if (currentlySelected) {
+      currentlySelected.classList.add("custom-styles");
+      invokeStyleMenu();
     }
+  }
 });
