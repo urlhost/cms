@@ -531,6 +531,10 @@ footer {
     position: relative;
     width: 100%;
     gap: 1rem;
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
 }
 
 /* 1 column */
@@ -700,6 +704,10 @@ footer {
     display: block;
     position: relative;
     width: 100%;
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
 }
 
 .building-block {
