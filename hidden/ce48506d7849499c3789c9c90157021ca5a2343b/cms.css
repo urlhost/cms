@@ -169,6 +169,14 @@
     background-color: magenta;
 }
 
+.stretch-to-screen {
+    height: auto !important;
+}
+
+.match-adjacent-height {
+    height: auto !important;
+}
+
 /* CMS CSS Testing */
 
 .content-show {
