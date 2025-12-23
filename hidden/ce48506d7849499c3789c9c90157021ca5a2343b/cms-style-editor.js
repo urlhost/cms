@@ -559,7 +559,7 @@ function checkRestrictedControls() {
     containerResponsiveControls.classList.add("content-hide");
   }
 
-  if (currentlySelected?.classList.contains("building-container")) {
+  if (currentlySelected?.classList.contains("building-container") && !currentlySelected?.parentElement.matches(".building-column")) {
     containerScreenControls.classList.remove("content-hide");
   } else {
     containerScreenControls.classList.add("content-hide");
