@@ -156,7 +156,7 @@ function pasteElement() {
       } 
       
       if (!currentlySelected?.matches('building-container', 'building-column')) {
-         parentColumn = currentlySelected.closest('.building-column');
+         parentColumn = currentlySelected;
          if (parentColumn) {
             currentlySelected.insertAdjacentHTML('afterend', clipboard.html);
             return;
