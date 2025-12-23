@@ -732,6 +732,10 @@ footer {
     justify-self: end;
 }
 
+.stretch-to-screen {
+    height: 100vh;
+}
+
 /*Accordion*/
 
 .accordion-container {

@@ -521,12 +521,19 @@ function loadStylesFromSelected() {
     responsiveCollapse.checked = true;
   }
 
+  if (currentlySelected.classList.contains("stretch-to-screen")) {
+    stretchToScreen.checked = true;
+  } else {
+    stretchToScreen.checked = false;
+  }
+
   highlightActiveControls();
 }
 
 function checkRestrictedControls() {
   const backgroundImageControls = document.getElementById("style-editor-background-image-controls");
   const containerResponsiveControls = document.getElementById("style-editor-building-container-responsive-controls");
+  const containerScreenControls = document.getElementById("style-editor-building-container-screen-controls");
   const verticalAlignControls = document.getElementById("style-editor-vertical-align-controls");
   const imageControls = document.getElementById("style-editor-image-controls");
   const imageRatioControls = document.getElementById("style-editor-image-ratio-controls");
@@ -542,6 +549,12 @@ function checkRestrictedControls() {
     containerResponsiveControls.classList.remove("content-hide");
   } else {
     containerResponsiveControls.classList.add("content-hide");
+  }
+
+  if (currentlySelected?.classList.contains("building-container")) {
+    containerScreenControls.classList.remove("content-hide");
+  } else {
+    containerScreenControls.classList.add("content-hide");
   }
 
   if (currentlySelected?.classList.contains("building-column")) {
@@ -622,6 +635,14 @@ responsiveCollapse.addEventListener("change", function() {
     currentlySelected.firstElementChild.classList.remove("unresponsive-collapse");
   } else {
     currentlySelected.firstElementChild.classList.add("unresponsive-collapse");
+  }
+});
+
+stretchToScreen.addEventListener("change", function() {
+  if (currentlySelected && stretchToScreen.checked) {
+    currentlySelected.style.height = '100vh';
+  } else {
+    currentlySelected.style.height = '';
   }
 });
 
