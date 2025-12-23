@@ -736,6 +736,10 @@ footer {
     height: 100vh;
 }
 
+.match-adjacent-height {
+    height: 100%;
+}
+
 /*Accordion*/
 
 .accordion-container {
