@@ -566,11 +566,15 @@ function checkRestrictedControls() {
   }
 
   if (currentlySelected?.classList.contains("building-column")) {
-    columnMatchControls.classList.remove("content-hide");
     verticalAlignControls.classList.remove("content-hide");
   } else {
-    columnMatchControls.classList.add("content-hide");
     verticalAlignControls.classList.add("content-hide");
+  }
+
+  if (currentlySelected?.classList.contains("building-column") && !currentlySelected?.parentElement?.matches(".building-column-span-one")) { {
+    columnMatchControls.classList.remove("content-hide");
+  } else {
+    columnMatchControls.classList.add("content-hide");
   }
 
   if (currentlySelected?.classList.contains("image-element")) {
