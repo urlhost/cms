@@ -142,9 +142,10 @@ function pasteElement() {
             return;
          }
       }
-
-      if (currentlySelected.classList.contains('building-column')) {
-         parentColumn = currentlySelected;
+      
+      if (!copiedElement?.matches('building-container', 'building-column')) {
+         if (currentlySelected.classList.contains('building-column')) {
+         parentColumn = currentlySelected.closest('.building-column');
          const placeholder = parentColumn.querySelector('.placeholder-block');
          if (placeholder) {
             placeholder.insertAdjacentHTML('beforebegin', clipboard.html);
@@ -153,11 +154,7 @@ function pasteElement() {
             currentlySelected.insertAdjacentHTML('beforeend', clipboard.html);
             return;
          }
-      } 
-      
-      if (!currentlySelected?.matches('building-container', 'building-column')) {
-         parentColumn = currentlySelected;
-         if (parentColumn) {
+      } else {
             currentlySelected.insertAdjacentHTML('afterend', clipboard.html);
             return;
          } else {
