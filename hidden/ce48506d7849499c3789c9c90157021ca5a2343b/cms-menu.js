@@ -7,6 +7,7 @@ const textElementHeadingFiveButton = document.getElementById("text-element-headi
 const textElementParagraphButton = document.getElementById("text-element-paragraph-button");
 const textElementUnorderedButton = document.getElementById("text-element-unordered-button");
 const textElementOrderedButton = document.getElementById("text-element-ordered-button");
+const textElementButtonButton = document.getElementById("text-element-button-button");
 //Layout Element Buttons
 const layoutElementOneColumnButton = document.getElementById("layout-element-one-column-button");
 const layoutElementTwoColumnButton = document.getElementById("layout-element-two-column-button");
@@ -193,6 +194,7 @@ textElementHeadingFiveButton.addEventListener('click', () => insertElement(headi
 textElementParagraphButton.addEventListener('click', () => insertElement(paragraph));
 textElementUnorderedButton.addEventListener('click', () => insertElement(unorderedList));
 textElementOrderedButton.addEventListener('click', () => insertElement(orderedList));
+textElementButtonButton.addEventListener('click', () => insertElement(button));
 //Layout Element Event Listeners
 layoutElementAccordionButton.addEventListener('click', () => insertElement(accordion));
 layoutElementOneColumnButton.addEventListener('click', () => insertLayoutElement(oneColumn));
