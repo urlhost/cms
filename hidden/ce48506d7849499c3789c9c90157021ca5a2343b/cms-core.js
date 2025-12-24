@@ -69,6 +69,7 @@ function updateMovementArrows() {
 
 function deleteElement() {
     if (currentlySelected) {
+         deselectAll();
 
         if (currentlySelected?.matches('.building-column, .placeholder-block, .accordion-label')) {
             alert("Cannot delete the current selection. Please select another element to delete.");
