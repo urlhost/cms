@@ -792,11 +792,11 @@ footer {
 .button {
     display: block;
     position: relative;
-    padding-top: 15px !important;
-    padding-bottom: 15px !important;
-    padding-left: 60px !important;
-    padding-right: 20px !important;
-    width: 100%;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    width: 33%;
     background-color: #eeeeee;
 }
 
