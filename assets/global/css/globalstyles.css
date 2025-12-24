@@ -752,10 +752,10 @@ footer {
 .accordion-label {
     display: block;
     position: relative;
-    padding-top: 15px !important;
-    padding-bottom: 15px !important;
-    padding-left: 60px !important;
-    padding-right: 25px !important;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 60px;
+    padding-right: 25px;
     width: 100%;
     background-color: #eeeeee;
 }
@@ -794,6 +794,8 @@ footer {
     position: relative;
     padding-top: 10px;
     padding-bottom: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     width: 100%;
     background-color: #eeeeee;
 }
