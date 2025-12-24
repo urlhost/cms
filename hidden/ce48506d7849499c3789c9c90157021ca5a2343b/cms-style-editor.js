@@ -461,6 +461,7 @@ function loadImageValues() {
 //Helper: Grab the link
 function grabLink() {
   const link = prompt("Enter a URL:");
+  link = link.trim();
   const linkRegex = /^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,10}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/i;
 
   if (link && linkRegex.test(link)) {
