@@ -219,6 +219,6 @@ const accordion = `
 
 const button = `
 <div class="button text-element building-block building-block-align-center" data-name="Building Block: Button">
-    <p><strong>Lorem ipsum</strong></p>
+    <p class="ql-align-center"><strong>Lorem ipsum</strong></p>
 </div>
 `;
