@@ -726,6 +726,21 @@ backgroundColorRemove.addEventListener("click", function() {
   }
 });
 
+linkAdd.addEventListener("click", function() {
+  if (currentlySelected) {
+    const url = "https://www.google.com";
+    if (currentlySelected && currentlySelected.parentNode) {
+      const linkWrapper = document.createElement('a');
+      linkWrapper.classList.add('building-block-link');
+      linkWrapper.href = url;
+      currentlySelected.parentNode.insertBefore(linkWrapper, currentlySelected);
+      linkWrapper.appendChild(currentlySelected);
+    } else {
+      return;
+    }
+  }
+});
+
 // Open Styles Menu
 styleButton.addEventListener("click", () => {
   if (currentlySelected) {
