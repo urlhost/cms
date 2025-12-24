@@ -468,6 +468,11 @@ function grabLink() {
 
   link = link.trim();
 
+  if (link === "") {
+    alert("URL cannot be empty.");
+    return grabLink();
+  }
+
   if (link.startsWith('.')) {
      alert("URL cannot start with a dot.");
      return grabLink();
