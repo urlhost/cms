@@ -792,6 +792,14 @@ linkAdd.addEventListener("click", function() {
   }
 });
 
+linkOpenInNewTab.addEventListener("change", function() {
+  if (currentlySelected && linkOpenInNewTab.checked) {
+    currentlySelected.parentElement.target = '_blank';
+  } else {
+    currentlySelected.parentElement.removeAttribute("target");
+  }
+});
+
 linkRemove.addEventListener("click", function() {
   if (currentlySelected && currentlySelected.parentNode) {
     const parentLink = currentlySelected.parentNode;
