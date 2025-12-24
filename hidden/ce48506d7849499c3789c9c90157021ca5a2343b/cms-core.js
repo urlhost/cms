@@ -69,16 +69,16 @@ function updateMovementArrows() {
 
 function deleteElement() {
     if (currentlySelected) {
-         deselectAll();
 
         if (currentlySelected?.matches('.building-column, .placeholder-block, .accordion-label')) {
             alert("Cannot delete the current selection. Please select another element to delete.");
+            deselectAll();
             return;
         }
 
         if (confirm('Are you sure you want to delete this element?')) {
             currentlySelected.remove();
-            currentlySelected = null;
+            deselectAll();
         }
     }
 }
