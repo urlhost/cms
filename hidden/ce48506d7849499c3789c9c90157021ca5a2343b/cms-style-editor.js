@@ -1,4 +1,61 @@
-//Open The Styles Menu
+// ==========================================
+// 1. VARIABLES & SELECTION
+// ==========================================
+
+// Behavior Options
+const hideOnDesktop = document.getElementById("style-editor-hide-on-desktop-checkbox");
+const hideOnMobile = document.getElementById("style-editor-hide-on-mobile-checkbox");
+const responsiveCollapse = document.getElementById("style-editor-responsive-collapse-checkbox");
+const stretchToScreen = document.getElementById("style-editor-stretch-to-screen-checkbox");
+const matchAdjacentHeight = document.getElementById("style-editor-match-adjacent-height-checkbox");
+
+// Background & Borders
+const backgroundImageLink = document.getElementById("style-editor-bg-image-link");
+const backgroundImageUpload = document.getElementById("style-editor-bg-image-upload");
+const backgroundImageRemove = document.getElementById("style-editor-bg-image-remove");
+const backgroundColorInput = document.getElementById("style-editor-bg-color-input");
+const backgroundColorValueSpan = document.getElementById("style-editor-bg-color-input-value");
+const backgroundColorRemove = document.getElementById("style-editor-bg-color-remove");
+
+const borderColorInput = document.getElementById("style-editor-border-color-input");
+const borderColorValueSpan = document.getElementById("style-editor-border-color-input-value");
+const borderWidthInput = document.getElementById("style-editor-border-width-input");
+const borderRadiusInput = document.getElementById("style-editor-border-radius-input");
+
+// Sizing & Alignment
+const widthInput = document.getElementById("style-editor-width-input");
+const alignLeft = document.getElementById("style-editor-align-left-button");
+const alignCenter = document.getElementById("style-editor-align-center-button");
+const alignRight = document.getElementById("style-editor-align-right-button");
+const alignTop = document.getElementById("style-editor-align-top-button");
+const alignMiddle = document.getElementById("style-editor-align-middle-button");
+const alignBottom = document.getElementById("style-editor-align-bottom-button");
+
+// Padding
+const paddingTopInput = document.getElementById("style-editor-padding-top-input");
+const paddingLeftInput = document.getElementById("style-editor-padding-left-input");
+const paddingRightInput = document.getElementById("style-editor-padding-right-input");
+const paddingBottomInput = document.getElementById("style-editor-padding-bottom-input");
+
+// Images
+const imageDefault = document.getElementById("style-editor-image-default-button");
+const imageCrop = document.getElementById("style-editor-image-crop-button");
+const imageRatio = document.getElementById("style-editor-image-ratio-button");
+const imageRatioWidthInput = document.getElementById("style-editor-ratio-width-input");
+const imageCropWidthInput = document.getElementById("style-editor-crop-width-input");
+const imageCropHeightInput = document.getElementById("style-editor-crop-height-input");
+const imageCropPositionInput = document.getElementById("style-editor-crop-position-input");
+
+// Links
+const linkAdd = document.getElementById("style-editor-link-add");
+const linkRemove = document.getElementById("style-editor-link-remove");
+const linkOpenInNewTab = document.getElementById("style-editor-link-open-in-new-tab-checkbox");
+
+
+// ==========================================
+// 2. HELPER FUNCTIONS
+// ==========================================
+
 function invokeStyleMenu() {
   if (currentlySelected) {
     styles.classList.remove('content-hide');
@@ -8,62 +65,6 @@ function invokeStyleMenu() {
   }
 }
 
-// === STYLE EDITOR LOGIC ===
-// Behavior Options
-const hideOnDesktop = document.getElementById("style-editor-hide-on-desktop-checkbox");
-const hideOnMobile = document.getElementById("style-editor-hide-on-mobile-checkbox");
-const responsiveCollapse = document.getElementById("style-editor-responsive-collapse-checkbox");
-const stretchToScreen = document.getElementById("style-editor-stretch-to-screen-checkbox");
-
-// Background input
-const matchAdjacentHeight = document.getElementById("style-editor-match-adjacent-height-checkbox");
-const backgroundImageLink = document.getElementById("style-editor-bg-image-link");
-const backgroundImageUpload = document.getElementById("style-editor-bg-image-upload");
-const backgroundImageRemove = document.getElementById("style-editor-bg-image-remove");
-const backgroundColorInput = document.getElementById("style-editor-bg-color-input");
-const backgroundColorValueSpan = document.getElementById("style-editor-bg-color-input-value");
-const backgroundColorRemove = document.getElementById("style-editor-bg-color-remove");
-
-// Border inputs
-const borderColorInput = document.getElementById("style-editor-border-color-input");
-const borderColorValueSpan = document.getElementById("style-editor-border-color-input-value");
-const borderWidthInput = document.getElementById("style-editor-border-width-input");
-const borderRadiusInput = document.getElementById("style-editor-border-radius-input");
-
-// Width input
-const widthInput = document.getElementById("style-editor-width-input");
-
-// Alignment buttons
-const alignLeft = document.getElementById("style-editor-align-left-button");
-const alignCenter = document.getElementById("style-editor-align-center-button");
-const alignRight = document.getElementById("style-editor-align-right-button");
-const alignTop = document.getElementById("style-editor-align-top-button");
-const alignMiddle = document.getElementById("style-editor-align-middle-button");
-const alignBottom = document.getElementById("style-editor-align-bottom-button");
-
-// Padding inputs
-const paddingTopInput = document.getElementById("style-editor-padding-top-input");
-const paddingLeftInput = document.getElementById("style-editor-padding-left-input");
-const paddingRightInput = document.getElementById("style-editor-padding-right-input");
-const paddingBottomInput = document.getElementById("style-editor-padding-bottom-input");
-
-// Image Options
-const imageDefault = document.getElementById("style-editor-image-default-button");
-const imageCrop = document.getElementById("style-editor-image-crop-button");
-const imageRatio = document.getElementById("style-editor-image-ratio-button");
-const imageRatioWidthInput = document.getElementById("style-editor-ratio-width-input");
-const imageCropWidthInput = document.getElementById("style-editor-crop-width-input");
-const imageCropHeightInput = document.getElementById("style-editor-crop-height-input");
-const imageCropPositionInput = document.getElementById("style-editor-crop-position-input");
-
-// Link Opions
-const linkAdd = document.getElementById("style-editor-link-add");
-const linkRemove = document.getElementById("style-editor-link-remove");
-const linkOpenInNewTab = document.getElementById("style-editor-link-open-in-new-tab-checkbox");
-
-// ===============================
-// HELPERS
-// ===============================
 function parsePercent(value, fallback = 100) {
   const match = value.match(/([\d.]+)%/);
   return match ? parseFloat(match[1]) : fallback;
@@ -74,276 +75,6 @@ function parsePx(value, fallback = 0) {
   return match ? parseFloat(match[1]) : fallback;
 }
 
-// ===============================
-// BACKGROUND COLOR
-// ===============================
-backgroundColorInput.addEventListener("input", () => {
-  if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
-    currentlySelected.style.backgroundColor = backgroundColorInput.value;
-  }
-  if (backgroundColorValueSpan) {
-    backgroundColorValueSpan.textContent = backgroundColorInput.value.toUpperCase();
-  }
-});
-
-// ===============================
-// BORDER INPUTS
-// ===============================
-borderColorInput?.addEventListener("input", () => {
-  if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
-    currentlySelected.style.borderColor = borderColorInput.value;
-  }
-  if (borderColorValueSpan) {
-    borderColorValueSpan.textContent = borderColorInput.value.toUpperCase();
-  }
-});
-
-borderWidthInput?.addEventListener("input", () => {
-  if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
-    let value = parseInt(borderWidthInput.value) || 0;
-    currentlySelected.style.borderWidth = value + "px";
-    currentlySelected.style.borderStyle = value > 0 ? "solid" : "none"; // ensure visible border
-  }
-});
-
-borderRadiusInput?.addEventListener("input", () => {
-  if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
-    let value = parseInt(borderRadiusInput.value) || 0;
-    currentlySelected.style.borderRadius = value + "px";
-  }
-});
-
-// ===============================
-// WIDTH CONTROL (direct input)
-// ===============================
-widthInput.addEventListener("input", () => {
-  if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
-
-    let uiPercent = parseFloat(widthInput.value);
-
-    if (isNaN(uiPercent)) {
-      uiPercent = 5;
-    }
-
-    uiPercent = Math.max(5, Math.min(100, uiPercent));
-
-    if (uiPercent >= 100) {
-      currentlySelected.style.width = "";
-    } else {
-      currentlySelected.style.width = `calc(${uiPercent}% - 2rem)`;
-    }
-  }
-});
-
-widthInput.addEventListener("change", () => {
-  let finalValue = parseFloat(widthInput.value) || 5;
-
-  finalValue = Math.max(5, Math.min(100, finalValue));
-
-  widthInput.value = finalValue;
-
-  if (currentlySelected) {
-    if (finalValue >= 100) {
-      currentlySelected.style.width = "";
-    } else {
-      currentlySelected.style.width = `calc(${finalValue}% - 2rem)`;
-    }
-  }
-});
-
-// ===============================
-// IMAGE WIDTH CONTROL (direct input)
-// ===============================
-imageRatioWidthInput.addEventListener("input", () => {
-  if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
-    let width = parseFloat(imageRatioWidthInput.value) || 100;
-    width = Math.max(10, Math.min(9999, width));
-    currentlySelected.style.width = width + "px";
-  }
-});
-
-imageCropWidthInput.addEventListener("input", () => {
-  if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
-    let width = parseFloat(imageCropWidthInput.value) || 100;
-    width = Math.max(10, Math.min(9999, width));
-    currentlySelected.style.width = width + "px";
-  }
-});
-
-// ===============================
-// IMAGE HEIGHT CONTROL (direct input)
-// ===============================
-imageCropHeightInput.addEventListener("input", () => {
-  if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
-    let height = parseFloat(imageCropHeightInput.value) || 100;
-    height = Math.max(10, Math.min(9999, height));
-    currentlySelected.style.height = height + "px";
-  }
-});
-
-// ===============================
-// IMAGE POSITION CONTROL (direct input)
-// ===============================
-imageCropPositionInput.addEventListener("input", () => {
-  if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
-    let position = parseFloat(imageCropPositionInput.value) || 100;
-    position = Math.max(5, Math.min(100, position));
-    currentlySelected.style.objectPosition = position + "%";
-  }
-});
-
-//
-// ALIGNMENT
-// Utility: mark the right button active
-function highlightActiveControls() {
-  if (!currentlySelected) return;
-
-  // Clear old actives
-  [alignLeft, alignCenter, alignRight, alignTop, alignMiddle, alignBottom, imageDefault, imageRatio, imageCrop]
-  .forEach(btn => btn.classList.remove("active"));
-
-  // Horizontal
-  if (currentlySelected.classList.contains("building-block-align-left")) {
-    alignLeft.classList.add("active");
-  } else if (currentlySelected.classList.contains("building-block-align-center")) {
-    alignCenter.classList.add("active");
-  } else if (currentlySelected.classList.contains("building-block-align-right")) {
-    alignRight.classList.add("active");
-  }
-
-  // Vertical
-  if (currentlySelected.classList.contains("building-column-content-top")) {
-    alignTop.classList.add("active");
-  } else if (currentlySelected.classList.contains("building-column-content-center")) {
-    alignMiddle.classList.add("active");
-  } else if (currentlySelected.classList.contains("building-column-content-bottom")) {
-    alignBottom.classList.add("active");
-  }
-
-  // Image
-  if (currentlySelected.classList.contains("ratio-image")) {
-    imageRatio.classList.add("active");
-  } else if (currentlySelected.classList.contains("crop-image")) {
-    imageCrop.classList.add("active");
-  } else if (currentlySelected.classList.contains("default-image")) {
-    imageDefault.classList.add("active");
-  }
-}
-
-
-
-// Wrap existing button handlers so they also highlight
-function wrapWithHighlight(fn) {
-  return () => {
-    fn();
-    highlightActiveControls();
-  };
-}
-
-// Replace your listeners with wrapped ones
-alignLeft.addEventListener("click", wrapWithHighlight(() => {
-  if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
-    currentlySelected.classList.remove("building-block-align-center", "building-block-align-right");
-    currentlySelected.classList.add("building-block-align-left");
-  }
-}));
-
-alignCenter.addEventListener("click", wrapWithHighlight(() => {
-  if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
-    currentlySelected.classList.remove("building-block-align-left", "building-block-align-right");
-    currentlySelected.classList.add("building-block-align-center");
-  }
-}));
-
-alignRight.addEventListener("click", wrapWithHighlight(() => {
-  if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
-    currentlySelected.classList.remove("building-block-align-left", "building-block-align-center");
-    currentlySelected.classList.add("building-block-align-right");
-  }
-}));
-
-alignTop.addEventListener("click", wrapWithHighlight(() => {
-  if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
-    currentlySelected.classList.remove("building-column-content-center", "building-column-content-bottom");
-    currentlySelected.classList.add("building-column-content-top");
-  }
-}));
-
-alignMiddle.addEventListener("click", wrapWithHighlight(() => {
-  if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
-    currentlySelected.classList.remove("building-column-content-top", "building-column-content-bottom");
-    currentlySelected.classList.add("building-column-content-center");
-  }
-}));
-
-alignBottom.addEventListener("click", wrapWithHighlight(() => {
-  if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
-    currentlySelected.classList.remove("building-column-content-top", "building-column-content-center");
-    currentlySelected.classList.add("building-column-content-bottom");
-  }
-}));
-
-imageRatio.addEventListener("click", wrapWithHighlight(() => {
-  if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
-    currentlySelected.classList.remove("default-image");
-    currentlySelected.classList.remove("crop-image");
-    currentlySelected.classList.add("ratio-image");
-  }
-}));
-
-imageCrop.addEventListener("click", wrapWithHighlight(() => {
-  if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
-    currentlySelected.classList.remove("default-image");
-    currentlySelected.classList.remove("ratio-image");
-    currentlySelected.classList.add("crop-image");
-  }
-}));
-
-imageDefault.addEventListener("click", wrapWithHighlight(() => {
-  if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
-    currentlySelected.classList.remove("ratio-image");
-    currentlySelected.classList.remove("crop-image");
-    currentlySelected.classList.add("default-image");
-  }
-}));
-
-// ===============================
-// PADDING INPUTS
-// ===============================
-function updatePaddingInput(side, inputEl) {
-  inputEl.addEventListener("input", () => {
-    if (currentlySelected) {
-      currentlySelected.classList.add("custom-styles");
-      let value = parseInt(inputEl.value) || 0;
-      currentlySelected.style[`padding${side}`] = Math.max(0, value) + "px";
-    }
-  });
-}
-
-updatePaddingInput("Top", paddingTopInput);
-updatePaddingInput("Left", paddingLeftInput);
-updatePaddingInput("Right", paddingRightInput);
-updatePaddingInput("Bottom", paddingBottomInput);
-
-// Helper: Convert "rgb(r,g,b)" or "rgba(r,g,b,a)" to "#rrggbb"
 function rgbToHex(rgb) {
   if (!rgb || rgb === "none" || rgb === "transparent") return "#FFFFFF";
   const result = rgb.match(/\d+/g);
@@ -352,11 +83,9 @@ function rgbToHex(rgb) {
   r = parseInt(r).toString(16).padStart(2, "0");
   g = parseInt(g).toString(16).padStart(2, "0");
   b = parseInt(b).toString(16).padStart(2, "0");
-
   return `#${r}${g}${b}`;
 }
 
-//Helper: Parse both %s and calc(%s - 2rem)
 function getRealWidthPercent() {
   if (!currentlySelected) return 100;
   const styleWidth = currentlySelected.style.width;
@@ -372,11 +101,9 @@ function getRealWidthPercent() {
   return 100;
 }
 
-//Helper: Find all elements with an inline width value
 function findWidth() {
   const blocksWithWidth = [];
   const allBlocks = document.querySelectorAll('.building-block');
-
   allBlocks.forEach(block => {
     if (block.style.width) {
       blocksWithWidth.push({
@@ -385,14 +112,11 @@ function findWidth() {
       });
     }
   });
-
   return blocksWithWidth;
 }
 
-//Helper: Clean all width values
 function cleanWidth() {
   const foundBlocks = findWidth();
-
   if (foundBlocks && foundBlocks.length > 0) {
     foundBlocks.forEach(item => {
       const element = item.element;
@@ -401,7 +125,6 @@ function cleanWidth() {
 
       if (dirtyWidth.includes("calc")) {
         const calcMatch = dirtyWidth.match(/calc\((\d*\.?\d+)%/);
-
         if (calcMatch && calcMatch[1]) {
           realPercent = parseFloat(calcMatch[1]);
         }
@@ -412,20 +135,15 @@ function cleanWidth() {
         element.style.width = cleanStyle;
       }
     });
-  } else {
-    return;
   }
 }
 
-//Helper: Load the cropped image styles
 function loadImageValues() {
   if (currentlySelected.classList.contains("image-element")) {
     const computedStyle = window.getComputedStyle(currentlySelected);
     const inlineStyle = currentlySelected.style;
 
-    if (inlineStyle.width && inlineStyle.width.includes('%')) {
-      return;
-    }
+    if (inlineStyle.width && inlineStyle.width.includes('%')) return;
 
     let displayWidth, displayHeight;
 
@@ -433,7 +151,6 @@ function loadImageValues() {
       displayWidth = parseFloat(inlineStyle.width);
     } else {
       displayWidth = Math.round(parseFloat(computedStyle.width));
-      // THE FIX: Add the "px" unit to the number
       inlineStyle.width = displayWidth + "px";
     }
 
@@ -441,7 +158,6 @@ function loadImageValues() {
       displayHeight = parseFloat(inlineStyle.height);
     } else {
       displayHeight = Math.round(parseFloat(computedStyle.height));
-      // THE FIX: Add the "px" unit to the number
       inlineStyle.height = displayHeight + "px";
     }
 
@@ -459,9 +175,10 @@ function loadImageValues() {
   }
 }
 
-//Helper: Grab the link
 function grabLink() {
   let link = prompt("Enter a URL:");
+  
+  if (link === null) return null;
 
   link = link.trim();
 
@@ -474,17 +191,55 @@ function grabLink() {
 
   if (link && linkRegex.test(link)) {
     return link;
-  } else if (link) {
+  } else {
     alert("Please enter a valid URL.");
-    grabLink();
+    return grabLink();
   }
-
-  return null;  
 }
 
-// ===============================
-// LOAD STYLES FROM SELECTED ELEMENT
-// ===============================
+function highlightActiveControls() {
+  if (!currentlySelected) return;
+
+  [alignLeft, alignCenter, alignRight, alignTop, alignMiddle, alignBottom, imageDefault, imageRatio, imageCrop]
+  .forEach(btn => btn.classList.remove("active"));
+
+  if (currentlySelected.classList.contains("building-block-align-left")) {
+    alignLeft.classList.add("active");
+  } else if (currentlySelected.classList.contains("building-block-align-center")) {
+    alignCenter.classList.add("active");
+  } else if (currentlySelected.classList.contains("building-block-align-right")) {
+    alignRight.classList.add("active");
+  }
+
+  if (currentlySelected.classList.contains("building-column-content-top")) {
+    alignTop.classList.add("active");
+  } else if (currentlySelected.classList.contains("building-column-content-center")) {
+    alignMiddle.classList.add("active");
+  } else if (currentlySelected.classList.contains("building-column-content-bottom")) {
+    alignBottom.classList.add("active");
+  }
+
+  if (currentlySelected.classList.contains("ratio-image")) {
+    imageRatio.classList.add("active");
+  } else if (currentlySelected.classList.contains("crop-image")) {
+    imageCrop.classList.add("active");
+  } else if (currentlySelected.classList.contains("default-image")) {
+    imageDefault.classList.add("active");
+  }
+}
+
+function wrapWithHighlight(fn) {
+  return () => {
+    fn();
+    highlightActiveControls();
+  };
+}
+
+
+// ==========================================
+// 3. MAIN LOGIC (LOAD & CHECK)
+// ==========================================
+
 function loadStylesFromSelected() {
   if (!currentlySelected) return;
   const computed = window.getComputedStyle(currentlySelected);
@@ -493,12 +248,12 @@ function loadStylesFromSelected() {
   backgroundColorInput.value = rgbToHex(computed.backgroundColor);
   if (backgroundColorValueSpan) backgroundColorValueSpan.textContent = rgbToHex(computed.backgroundColor).toUpperCase();
 
+  // Width & Images
   if (currentlySelected.style.width && currentlySelected.style.width.includes("px")) {
     loadImageValues();
   } else {
     const realPercent = getRealWidthPercent();
     widthInput.value = realPercent;
-
     if (realPercent >= 100) {
       currentlySelected.style.width = "";
     } else {
@@ -514,55 +269,28 @@ function loadStylesFromSelected() {
 
   // Border
   const borderWidth = parseInt(computed.borderWidth) || 0;
-
   if (borderWidthInput) borderWidthInput.value = borderWidth;
   if (borderRadiusInput) borderRadiusInput.value = parseInt(computed.borderRadius) || 0;
 
-  let finalBorderColor = '#000000'; // Start with a sensible default
-
+  let finalBorderColor = '#000000';
   if (currentlySelected.style.borderColor) {
     finalBorderColor = rgbToHex(currentlySelected.style.borderColor);
-
   } else if (borderWidth > 0) {
     finalBorderColor = rgbToHex(computed.borderColor);
   }
-
   if (borderColorInput) borderColorInput.value = finalBorderColor;
   if (borderColorValueSpan) borderColorValueSpan.textContent = finalBorderColor.toUpperCase();
 
-  //Behavior
-
-  if (currentlySelected.classList.contains("hide-on-desktop")) {
-    hideOnDesktop.checked = true;
-  } else {
-    hideOnDesktop.checked = false;
-  }
-
-  if (currentlySelected.classList.contains("hide-on-mobile")) {
-    hideOnMobile.checked = true;
-  } else {
-    hideOnMobile.checked = false;
-  }
-
+  // Checkboxes
+  hideOnDesktop.checked = currentlySelected.classList.contains("hide-on-desktop");
+  hideOnMobile.checked = currentlySelected.classList.contains("hide-on-mobile");
+  
   if (currentlySelected.firstElementChild) {
-    if (currentlySelected.firstElementChild.classList.contains("unresponsive-collapse")) {
-      responsiveCollapse.checked = false;
-    } else {
-      responsiveCollapse.checked = true;
-    }
+    responsiveCollapse.checked = !currentlySelected.firstElementChild.classList.contains("unresponsive-collapse");
   }
 
-  if (currentlySelected.classList.contains("stretch-to-screen")) {
-    stretchToScreen.checked = true;
-  } else {
-    stretchToScreen.checked = false;
-  }
-
-  if (currentlySelected.classList.contains("match-adjacent-height")) {
-    matchAdjacentHeight.checked = true;
-  } else {
-    matchAdjacentHeight.checked = false;
-  }
+  stretchToScreen.checked = currentlySelected.classList.contains("stretch-to-screen");
+  matchAdjacentHeight.checked = currentlySelected.classList.contains("match-adjacent-height");
 
   if (currentlySelected.parentElement) {
     if (currentlySelected.parentElement.classList.contains("building-block-link") && currentlySelected.parentElement.target === "_blank") {
@@ -668,30 +396,254 @@ function checkRestrictedControls() {
   }
 }
 
-// Misc Event Listeners
-imageDefault.addEventListener("click", () => {
-  currentlySelected.style.removeProperty('width');
-  currentlySelected.style.removeProperty('height');
-  currentlySelected.style.removeProperty('object-position');
-  setTimeout(checkRestrictedControls, 0);
+
+// ==========================================
+// 4. EVENT LISTENERS
+// ==========================================
+
+// --- Background ---
+backgroundColorInput.addEventListener("input", () => {
+  if (currentlySelected) {
+    currentlySelected.classList.add("custom-styles");
+    currentlySelected.style.backgroundColor = backgroundColorInput.value;
+  }
+  if (backgroundColorValueSpan) {
+    backgroundColorValueSpan.textContent = backgroundColorInput.value.toUpperCase();
+  }
 });
 
-imageRatio.addEventListener("click", () => {
-  currentlySelected.style.removeProperty('width');
-  currentlySelected.style.removeProperty('height');
-  currentlySelected.style.removeProperty('object-position');
-  loadImageValues();
-  setTimeout(checkRestrictedControls, 0);
+backgroundColorRemove.addEventListener("click", function() {
+  if (currentlySelected) {
+    if (currentlySelected.style.backgroundColor !== '') {
+      currentlySelected.style.backgroundColor = '';
+      loadStylesFromSelected();
+    }
+  }
 });
 
-imageCrop.addEventListener("click", () => {
-  currentlySelected.style.removeProperty('width');
-  currentlySelected.style.removeProperty('height');
-  currentlySelected.style.removeProperty('object-position');
-  loadImageValues();
-  setTimeout(checkRestrictedControls, 0);
+backgroundImageLink.addEventListener("click", function() {
+  if (currentlySelected) {
+    const imageLink = grabImageLink();
+    currentlySelected.style.backgroundImage = imageLink;
+    checkRestrictedControls();
+  }
 });
 
+backgroundImageUpload.addEventListener("click", async function() {
+  if (currentlySelected) {
+    const imageUpload = await grabImageUpload();
+    if (imageUpload) {
+      currentlySelected.style.backgroundImage = `url(${imageUpload})`;
+      checkRestrictedControls();
+    }
+  }
+});
+
+backgroundImageRemove.addEventListener("click", function() {
+  if (currentlySelected && currentlySelected.style.backgroundImage !== '') {
+    currentlySelected.style.backgroundImage = '';
+    checkRestrictedControls();
+  }
+});
+
+// --- Borders ---
+borderColorInput?.addEventListener("input", () => {
+  if (currentlySelected) {
+    currentlySelected.classList.add("custom-styles");
+    currentlySelected.style.borderColor = borderColorInput.value;
+  }
+  if (borderColorValueSpan) {
+    borderColorValueSpan.textContent = borderColorInput.value.toUpperCase();
+  }
+});
+
+borderWidthInput?.addEventListener("input", () => {
+  if (currentlySelected) {
+    currentlySelected.classList.add("custom-styles");
+    let value = parseInt(borderWidthInput.value) || 0;
+    currentlySelected.style.borderWidth = value + "px";
+    currentlySelected.style.borderStyle = value > 0 ? "solid" : "none";
+  }
+});
+
+borderRadiusInput?.addEventListener("input", () => {
+  if (currentlySelected) {
+    currentlySelected.classList.add("custom-styles");
+    let value = parseInt(borderRadiusInput.value) || 0;
+    currentlySelected.style.borderRadius = value + "px";
+  }
+});
+
+// --- Width ---
+widthInput.addEventListener("input", () => {
+  if (currentlySelected) {
+    currentlySelected.classList.add("custom-styles");
+    let uiPercent = parseFloat(widthInput.value);
+    if (isNaN(uiPercent)) uiPercent = 5;
+    uiPercent = Math.max(5, Math.min(100, uiPercent));
+
+    if (uiPercent >= 100) {
+      currentlySelected.style.width = "";
+    } else {
+      currentlySelected.style.width = `calc(${uiPercent}% - 2rem)`;
+    }
+  }
+});
+
+widthInput.addEventListener("change", () => {
+  let finalValue = parseFloat(widthInput.value) || 5;
+  finalValue = Math.max(5, Math.min(100, finalValue));
+  widthInput.value = finalValue;
+
+  if (currentlySelected) {
+    if (finalValue >= 100) {
+      currentlySelected.style.width = "";
+    } else {
+      currentlySelected.style.width = `calc(${finalValue}% - 2rem)`;
+    }
+  }
+});
+
+// --- Images ---
+imageRatioWidthInput.addEventListener("input", () => {
+  if (currentlySelected) {
+    currentlySelected.classList.add("custom-styles");
+    let width = parseFloat(imageRatioWidthInput.value) || 100;
+    width = Math.max(10, Math.min(9999, width));
+    currentlySelected.style.width = width + "px";
+  }
+});
+
+imageCropWidthInput.addEventListener("input", () => {
+  if (currentlySelected) {
+    currentlySelected.classList.add("custom-styles");
+    let width = parseFloat(imageCropWidthInput.value) || 100;
+    width = Math.max(10, Math.min(9999, width));
+    currentlySelected.style.width = width + "px";
+  }
+});
+
+imageCropHeightInput.addEventListener("input", () => {
+  if (currentlySelected) {
+    currentlySelected.classList.add("custom-styles");
+    let height = parseFloat(imageCropHeightInput.value) || 100;
+    height = Math.max(10, Math.min(9999, height));
+    currentlySelected.style.height = height + "px";
+  }
+});
+
+imageCropPositionInput.addEventListener("input", () => {
+  if (currentlySelected) {
+    currentlySelected.classList.add("custom-styles");
+    let position = parseFloat(imageCropPositionInput.value) || 100;
+    position = Math.max(5, Math.min(100, position));
+    currentlySelected.style.objectPosition = position + "%";
+  }
+});
+
+imageDefault.addEventListener("click", wrapWithHighlight(() => {
+  if (currentlySelected) {
+    currentlySelected.classList.add("custom-styles");
+    currentlySelected.classList.remove("ratio-image", "crop-image");
+    currentlySelected.classList.add("default-image");
+    currentlySelected.style.removeProperty('width');
+    currentlySelected.style.removeProperty('height');
+    currentlySelected.style.removeProperty('object-position');
+    setTimeout(checkRestrictedControls, 0);
+  }
+}));
+
+imageRatio.addEventListener("click", wrapWithHighlight(() => {
+  if (currentlySelected) {
+    currentlySelected.classList.add("custom-styles");
+    currentlySelected.classList.remove("default-image", "crop-image");
+    currentlySelected.classList.add("ratio-image");
+    currentlySelected.style.removeProperty('width');
+    currentlySelected.style.removeProperty('height');
+    currentlySelected.style.removeProperty('object-position');
+    loadImageValues();
+    setTimeout(checkRestrictedControls, 0);
+  }
+}));
+
+imageCrop.addEventListener("click", wrapWithHighlight(() => {
+  if (currentlySelected) {
+    currentlySelected.classList.add("custom-styles");
+    currentlySelected.classList.remove("default-image", "ratio-image");
+    currentlySelected.classList.add("crop-image");
+    currentlySelected.style.removeProperty('width');
+    currentlySelected.style.removeProperty('height');
+    currentlySelected.style.removeProperty('object-position');
+    loadImageValues();
+    setTimeout(checkRestrictedControls, 0);
+  }
+}));
+
+// --- Alignment ---
+alignLeft.addEventListener("click", wrapWithHighlight(() => {
+  if (currentlySelected) {
+    currentlySelected.classList.add("custom-styles");
+    currentlySelected.classList.remove("building-block-align-center", "building-block-align-right");
+    currentlySelected.classList.add("building-block-align-left");
+  }
+}));
+
+alignCenter.addEventListener("click", wrapWithHighlight(() => {
+  if (currentlySelected) {
+    currentlySelected.classList.add("custom-styles");
+    currentlySelected.classList.remove("building-block-align-left", "building-block-align-right");
+    currentlySelected.classList.add("building-block-align-center");
+  }
+}));
+
+alignRight.addEventListener("click", wrapWithHighlight(() => {
+  if (currentlySelected) {
+    currentlySelected.classList.add("custom-styles");
+    currentlySelected.classList.remove("building-block-align-left", "building-block-align-center");
+    currentlySelected.classList.add("building-block-align-right");
+  }
+}));
+
+alignTop.addEventListener("click", wrapWithHighlight(() => {
+  if (currentlySelected) {
+    currentlySelected.classList.add("custom-styles");
+    currentlySelected.classList.remove("building-column-content-center", "building-column-content-bottom");
+    currentlySelected.classList.add("building-column-content-top");
+  }
+}));
+
+alignMiddle.addEventListener("click", wrapWithHighlight(() => {
+  if (currentlySelected) {
+    currentlySelected.classList.add("custom-styles");
+    currentlySelected.classList.remove("building-column-content-top", "building-column-content-bottom");
+    currentlySelected.classList.add("building-column-content-center");
+  }
+}));
+
+alignBottom.addEventListener("click", wrapWithHighlight(() => {
+  if (currentlySelected) {
+    currentlySelected.classList.add("custom-styles");
+    currentlySelected.classList.remove("building-column-content-top", "building-column-content-center");
+    currentlySelected.classList.add("building-column-content-bottom");
+  }
+}));
+
+// --- Padding ---
+function updatePaddingInput(side, inputEl) {
+  inputEl.addEventListener("input", () => {
+    if (currentlySelected) {
+      currentlySelected.classList.add("custom-styles");
+      let value = parseInt(inputEl.value) || 0;
+      currentlySelected.style[`padding${side}`] = Math.max(0, value) + "px";
+    }
+  });
+}
+updatePaddingInput("Top", paddingTopInput);
+updatePaddingInput("Left", paddingLeftInput);
+updatePaddingInput("Right", paddingRightInput);
+updatePaddingInput("Bottom", paddingBottomInput);
+
+// --- Behavior ---
 hideOnDesktop.addEventListener("change", function() {
   if (currentlySelected && hideOnDesktop.checked) {
     currentlySelected.classList.add("hide-on-desktop");
@@ -732,55 +684,11 @@ matchAdjacentHeight.addEventListener("change", function() {
   }
 });
 
-backgroundImageLink.addEventListener("click", function() {
-  if (currentlySelected) {
-    const imageLink = grabImageLink();
-    currentlySelected.style.backgroundImage = imageLink;
-    checkRestrictedControls();
-  } else {
-    return;
-  }
-});
-
-backgroundImageUpload.addEventListener("click", async function() {
-  if (currentlySelected) {
-    const imageUpload = await grabImageUpload();
-    if (imageUpload) {
-      currentlySelected.style.backgroundImage = `url(${imageUpload})`;
-      checkRestrictedControls();
-    }
-  } else {
-    return;
-  }
-});
-
-backgroundImageRemove.addEventListener("click", function() {
-  if (currentlySelected && currentlySelected.style.backgroundImage !== '') {
-    currentlySelected.style.backgroundImage = '';
-    checkRestrictedControls();
-  } else {
-    return;
-  }
-});
-
-backgroundColorRemove.addEventListener("click", function() {
-  if (currentlySelected) {
-    if (currentlySelected.style.backgroundColor !== '') {
-      currentlySelected.style.backgroundColor = '';
-      loadStylesFromSelected();
-    } else {
-      return;
-    }
-  }
-});
-
+// --- Links ---
 linkAdd.addEventListener("click", function() {
   if (currentlySelected) {
     const url = grabLink();
-
-    if (url === null) {
-      return;
-    }
+    if (url === null) return;
 
     if (currentlySelected && currentlySelected.parentNode) {
       const linkWrapper = document.createElement('a');
@@ -789,17 +697,7 @@ linkAdd.addEventListener("click", function() {
       currentlySelected.parentNode.insertBefore(linkWrapper, currentlySelected);
       linkWrapper.appendChild(currentlySelected);
       checkRestrictedControls();
-    } else {
-      return;
     }
-  }
-});
-
-linkOpenInNewTab.addEventListener("change", function() {
-  if (currentlySelected && linkOpenInNewTab.checked) {
-    currentlySelected.parentElement.target = '_blank';
-  } else {
-    currentlySelected.parentElement.removeAttribute("target");
   }
 });
 
@@ -814,7 +712,21 @@ linkRemove.addEventListener("click", function() {
   }
 });
 
-// Open Styles Menu
+linkOpenInNewTab.addEventListener("change", function() {
+  if (currentlySelected && currentlySelected.parentElement.tagName === 'A') {
+    if (linkOpenInNewTab.checked) {
+      currentlySelected.parentElement.target = "_blank";
+    } else {
+      currentlySelected.parentElement.removeAttribute("target");
+    }
+  }
+});
+
+
+// ==========================================
+// 5. GLOBAL TRIGGERS
+// ==========================================
+
 styleButton.addEventListener("click", () => {
   if (currentlySelected) {
     currentlySelected.classList.add("custom-styles");
@@ -822,16 +734,13 @@ styleButton.addEventListener("click", () => {
   }
 });
 
-// ===============================
-// s and button triggers
-// ===============================
-
 document.addEventListener("keydown", (e) => {
   const isStyleEditorVisible = window.getComputedStyle(styles).display !== "none";
   const isTextEditorVisible = window.getComputedStyle(editorPop).display !== "none";
   if (isTextEditorVisible || isStyleEditorVisible) return;
-  e.preventDefault();
+  
   if (e.key === 's') {
+    e.preventDefault();
     if (currentlySelected) {
       currentlySelected.classList.add("custom-styles");
       invokeStyleMenu();
