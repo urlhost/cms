@@ -741,6 +741,16 @@ linkAdd.addEventListener("click", function() {
   }
 });
 
+linkRemove.addEventListener("click", function() {
+  if (currentlySelected && currentlySelected.parentNode) {
+    const parentLink = currentlySelected.parentNode;
+    if (parentLink.tagName === 'A' && parentLink.classList.contains('building-block-link')) {
+      parentLink.parentNode.insertBefore(currentlySelected, parentLink);
+      parentLink.remove();
+    }
+  }
+});
+
 // Open Styles Menu
 styleButton.addEventListener("click", () => {
   if (currentlySelected) {
