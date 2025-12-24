@@ -9,7 +9,7 @@ function invokeStyleMenu() {
 }
 
 // === STYLE EDITOR LOGIC ===
-//Behavior Options
+// Behavior Options
 const hideOnDesktop = document.getElementById("style-editor-hide-on-desktop-checkbox");
 const hideOnMobile = document.getElementById("style-editor-hide-on-mobile-checkbox");
 const responsiveCollapse = document.getElementById("style-editor-responsive-collapse-checkbox");
@@ -55,6 +55,10 @@ const imageRatioWidthInput = document.getElementById("style-editor-ratio-width-i
 const imageCropWidthInput = document.getElementById("style-editor-crop-width-input");
 const imageCropHeightInput = document.getElementById("style-editor-crop-height-input");
 const imageCropPositionInput = document.getElementById("style-editor-crop-position-input");
+
+// Link Opions
+const linkAdd = document.getElementById("style-editor-link-add");
+const linkRemove = document.getElementById("style-editor-link-remove");
 
 // ===============================
 // HELPERS
