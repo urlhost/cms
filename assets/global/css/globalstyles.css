@@ -800,6 +800,10 @@ footer {
     background-color: #eeeeee;
 }
 
+.button> :first-child {
+    margin: 0;
+}
+
 .button:hover {
     opacity: 70%;
     cursor: pointer;
