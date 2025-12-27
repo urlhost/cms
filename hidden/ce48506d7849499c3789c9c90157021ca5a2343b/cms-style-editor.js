@@ -65,6 +65,7 @@ function invokeStyleMenu() {
     loadedPage.classList.add("sidebar-active");
     checkRestrictedControls();
     loadStylesFromSelected();
+    currentlySelected.classList.add("custom-styles");
   }
 }
 
@@ -432,7 +433,6 @@ function checkRestrictedControls() {
 // --- Background ---
 backgroundColorInput.addEventListener("input", () => {
   if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
     currentlySelected.style.backgroundColor = backgroundColorInput.value;
     changeRGBAlpha(currentlySelected, backgroundColorOpacityInput.value / 100);
   }
@@ -491,7 +491,6 @@ backgroundImageRemove.addEventListener("click", function() {
 // --- Borders ---
 borderColorInput?.addEventListener("input", () => {
   if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
     currentlySelected.style.borderColor = borderColorInput.value;
   }
   if (borderColorValueSpan) {
@@ -501,7 +500,6 @@ borderColorInput?.addEventListener("input", () => {
 
 borderWidthInput?.addEventListener("input", () => {
   if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
     let value = parseInt(borderWidthInput.value) || 0;
     currentlySelected.style.borderWidth = value + "px";
     currentlySelected.style.borderStyle = value > 0 ? "solid" : "none";
@@ -510,7 +508,6 @@ borderWidthInput?.addEventListener("input", () => {
 
 borderRadiusInput?.addEventListener("input", () => {
   if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
     let value = parseInt(borderRadiusInput.value) || 0;
     currentlySelected.style.borderRadius = value + "px";
   }
@@ -532,7 +529,6 @@ dropShadow.addEventListener("change", function() {
 // --- Width ---
 widthInput.addEventListener("input", () => {
   if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
     let uiPercent = parseFloat(widthInput.value);
     if (isNaN(uiPercent)) uiPercent = 5;
     uiPercent = Math.max(5, Math.min(100, uiPercent));
@@ -562,7 +558,6 @@ widthInput.addEventListener("change", () => {
 // --- Images ---
 imageRatioWidthInput.addEventListener("input", () => {
   if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
     let width = parseFloat(imageRatioWidthInput.value) || 100;
     width = Math.max(10, Math.min(9999, width));
     currentlySelected.style.width = width + "px";
@@ -571,7 +566,6 @@ imageRatioWidthInput.addEventListener("input", () => {
 
 imageCropWidthInput.addEventListener("input", () => {
   if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
     let width = parseFloat(imageCropWidthInput.value) || 100;
     width = Math.max(10, Math.min(9999, width));
     currentlySelected.style.width = width + "px";
@@ -580,7 +574,6 @@ imageCropWidthInput.addEventListener("input", () => {
 
 imageCropHeightInput.addEventListener("input", () => {
   if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
     let height = parseFloat(imageCropHeightInput.value) || 100;
     height = Math.max(10, Math.min(9999, height));
     currentlySelected.style.height = height + "px";
@@ -589,7 +582,6 @@ imageCropHeightInput.addEventListener("input", () => {
 
 imageCropPositionInput.addEventListener("input", () => {
   if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
     let position = parseFloat(imageCropPositionInput.value) || 100;
     position = Math.max(5, Math.min(100, position));
     currentlySelected.style.objectPosition = position + "%";
@@ -598,7 +590,6 @@ imageCropPositionInput.addEventListener("input", () => {
 
 imageDefault.addEventListener("click", wrapWithHighlight(() => {
   if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
     currentlySelected.classList.remove("ratio-image", "crop-image");
     currentlySelected.classList.add("default-image");
     currentlySelected.style.removeProperty('width');
@@ -610,7 +601,6 @@ imageDefault.addEventListener("click", wrapWithHighlight(() => {
 
 imageRatio.addEventListener("click", wrapWithHighlight(() => {
   if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
     currentlySelected.classList.remove("default-image", "crop-image");
     currentlySelected.classList.add("ratio-image");
     currentlySelected.style.removeProperty('width');
@@ -623,7 +613,6 @@ imageRatio.addEventListener("click", wrapWithHighlight(() => {
 
 imageCrop.addEventListener("click", wrapWithHighlight(() => {
   if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
     currentlySelected.classList.remove("default-image", "ratio-image");
     currentlySelected.classList.add("crop-image");
     currentlySelected.style.removeProperty('width');
@@ -637,7 +626,6 @@ imageCrop.addEventListener("click", wrapWithHighlight(() => {
 // --- Alignment ---
 alignLeft.addEventListener("click", wrapWithHighlight(() => {
   if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
     currentlySelected.classList.remove("building-block-align-center", "building-block-align-right");
     currentlySelected.classList.add("building-block-align-left");
   }
@@ -645,7 +633,6 @@ alignLeft.addEventListener("click", wrapWithHighlight(() => {
 
 alignCenter.addEventListener("click", wrapWithHighlight(() => {
   if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
     currentlySelected.classList.remove("building-block-align-left", "building-block-align-right");
     currentlySelected.classList.add("building-block-align-center");
   }
@@ -653,7 +640,6 @@ alignCenter.addEventListener("click", wrapWithHighlight(() => {
 
 alignRight.addEventListener("click", wrapWithHighlight(() => {
   if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
     currentlySelected.classList.remove("building-block-align-left", "building-block-align-center");
     currentlySelected.classList.add("building-block-align-right");
   }
@@ -661,7 +647,6 @@ alignRight.addEventListener("click", wrapWithHighlight(() => {
 
 alignTop.addEventListener("click", wrapWithHighlight(() => {
   if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
     currentlySelected.classList.remove("building-column-content-center", "building-column-content-bottom");
     currentlySelected.classList.add("building-column-content-top");
   }
@@ -669,7 +654,6 @@ alignTop.addEventListener("click", wrapWithHighlight(() => {
 
 alignMiddle.addEventListener("click", wrapWithHighlight(() => {
   if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
     currentlySelected.classList.remove("building-column-content-top", "building-column-content-bottom");
     currentlySelected.classList.add("building-column-content-center");
   }
@@ -677,7 +661,6 @@ alignMiddle.addEventListener("click", wrapWithHighlight(() => {
 
 alignBottom.addEventListener("click", wrapWithHighlight(() => {
   if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
     currentlySelected.classList.remove("building-column-content-top", "building-column-content-center");
     currentlySelected.classList.add("building-column-content-bottom");
   }
@@ -687,7 +670,7 @@ alignBottom.addEventListener("click", wrapWithHighlight(() => {
 function updatePaddingInput(side, inputEl) {
   inputEl.addEventListener("input", () => {
     if (currentlySelected) {
-      currentlySelected.classList.add("custom-styles");
+  
       let value = parseInt(inputEl.value) || 0;
       currentlySelected.style[`padding${side}`] = Math.max(0, value) + "px";
     }
@@ -784,7 +767,7 @@ linkOpenInNewTab.addEventListener("change", function() {
 
 styleButton.addEventListener("click", () => {
   if (currentlySelected) {
-    currentlySelected.classList.add("custom-styles");
+
     invokeStyleMenu();
   }
 });
@@ -797,7 +780,7 @@ document.addEventListener("keydown", (e) => {
   if (e.key === 's') {
     e.preventDefault();
     if (currentlySelected) {
-      currentlySelected.classList.add("custom-styles");
+  
       invokeStyleMenu();
     }
   }
