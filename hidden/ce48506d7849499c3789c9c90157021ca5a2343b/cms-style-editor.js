@@ -472,7 +472,7 @@ backgroundColorRemove.addEventListener("click", function() {
 backgroundImageLink.addEventListener("click", function() {
   if (currentlySelected) {
     const imageLink = grabImageLink();
-    currentlySelected.style.backgroundImage = imageLink;
+    currentlySelected.style.backgroundImage = `url(${imageLink})`;
     currentlySelected.style.backgroundBlendMode = "overlay";
     currentlySelected.style.backgroundColor = '';
     checkRestrictedControls();
