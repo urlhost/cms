@@ -434,15 +434,10 @@ backgroundColorInput.addEventListener("input", () => {
   if (currentlySelected) {
     currentlySelected.classList.add("custom-styles");
     currentlySelected.style.backgroundColor = backgroundColorInput.value;
+    changeRGBAlpha(currentlySelected, backgroundColorOpacityInput.value / 100);
   }
   if (backgroundColorValueSpan) {
     backgroundColorValueSpan.textContent = backgroundColorInput.value.toUpperCase();
-  }
-});
-
-backgroundColorInput.addEventListener("change", () => {
-  if (currentlySelected) {
-    changeRGBAlpha(currentlySelected, backgroundColorOpacityInput.value / 100);
   }
 });
 
@@ -468,6 +463,7 @@ backgroundImageLink.addEventListener("click", function() {
     currentlySelected.style.backgroundBlendMode = "overlay";
     currentlySelected.style.backgroundColor = '';
     checkRestrictedControls();
+    loadStylesFromSelected();
   }
 });
 
@@ -479,6 +475,7 @@ backgroundImageUpload.addEventListener("click", async function() {
       currentlySelected.style.backgroundBlendMode = "overlay";
       currentlySelected.style.backgroundColor = '';
       checkRestrictedControls();
+      loadStylesFromSelected();
     }
   }
 });
@@ -487,6 +484,7 @@ backgroundImageRemove.addEventListener("click", function() {
   if (currentlySelected && currentlySelected.style.backgroundImage !== '') {
     currentlySelected.style.backgroundImage = '';
     checkRestrictedControls();
+    loadStylesFromSelected();
   }
 });
 
