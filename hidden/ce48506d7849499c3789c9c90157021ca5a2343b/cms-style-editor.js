@@ -91,9 +91,14 @@ function rgbToHex(rgb) {
 }
 
 function changeRGBAlpha(element, newAlpha) {
+  let alpha = Math.max(0, Math.min(1, parseFloat(newAlpha)));
   let color = getComputedStyle(element).backgroundColor;
-  let [r, g, b] = color.match(/\d+(\.\d+)?/g);
-  element.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${newAlpha})`;
+  let matches = color.match(/\d+(\.\d+)?/g);
+
+  if (matches) {
+      let [r, g, b] = matches;
+      element.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  }
 }
 
 function getRGBAlpha(element) {
