@@ -282,7 +282,7 @@ function formatHtml(node, level = 0, indentChar = '  ') {
 
             result += `<${tagName}`;
             for (const attr of node.attributes) {
-                result += ` ${attr.name}="${attr.value}"`;
+                result += ` ${attr.name}="${attr.value.replace(/"/g, '&quot;')}"`;
             }
             result += '>';
 
