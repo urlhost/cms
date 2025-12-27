@@ -96,7 +96,12 @@ function changeRGBAlpha(element, newAlpha) {
 }
 
 function getRGBAlpha(element) {
-  let color = getComputedStyle(element).backgroundColor;
+let color = getComputedStyle(element).backgroundColor;
+
+  if (color === 'rgba(0, 0, 0, 0)' || color === 'transparent') {
+    return 1;
+  }
+
   let values = color.match(/[\d\.]+/g);
 
   if (values && values.length === 4) {
@@ -268,11 +273,7 @@ function loadStylesFromSelected() {
   backgroundColorInput.value = rgbToHex(computed.backgroundColor);
   if (backgroundColorValueSpan) backgroundColorValueSpan.textContent = rgbToHex(computed.backgroundColor).toUpperCase();
   
-  if (backgroundColorInput !== null) {
-      backgroundColorOpacityInput.value = getRGBAlpha(currentlySelected) * 100;
-  } else {
-      backgroundColorOpacityInput.value = 100;
-  }
+  backgroundColorOpacityInput.value = getRGBAlpha(currentlySelected) * 100;
 
   // Width & Images
   if (currentlySelected.style.width && currentlySelected.style.width.includes("px")) {
