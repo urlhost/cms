@@ -803,3 +803,13 @@ footer {
     opacity: 70%;
     cursor: pointer;
 }
+
+/* Drop Shadows */
+
+.drop-shadow {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.66);
+}
+
+.drop-shadow-text {
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.66);
+}
