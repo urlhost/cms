@@ -446,8 +446,11 @@ backgroundColorInput.addEventListener("input", () => {
   }
 });
 
-backgroundColorOpacityInput.addEventListener("input", () => {
+backgroundColorOpacityInput.addEventListener("input", (e) => {
   if (currentlySelected) {
+    if (e.target.value > 100) {
+        e.target.value = 100;
+    }
     changeRGBAlpha(currentlySelected, backgroundColorOpacityInput.value / 100);
   }
 });
