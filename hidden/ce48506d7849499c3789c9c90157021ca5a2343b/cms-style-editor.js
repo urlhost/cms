@@ -86,6 +86,12 @@ function rgbToHex(rgb) {
   return `#${r}${g}${b}`;
 }
 
+function changeRGBAlpha(element, newAlpha) {
+  let color = getComputedStyle(element).backgroundColor;
+  let [r, g, b] = color.match(/\d+(\.\d+)?/g);
+  element.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${newAlpha})`;
+}
+
 function getRealWidthPercent() {
   if (!currentlySelected) return 100;
   const styleWidth = currentlySelected.style.width;
@@ -425,6 +431,8 @@ backgroundImageLink.addEventListener("click", function() {
   if (currentlySelected) {
     const imageLink = grabImageLink();
     currentlySelected.style.backgroundImage = imageLink;
+    currentlySelected.style.backgroundBlendMode = "overlay";
+    changeRGBAlpha(currentlySelected, 0.5);
     checkRestrictedControls();
   }
 });
@@ -434,6 +442,8 @@ backgroundImageUpload.addEventListener("click", async function() {
     const imageUpload = await grabImageUpload();
     if (imageUpload) {
       currentlySelected.style.backgroundImage = `url(${imageUpload})`;
+      currentlySelected.style.backgroundBlendMode = "overlay";
+      changeRGBAlpha(currentlySelected, 0.5);
       checkRestrictedControls();
     }
   }
