@@ -495,26 +495,19 @@ backgroundImageUpload.addEventListener("click", async function() {
 
 backgroundImageRemove.addEventListener("click", function() {
   if (currentlySelected && currentlySelected.style.backgroundImage !== '') {
-    let stylesToKeep = [];
-    
-    for (let i = 0; i < currentlySelected.style.length; i++) {
-        let name = currentlySelected.style[i];
-        
-        if (!name.includes('background-image') && !name.includes('background')) {
-            stylesToKeep.push({
-                name: name,
-                value: currentlySelected.style.getPropertyValue(name),
-                priority: currentlySelected.style.getPropertyPriority(name)
-            });
-        }
+    currentlySelected.style.removeProperty('background-image');
+
+    let rawStyle = currentlySelected.getAttribute('style');
+
+    if (rawStyle && rawStyle.includes('data:image')) {
+        let cleanStyle = rawStyle.replace(/url\s*\((['"]?)data:.*?\1\)/gi, "none");
+        currentlySelected.setAttribute('style', cleanStyle);
     }
 
-    currentlySelected.removeAttribute('style');
+    if (currentlySelected.style.backgroundImage === 'none') {
+         currentlySelected.style.removeProperty('background-image');
+    }
 
-    stylesToKeep.forEach(style => {
-        currentlySelected.style.setProperty(style.name, style.value, style.priority);
-    });
-    
     checkRestrictedControls();
     loadStylesFromSelected();
   }
