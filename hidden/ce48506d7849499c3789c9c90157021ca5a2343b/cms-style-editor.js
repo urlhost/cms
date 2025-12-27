@@ -442,7 +442,7 @@ backgroundColorInput.addEventListener("input", () => {
 
 backgroundColorInput.addEventListener("change", () => {
   if (currentlySelected) {
-    if (backgroundColorOpacityInput) changeRGBAlpha(currentlySelected, backgroundColorOpacityInput.value / 100);
+    changeRGBAlpha(currentlySelected, backgroundColorOpacityInput.value / 100);
   }
 });
 
