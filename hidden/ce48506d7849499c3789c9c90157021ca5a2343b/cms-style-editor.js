@@ -495,7 +495,8 @@ backgroundImageUpload.addEventListener("click", async function() {
 
 backgroundImageRemove.addEventListener("click", function() {
   if (currentlySelected && currentlySelected.style.backgroundImage !== '') {
-    currentlySelected.style.backgroundImage = '';
+    currentlySelected.style.removeProperty('background-image');
+    currentlySelected.style.backgroundImage = 'none';
     checkRestrictedControls();
     loadStylesFromSelected();
   }
