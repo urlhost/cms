@@ -95,6 +95,17 @@ function changeRGBAlpha(element, newAlpha) {
   element.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${newAlpha})`;
 }
 
+function getRGBAlpha(element) {
+  let color = getComputedStyle(element).backgroundColor;
+  let values = color.match(/[\d\.]+/g);
+
+  if (values && values.length === 4) {
+    return parseFloat(values[3]);
+  } else {
+    return 1;
+  }
+}
+
 function getRealWidthPercent() {
   if (!currentlySelected) return 100;
   const styleWidth = currentlySelected.style.width;
@@ -255,6 +266,7 @@ function loadStylesFromSelected() {
 
   // Background
   backgroundColorInput.value = rgbToHex(computed.backgroundColor);
+  backgroundColorOpacityInput.value = getRGBAlpha(currentlySelected * 100);
   if (backgroundColorValueSpan) backgroundColorValueSpan.textContent = rgbToHex(computed.backgroundColor).toUpperCase();
 
   // Width & Images
@@ -419,6 +431,12 @@ backgroundColorInput.addEventListener("input", () => {
   }
   if (backgroundColorValueSpan) {
     backgroundColorValueSpan.textContent = backgroundColorInput.value.toUpperCase();
+  }
+});
+
+backgroundColorInput.addEventListener("change", () => {
+  if (currentlySelected) {
+    if (backgroundColorOpacityInput) changeRGBAlpha(currentlySelected, backgroundColorOpacityInput.value / 100);
   }
 });
 
