@@ -141,7 +141,7 @@ function insertElement(htmlContent) {
 function insertLayoutElement(htmlContent) {
     if (currentlySelected && layoutElementInstanceCheckbox.checked) {
         // The '>' ensures we ignore any containers nested inside columns
-        const topLevelContainers = document.querySelectorAll(".content-environment > .building-container");
+        const topLevelContainers = document.querySelectorAll(":is(.content-environment, .header-environment, .footer-environment) > .building-container");
 
         if (topLevelContainers.length > 0) {
             // Case A: We have existing containers, put this after the last one
