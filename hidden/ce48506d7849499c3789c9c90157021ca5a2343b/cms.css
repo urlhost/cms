@@ -121,8 +121,8 @@
 }
 
 .building-container:only-child {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 [class*="building-column-span-"]:not(.building-column-span-one) {
