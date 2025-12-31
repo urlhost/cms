@@ -34,7 +34,7 @@
 //     }
 // });
 document.addEventListener("DOMContentLoaded", async () => {
-    const targetPage = '/testing'; // The page to load content and head from
+    const targetPage = 'https://www.isaac.ar'; // The page to load content and head from
     if (!targetPage) {
         return console.error("Please set a target page path.");
     }
