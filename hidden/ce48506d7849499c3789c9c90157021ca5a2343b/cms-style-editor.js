@@ -17,12 +17,21 @@ const backgroundColorInput = document.getElementById("style-editor-bg-color-inpu
 const backgroundColorValueSpan = document.getElementById("style-editor-bg-color-input-value");
 const backgroundColorRemove = document.getElementById("style-editor-bg-color-remove");
 const backgroundColorOpacityInput = document.getElementById("style-editor-bg-color-opacity-input");
+const backgroundHoverColorInput = document.getElementById("style-editor-bg-hover-color-input");
+const backgroundHoverColorValueSpan = document.getElementById("style-editor-bg-hover-color-input-value");
 
 const borderColorInput = document.getElementById("style-editor-border-color-input");
 const borderColorValueSpan = document.getElementById("style-editor-border-color-input-value");
 const borderWidthInput = document.getElementById("style-editor-border-width-input");
 const borderRadiusInput = document.getElementById("style-editor-border-radius-input");
+const borderHoverColorInput = document.getElementById("style-editor-border-hover-color-input");
+const borderHoverColorValueSpan = document.getElementById("style-editor-border-hover-color-input-value");
 
+// Text
+const textHoverColorInput = document.getElementById("style-editor-text-hover-color-input");
+const textHoverColorValueSpan = document.getElementById("style-editor-text-hover-color-input-value");
+
+// Effects
 const dropShadow = document.getElementById("style-editor-drop-shadow-checkbox");
 
 // Sizing & Alignment
