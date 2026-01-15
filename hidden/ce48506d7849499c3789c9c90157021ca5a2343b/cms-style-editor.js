@@ -444,6 +444,7 @@ function checkRestrictedControls() {
     textColorHoverControls.classList.remove("content-hide");
   } else {
     backgroundColorOpacityControls.classList.remove("content-hide");
+    backgroundColorRemoveControls.classList.remove("content-hide");
     backgroundImageControls.classList.remove("content-hide");
     backgroundColorHoverControls.classList.add("content-hide");
     borderColorHoverControls.classList.add("content-hide");
