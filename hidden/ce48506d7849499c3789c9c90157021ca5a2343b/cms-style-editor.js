@@ -293,12 +293,24 @@ function loadStylesFromSelected() {
   backgroundColorInput.value = rgbToHex(computed.backgroundColor);
   if (backgroundColorValueSpan) backgroundColorValueSpan.textContent = rgbToHex(computed.backgroundColor).toUpperCase();
 
-  const backgroundHoverColor = computed.getPropertyValue('--button-hover-background-color').trim();
-  backgroundHoverColorInput.value = rgbToHex(backgroundHoverColor);
+const backgroundHoverColor = computed.getPropertyValue('--button-hover-background-color').trim();
+let finalBackgroundHoverColor = '#000000'; // Default fallback
 
-  if (backgroundHoverColorValueSpan) {
-    backgroundHoverColorValueSpan.textContent = rgbToHex(backgroundHoverColor).toUpperCase();
+if (backgroundHoverColor) {
+  if (backgroundHoverColor.startsWith('#')) {
+    finalBackgroundHoverColor = backgroundHoverColor;
+  } else if (backgroundHoverColor.includes('rgb')) {
+    finalBackgroundHoverColor = rgbToHex(backgroundHoverColor);
   }
+}
+
+if (backgroundHoverColorInput) {
+  backgroundHoverColorInput.value = finalBackgroundHoverColor;
+}
+
+if (backgroundHoverColorValueSpan) {
+  backgroundHoverColorValueSpan.textContent = finalBackgroundHoverColor.toUpperCase();
+}
   
   backgroundColorOpacityInput.value = getRGBAlpha(currentlySelected) * 100;
 
@@ -326,34 +338,56 @@ function loadStylesFromSelected() {
   if (borderWidthInput) borderWidthInput.value = borderWidth;
   if (borderRadiusInput) borderRadiusInput.value = parseInt(computed.borderRadius) || 0;
 
-  let finalBorderColor = '#000000';
-  if (currentlySelected.style.borderColor) {
-    finalBorderColor = rgbToHex(currentlySelected.style.borderColor);
-  } else if (borderWidth > 0) {
-    finalBorderColor = rgbToHex(computed.borderColor);
-  }
-  if (borderColorInput) borderColorInput.value = finalBorderColor;
-  if (borderColorValueSpan) borderColorValueSpan.textContent = finalBorderColor.toUpperCase();
+let finalBorderColor = '#000000';
 
-  const borderHoverColor = computed.getPropertyValue('--button-hover-border-color').trim();
-  const finalBorderHoverColor = borderHoverColor ? rgbToHex(borderHoverColor) : '#000000';
+if (currentlySelected.style.borderColor) {
+  finalBorderColor = rgbToHex(currentlySelected.style.borderColor);
+} else if (parseFloat(computed.borderWidth) > 0) {
+  finalBorderColor = rgbToHex(computed.borderColor);
+}
+if (borderColorInput) borderColorInput.value = finalBorderColor;
+if (borderColorValueSpan) borderColorValueSpan.textContent = finalBorderColor.toUpperCase();
 
-  if (borderHoverColorInput) {
-    borderHoverColorInput.value = finalBorderHoverColor;
-  }
+const borderHoverColor = computed.getPropertyValue('--button-hover-border-color').trim();
+let finalBorderHoverColor = '#000000';
 
-  if (borderHoverColorValueSpan) {
-    borderHoverColorValueSpan.textContent = finalBorderHoverColor.toUpperCase();
+if (borderHoverColor) {
+  if (borderHoverColor.startsWith('#')) {
+    finalBorderHoverColor = borderHoverColor;
+  } else if (borderHoverColor.includes('rgb')) {
+    finalBorderHoverColor = rgbToHex(borderHoverColor);
   }
+}
+
+if (borderHoverColorInput) {
+  borderHoverColorInput.value = finalBorderHoverColor;
+}
+
+if (borderHoverColorValueSpan) {
+  borderHoverColorValueSpan.textContent = finalBorderHoverColor.toUpperCase();
+}
 
   //Text
 
-  const textHoverColor = computed.getPropertyValue('--button-hover-text-color').trim();
-  textHoverColorInput.value = rgbToHex(textHoverColor);
+const textHoverColor = computed.getPropertyValue('--button-hover-text-color').trim();
 
-  if (textHoverColorValueSpan) {
-    textHoverColorValueSpan.textContent = rgbToHex(textHoverColor).toUpperCase();
+let finalTextHoverColor = '#000000'; // Default fallback if empty
+
+if (textHoverColor) {
+  if (textHoverColor.startsWith('#')) {
+    finalTextHoverColor = textHoverColor;
+  } else if (textHoverColor.includes('rgb')) {
+    finalTextHoverColor = rgbToHex(textHoverColor);
   }
+}
+
+if (textHoverColorInput) {
+  textHoverColorInput.value = finalTextHoverColor;
+}
+
+if (textHoverColorValueSpan) {
+  textHoverColorValueSpan.textContent = finalTextHoverColor.toUpperCase();
+}
 
   // Checkboxes
   hideOnDesktop.checked = currentlySelected.classList.contains("hide-on-desktop");
