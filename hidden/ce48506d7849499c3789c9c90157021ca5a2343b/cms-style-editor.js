@@ -595,6 +595,11 @@ backgroundImageLink.addEventListener("click", function() {
     currentlySelected.style.backgroundColor = '';
     checkRestrictedControls();
     loadStylesFromSelected();
+    document.querySelectorAll('.sidebar-control-label').forEach(el => {
+      if (el.textContent.trim() === "Background Color") {
+        el.innerText = "Background Overlay Color";
+      }
+    });
   }
 });
 
@@ -607,6 +612,11 @@ backgroundImageUpload.addEventListener("click", async function() {
       currentlySelected.style.backgroundColor = '';
       checkRestrictedControls();
       loadStylesFromSelected();
+      document.querySelectorAll('.sidebar-control-label').forEach(el => {
+        if (el.textContent.trim() === "Background Color") {
+          el.innerText = "Background Overlay Color";
+        }
+      });
     }
   }
 });
@@ -616,6 +626,11 @@ backgroundImageRemove.addEventListener("click", function() {
     currentlySelected.style.removeProperty('background-image');
     checkRestrictedControls();
     loadStylesFromSelected();
+    document.querySelectorAll('.sidebar-control-label').forEach(el => {
+      if (el.textContent.trim() === "Background Overlay Color") {
+        el.innerText = "Background Color";
+      }
+    });
   }
 });
 
