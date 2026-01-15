@@ -807,7 +807,8 @@ footer {
 }
 
 .button:hover {
-    background-color: var(--button-hover-color, #000000) !important;
+    background-color: var(--button-hover-background-color, #000000) !important;
+    border-color: var(--button-hover-border-color, #000000) !important;
 }
 
 .button:hover> :first-child,
