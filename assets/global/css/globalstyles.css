@@ -808,7 +808,7 @@ footer {
 }
 
 .button:hover {
-    background-color: var(--hover-color);
+    background-color: var(--hover-color) !important;
 }
 
 /* Drop Shadows */
