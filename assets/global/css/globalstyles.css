@@ -804,6 +804,11 @@ footer {
     padding-right: 0px;
     width: 100%;
     background-color: #eeeeee;
+    transition: background-color 0.25s ease-in-out;
+}
+
+.button:hover {
+    background-color: var(--hover-color);
 }
 
 .button> :first-child {
