@@ -374,6 +374,18 @@ function checkRestrictedControls() {
     backgroundImageControls.classList.add("content-hide");
   }
 
+  if (currentlySelected?.classList.contains("button")) {
+    backgroundColorRemoveControls.classList.add("content-hide");
+    backgroundColorHoverControls.classList.remove("content-hide");
+    borderColorHoverControls.classList.remove("content-hide");
+    textColorHoverControls.classList.remove("content-hide");
+  } else {
+    backgroundImageControls.classList.remove("content-hide");
+    backgroundColorHoverControls.classList.add("content-hide");
+    borderColorHoverControls.classList.add("content-hide");
+    textColorHoverControls.classList.add("content-hide");
+  }
+
   if (currentlySelected?.classList.contains("building-container") && !currentlySelected?.firstElementChild?.matches(".building-column-span-one, .building-column-span-two")) {
     containerResponsiveControls.classList.remove("content-hide");
   } else {
