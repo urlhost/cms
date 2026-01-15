@@ -436,6 +436,12 @@ function checkRestrictedControls() {
     backgroundImageControls.classList.add("content-hide");
   }
 
+if (currentlySelected?.matches(".building-container, .building-column") && currentlySelected.style.backgroundImage !== "none" && currentlySelected.style.backgroundImage !== "") {
+  backgroundColorOpacityControls.classList.remove("content-hide");
+} else {
+  backgroundColorOpacityControls.classList.add("content-hide");
+}
+
   if (currentlySelected?.classList.contains("button")) {
     backgroundColorOpacityControls.classList.add("content-hide");
     backgroundColorRemoveControls.classList.add("content-hide");
