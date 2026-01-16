@@ -590,9 +590,9 @@ function checkRestrictedControls() {
   }
 }
 
-==========================================
-4. EVENT LISTENERS
-==========================================
+// ==========================================
+// 4. EVENT LISTENERS
+// ==========================================
 
 // --- Background ---
 backgroundColorInput.addEventListener("input", () => {
