@@ -376,9 +376,6 @@ ol {
 
 li {
     margin-bottom: 0.5rem;
-}
-
-li::marker {
     color: inherit;
 }
 
