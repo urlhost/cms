@@ -36,6 +36,7 @@ const dropShadow = document.getElementById("style-editor-drop-shadow-checkbox");
 
 // Sizing & Alignment
 const widthInput = document.getElementById("style-editor-width-input");
+const widthUnit = document.getElementById("style-editor-width-unit");
 const alignLeft = document.getElementById("style-editor-align-left-button");
 const alignCenter = document.getElementById("style-editor-align-center-button");
 const alignRight = document.getElementById("style-editor-align-right-button");
