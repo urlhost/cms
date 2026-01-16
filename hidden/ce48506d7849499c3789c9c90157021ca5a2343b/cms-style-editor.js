@@ -427,11 +427,13 @@ function checkRestrictedControls() {
   const backgroundColorHoverControls = document.getElementById("style-editor-background-hover-color-controls");
   const borderColorHoverControls = document.getElementById("style-editor-border-hover-color-controls");
   const textColorHoverControls = document.getElementById("style-editor-text-hover-color-controls");
+  const widthControls = document.getElementById("style-editor-width-controls");
   const verticalAlignControls = document.getElementById("style-editor-vertical-align-controls");
 
   const isContainer = currentlySelected?.classList.contains("building-container");
   const isColumn = currentlySelected?.classList.contains("building-column");
   const isButton = currentlySelected?.classList.contains("button");
+  const isAccordion = currentlySelected?.classList.contains("accordion-label");
   const isImage = currentlySelected?.classList.contains("image-element");
   const isRatioImage = currentlySelected?.classList.contains("ratio-image");
   const isCropImage = currentlySelected?.classList.contains("crop-image");
@@ -516,11 +518,9 @@ function checkRestrictedControls() {
   }
 
   if (isRatioImage || isCropImage) {
-    widthInput.disabled = true;
-    widthInput.style.opacity = "0.5";
+    widthControls.classList.add("content-hide");
   } else {
-    widthInput.disabled = false;
-    widthInput.style.opacity = "1.0";
+    widthControls.classList.remove("content-hide");
   }
 
   if (isImage || isButton) {
@@ -535,7 +535,7 @@ function checkRestrictedControls() {
     linkOptionControls.classList.add("content-hide");
   }
 
-  if (currentlySelected?.classList.contains("accordion-label") || isButton) {
+  if (isAccordion || isButton) {
     paddingLeftInput.disabled = true;
     paddingRightInput.disabled = true;
     paddingLeftInput.style.opacity = "0.5";
