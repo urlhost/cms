@@ -437,9 +437,9 @@ function checkRestrictedControls() {
   }
 
   if (currentlySelected?.matches(".building-container, .building-column") && currentlySelected.style.backgroundImage !== "none" && currentlySelected.style.backgroundImage !== "") {
-    backgroundColorOpacityControls.classList.remove("content-hide");
-  } else {
     backgroundColorOpacityControls.classList.add("content-hide");
+  } else {
+    backgroundColorOpacityControls.classList.remove("content-hide");
   }
 
   if (currentlySelected?.classList.contains("button")) {
