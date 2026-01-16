@@ -462,7 +462,7 @@ function checkRestrictedControls() {
 
   const hasBgImage = (isContainer || isColumn) && currentlySelected.style.backgroundImage !== '';
 
-  const shouldHideOpacity = isButton || hasBgImage;
+  const shouldHideOpacity = isButton || isAccordion || hasBgImage;
 
   if (shouldHideOpacity) {
       backgroundColorOpacityControls.classList.add("content-hide");
@@ -569,6 +569,12 @@ function checkRestrictedControls() {
     paddingRightInput.disabled = false;
     paddingLeftInput.style.opacity = "1.0";
     paddingRightInput.style.opacity = "1.0";
+  }
+
+  if (isAccordion) {
+    backgroundColorRemoveControls.classList.add("content-hide");
+  } else {
+    backgroundColorRemoveControls.classList.remove("content-hide");
   }
 
   const styleWidth = currentlySelected?.style.width || "";
