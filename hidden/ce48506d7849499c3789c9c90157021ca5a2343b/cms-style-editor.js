@@ -723,7 +723,8 @@ widthUnit.addEventListener("change", () => {
     } else {
         widthInput.max = 1500;
         const rect = currentlySelected.getBoundingClientRect();
-        widthInput.value = Math.round(rect.width);
+        let convertedPx = Math.round(rect.width);
+        widthInput.value = Math.min(1500, convertedPx);
     }
     updateWidth(); 
 });
@@ -737,7 +738,10 @@ function updateWidth() {
     const unit = widthUnit.value;
 
     if (unit === "%") {
-        val = Math.min(100, val);
+        if (val > 100) {
+            val = 100;
+            widthInput.value = 100;
+        }
         
         if (val >= 100) {
             currentlySelected.style.width = "";
@@ -745,7 +749,10 @@ function updateWidth() {
             currentlySelected.style.width = `calc(${val}% - 2rem)`;
         }
     } else {
-        val = Math.min(2000, val);
+        if (val > 1500) {
+            val = 1500;
+            widthInput.value = 1500;
+        }
         currentlySelected.style.width = val + "px";
     }
 }
