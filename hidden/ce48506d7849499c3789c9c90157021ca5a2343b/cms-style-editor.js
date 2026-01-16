@@ -429,156 +429,115 @@ if (textHoverColorValueSpan) {
 }
 
 function checkRestrictedControls() {
-  const containerResponsiveControls = document.getElementById("style-editor-building-container-responsive-controls");
-  const containerScreenControls = document.getElementById("style-editor-building-container-screen-controls");
-  const columnMatchControls = document.getElementById("style-editor-building-column-match-controls");
-  const imageControls = document.getElementById("style-editor-image-controls");
-  const imageRatioControls = document.getElementById("style-editor-image-ratio-controls");
-  const imageCropControls = document.getElementById("style-editor-image-crop-controls");
-  const linkControls = document.getElementById("style-editor-link-controls");
-  const linkOptionControls = document.getElementById("style-editor-link-option-controls");
-  const backgroundImageControls = document.getElementById("style-editor-background-image-controls");
-  const backgroundColorOpacityControls = document.getElementById("style-editor-background-color-opacity-controls");
-  const backgroundColorRemoveControls = document.getElementById("style-editor-bg-color-remove-controls");
-  const backgroundColorHoverControls = document.getElementById("style-editor-background-hover-color-controls");
-  const borderColorHoverControls = document.getElementById("style-editor-border-hover-color-controls");
-  const textColorHoverControls = document.getElementById("style-editor-text-hover-color-controls");
-  const widthControls = document.getElementById("style-editor-width-controls");
-  const verticalAlignControls = document.getElementById("style-editor-vertical-align-controls");
+  // Cache all control elements
+  const controls = {
+    containerResponsive: document.getElementById("style-editor-building-container-responsive-controls"),
+    containerScreen: document.getElementById("style-editor-building-container-screen-controls"),
+    columnMatch: document.getElementById("style-editor-building-column-match-controls"),
+    image: document.getElementById("style-editor-image-controls"),
+    imageRatio: document.getElementById("style-editor-image-ratio-controls"),
+    imageCrop: document.getElementById("style-editor-image-crop-controls"),
+    link: document.getElementById("style-editor-link-controls"),
+    linkOption: document.getElementById("style-editor-link-option-controls"),
+    backgroundImage: document.getElementById("style-editor-background-image-controls"),
+    bgColorOpacity: document.getElementById("style-editor-background-color-opacity-controls"),
+    bgColorRemove: document.getElementById("style-editor-bg-color-remove-controls"),
+    bgColorHover: document.getElementById("style-editor-background-hover-color-controls"),
+    borderColorHover: document.getElementById("style-editor-border-hover-color-controls"),
+    textColorHover: document.getElementById("style-editor-text-hover-color-controls"),
+    width: document.getElementById("style-editor-width-controls"),
+    verticalAlign: document.getElementById("style-editor-vertical-align-controls")
+  };
 
-  const isContainer = currentlySelected?.classList.contains("building-container");
-  const isColumn = currentlySelected?.classList.contains("building-column");
-  const isButton = currentlySelected?.classList.contains("button");
-  const isAccordion = currentlySelected?.classList.contains("accordion-label");
-  const isImage = currentlySelected?.classList.contains("image-element");
-  const isRatioImage = currentlySelected?.classList.contains("ratio-image");
-  const isCropImage = currentlySelected?.classList.contains("crop-image");
+  // Determine element types
+  const elementType = {
+    isContainer: currentlySelected?.classList.contains("building-container"),
+    isColumn: currentlySelected?.classList.contains("building-column"),
+    isButton: currentlySelected?.classList.contains("button"),
+    isAccordion: currentlySelected?.classList.contains("accordion-label"),
+    isImage: currentlySelected?.classList.contains("image-element"),
+    isRatioImage: currentlySelected?.classList.contains("ratio-image"),
+    isCropImage: currentlySelected?.classList.contains("crop-image")
+  };
 
-  if (isContainer || isColumn) {
-    backgroundImageControls.classList.remove("content-hide");
-  } else {
-    backgroundImageControls.classList.add("content-hide");
-  }
+  const hasBgImage = (elementType.isContainer || elementType.isColumn) && 
+                     currentlySelected.style.backgroundImage !== '';
 
-  const hasBgImage = (isContainer || isColumn) && currentlySelected.style.backgroundImage !== '';
+  // Helper function to toggle visibility
+  const toggle = (control, shouldShow) => {
+    if (!control) return;
+    control.classList.toggle("content-hide", !shouldShow);
+  };
 
-  const shouldHideOpacity = isButton || isAccordion || hasBgImage;
+  // Background image controls
+  toggle(controls.backgroundImage, elementType.isContainer || elementType.isColumn);
 
-  if (shouldHideOpacity) {
-      backgroundColorOpacityControls.classList.add("content-hide");
-  } else {
-      backgroundColorOpacityControls.classList.remove("content-hide");
-  }
+  // Background color opacity (hide for buttons, accordions, or when bg image exists)
+  const shouldShowOpacity = !elementType.isButton && !elementType.isAccordion && !hasBgImage;
+  toggle(controls.bgColorOpacity, shouldShowOpacity);
 
+  // Update "Background Color" label when background image is present
   document.querySelectorAll('.sidebar-control-label').forEach(el => {
     const text = el.textContent.trim();
-      if (hasBgImage && text === "Background Color") {
-        el.innerText = "Background Overlay Color";
-      } else if (!hasBgImage && text === "Background Overlay Color") {
-        el.innerText = "Background Color";
-      }
+    if (text === "Background Color" || text === "Background Overlay Color") {
+      el.innerText = hasBgImage ? "Background Overlay Color" : "Background Color";
+    }
   });
 
-  if (isButton) {
-    backgroundColorRemoveControls.classList.add("content-hide");
-    backgroundColorHoverControls.classList.remove("content-hide");
-    borderColorHoverControls.classList.remove("content-hide");
-    textColorHoverControls.classList.remove("content-hide");
-  } else {
-    backgroundColorRemoveControls.classList.remove("content-hide");
-    backgroundColorHoverControls.classList.add("content-hide");
-    borderColorHoverControls.classList.add("content-hide");
-    textColorHoverControls.classList.add("content-hide");
-  }
+  // Button-specific controls
+  toggle(controls.bgColorRemove, !elementType.isButton && !elementType.isAccordion);
+  toggle(controls.bgColorHover, elementType.isButton);
+  toggle(controls.borderColorHover, elementType.isButton);
+  toggle(controls.textColorHover, elementType.isButton);
 
-  if (isContainer && !currentlySelected?.firstElementChild?.matches(".building-column-span-one, .building-column-span-two")) {
-    containerResponsiveControls.classList.remove("content-hide");
-  } else {
-    containerResponsiveControls.classList.add("content-hide");
-  }
+  // Container controls
+  const hasSpanColumns = currentlySelected?.firstElementChild?.matches(
+    ".building-column-span-one, .building-column-span-two"
+  );
+  toggle(controls.containerResponsive, elementType.isContainer && !hasSpanColumns);
 
-  if (isContainer && !currentlySelected?.parentElement.matches(".building-column")) {
-    containerScreenControls.classList.remove("content-hide");
-  } else {
-    containerScreenControls.classList.add("content-hide");
-  }
+  const isNestedInColumn = currentlySelected?.parentElement.matches(".building-column");
+  toggle(controls.containerScreen, elementType.isContainer && !isNestedInColumn);
 
-  if (isColumn && !currentlySelected?.parentElement.matches(".building-column-span-one")) {
-    verticalAlignControls.classList.remove("content-hide");
-  } else {
-    verticalAlignControls.classList.add("content-hide");
-  }
+  // Column controls
+  const isInSpanOne = currentlySelected?.parentElement.matches(".building-column-span-one");
+  toggle(controls.verticalAlign, elementType.isColumn && !isInSpanOne);
+  toggle(controls.columnMatch, elementType.isColumn && !isInSpanOne && hasBgImage);
 
-  if (isColumn && !currentlySelected?.parentElement?.matches(".building-column-span-one") && currentlySelected?.style.backgroundImage !== '') {
-    columnMatchControls.classList.remove("content-hide");
-  } else {
-    columnMatchControls.classList.add("content-hide");
-  }
+  // Image controls
+  toggle(controls.image, elementType.isImage);
+  toggle(controls.imageRatio, elementType.isRatioImage);
+  toggle(controls.imageCrop, elementType.isCropImage);
+  toggle(controls.width, !elementType.isRatioImage && !elementType.isCropImage);
 
-  if (isImage) {
-    imageControls.classList.remove("content-hide");
-  } else {
-    imageControls.classList.add("content-hide");
-  }
+  // Link controls
+  toggle(controls.link, elementType.isImage || elementType.isButton);
+  const isInLinkWrapper = currentlySelected?.parentElement.classList.contains("building-block-link");
+  toggle(controls.linkOption, isInLinkWrapper);
 
-  if (isRatioImage) {
-    imageRatioControls.classList.remove("content-hide");
-  } else {
-    imageRatioControls.classList.add("content-hide");
-  }
+  // Width unit control
+  setControlState(widthUnit, !elementType.isImage);
 
-  if (isCropImage) {
-    imageCropControls.classList.remove("content-hide");
-  } else {
-    imageCropControls.classList.add("content-hide");
-  }
+  // Padding controls for accordions and buttons
+  const allowPadding = !elementType.isAccordion && !elementType.isButton;
+  setControlState(paddingLeftInput, allowPadding);
+  setControlState(paddingRightInput, allowPadding);
 
-  if (isRatioImage || isCropImage) {
-    widthControls.classList.add("content-hide");
-  } else {
-    widthControls.classList.remove("content-hide");
-  }
+  // Width input configuration
+  updateWidthInput();
+}
 
-  if (isImage || isButton) {
-    linkControls.classList.remove("content-hide");
-  } else {
-    linkControls.classList.add("content-hide");
-  }
+// Helper to enable/disable controls with opacity
+function setControlState(control, enabled) {
+  if (!control) return;
+  control.disabled = !enabled;
+  control.style.opacity = enabled ? "1.0" : "0.5";
+}
 
-  if (isImage) {
-    widthUnit.disabled = true;
-    widthUnit.style.opacity = "0.5";
-  } else {
-    widthUnit.disabled = false;
-    widthUnit.style.opacity = "1.0";
-  }
-
-  if (currentlySelected?.parentElement.classList.contains("building-block-link")) {
-    linkOptionControls.classList.remove("content-hide");
-  } else {
-    linkOptionControls.classList.add("content-hide");
-  }
-
-  if (isAccordion || isButton) {
-    paddingLeftInput.disabled = true;
-    paddingRightInput.disabled = true;
-    paddingLeftInput.style.opacity = "0.5";
-    paddingRightInput.style.opacity = "0.5";
-  } else {
-    paddingLeftInput.disabled = false;
-    paddingRightInput.disabled = false;
-    paddingLeftInput.style.opacity = "1.0";
-    paddingRightInput.style.opacity = "1.0";
-  }
-
-  if (isAccordion) {
-    backgroundColorRemoveControls.classList.add("content-hide");
-  } else {
-    backgroundColorRemoveControls.classList.remove("content-hide");
-  }
-
+// Handle width input based on current value
+function updateWidthInput() {
   const styleWidth = currentlySelected?.style.width || "";
-
+  
   if (styleWidth.includes("px")) {
     widthUnit.value = "px";
     widthInput.max = 1500;
@@ -589,6 +548,168 @@ function checkRestrictedControls() {
     widthInput.value = getRealWidthPercent();
   }
 }
+
+// function checkRestrictedControls() {
+//   const containerResponsiveControls = document.getElementById("style-editor-building-container-responsive-controls");
+//   const containerScreenControls = document.getElementById("style-editor-building-container-screen-controls");
+//   const columnMatchControls = document.getElementById("style-editor-building-column-match-controls");
+//   const imageControls = document.getElementById("style-editor-image-controls");
+//   const imageRatioControls = document.getElementById("style-editor-image-ratio-controls");
+//   const imageCropControls = document.getElementById("style-editor-image-crop-controls");
+//   const linkControls = document.getElementById("style-editor-link-controls");
+//   const linkOptionControls = document.getElementById("style-editor-link-option-controls");
+//   const backgroundImageControls = document.getElementById("style-editor-background-image-controls");
+//   const backgroundColorOpacityControls = document.getElementById("style-editor-background-color-opacity-controls");
+//   const backgroundColorRemoveControls = document.getElementById("style-editor-bg-color-remove-controls");
+//   const backgroundColorHoverControls = document.getElementById("style-editor-background-hover-color-controls");
+//   const borderColorHoverControls = document.getElementById("style-editor-border-hover-color-controls");
+//   const textColorHoverControls = document.getElementById("style-editor-text-hover-color-controls");
+//   const widthControls = document.getElementById("style-editor-width-controls");
+//   const verticalAlignControls = document.getElementById("style-editor-vertical-align-controls");
+
+//   const isContainer = currentlySelected?.classList.contains("building-container");
+//   const isColumn = currentlySelected?.classList.contains("building-column");
+//   const isButton = currentlySelected?.classList.contains("button");
+//   const isAccordion = currentlySelected?.classList.contains("accordion-label");
+//   const isImage = currentlySelected?.classList.contains("image-element");
+//   const isRatioImage = currentlySelected?.classList.contains("ratio-image");
+//   const isCropImage = currentlySelected?.classList.contains("crop-image");
+
+//   if (isContainer || isColumn) {
+//     backgroundImageControls.classList.remove("content-hide");
+//   } else {
+//     backgroundImageControls.classList.add("content-hide");
+//   }
+
+//   const hasBgImage = (isContainer || isColumn) && currentlySelected.style.backgroundImage !== '';
+
+//   const shouldHideOpacity = isButton || isAccordion || hasBgImage;
+
+//   if (shouldHideOpacity) {
+//       backgroundColorOpacityControls.classList.add("content-hide");
+//   } else {
+//       backgroundColorOpacityControls.classList.remove("content-hide");
+//   }
+
+//   document.querySelectorAll('.sidebar-control-label').forEach(el => {
+//     const text = el.textContent.trim();
+//       if (hasBgImage && text === "Background Color") {
+//         el.innerText = "Background Overlay Color";
+//       } else if (!hasBgImage && text === "Background Overlay Color") {
+//         el.innerText = "Background Color";
+//       }
+//   });
+
+//   if (isButton) {
+//     backgroundColorRemoveControls.classList.add("content-hide");
+//     backgroundColorHoverControls.classList.remove("content-hide");
+//     borderColorHoverControls.classList.remove("content-hide");
+//     textColorHoverControls.classList.remove("content-hide");
+//   } else {
+//     backgroundColorRemoveControls.classList.remove("content-hide");
+//     backgroundColorHoverControls.classList.add("content-hide");
+//     borderColorHoverControls.classList.add("content-hide");
+//     textColorHoverControls.classList.add("content-hide");
+//   }
+
+//   if (isContainer && !currentlySelected?.firstElementChild?.matches(".building-column-span-one, .building-column-span-two")) {
+//     containerResponsiveControls.classList.remove("content-hide");
+//   } else {
+//     containerResponsiveControls.classList.add("content-hide");
+//   }
+
+//   if (isContainer && !currentlySelected?.parentElement.matches(".building-column")) {
+//     containerScreenControls.classList.remove("content-hide");
+//   } else {
+//     containerScreenControls.classList.add("content-hide");
+//   }
+
+//   if (isColumn && !currentlySelected?.parentElement.matches(".building-column-span-one")) {
+//     verticalAlignControls.classList.remove("content-hide");
+//   } else {
+//     verticalAlignControls.classList.add("content-hide");
+//   }
+
+//   if (isColumn && !currentlySelected?.parentElement?.matches(".building-column-span-one") && currentlySelected?.style.backgroundImage !== '') {
+//     columnMatchControls.classList.remove("content-hide");
+//   } else {
+//     columnMatchControls.classList.add("content-hide");
+//   }
+
+//   if (isImage) {
+//     imageControls.classList.remove("content-hide");
+//   } else {
+//     imageControls.classList.add("content-hide");
+//   }
+
+//   if (isRatioImage) {
+//     imageRatioControls.classList.remove("content-hide");
+//   } else {
+//     imageRatioControls.classList.add("content-hide");
+//   }
+
+//   if (isCropImage) {
+//     imageCropControls.classList.remove("content-hide");
+//   } else {
+//     imageCropControls.classList.add("content-hide");
+//   }
+
+//   if (isRatioImage || isCropImage) {
+//     widthControls.classList.add("content-hide");
+//   } else {
+//     widthControls.classList.remove("content-hide");
+//   }
+
+//   if (isImage || isButton) {
+//     linkControls.classList.remove("content-hide");
+//   } else {
+//     linkControls.classList.add("content-hide");
+//   }
+
+//   if (isImage) {
+//     widthUnit.disabled = true;
+//     widthUnit.style.opacity = "0.5";
+//   } else {
+//     widthUnit.disabled = false;
+//     widthUnit.style.opacity = "1.0";
+//   }
+
+//   if (currentlySelected?.parentElement.classList.contains("building-block-link")) {
+//     linkOptionControls.classList.remove("content-hide");
+//   } else {
+//     linkOptionControls.classList.add("content-hide");
+//   }
+
+//   if (isAccordion || isButton) {
+//     paddingLeftInput.disabled = true;
+//     paddingRightInput.disabled = true;
+//     paddingLeftInput.style.opacity = "0.5";
+//     paddingRightInput.style.opacity = "0.5";
+//   } else {
+//     paddingLeftInput.disabled = false;
+//     paddingRightInput.disabled = false;
+//     paddingLeftInput.style.opacity = "1.0";
+//     paddingRightInput.style.opacity = "1.0";
+//   }
+
+//   if (isAccordion) {
+//     backgroundColorRemoveControls.classList.add("content-hide");
+//   } else {
+//     backgroundColorRemoveControls.classList.remove("content-hide");
+//   }
+
+//   const styleWidth = currentlySelected?.style.width || "";
+
+//   if (styleWidth.includes("px")) {
+//     widthUnit.value = "px";
+//     widthInput.max = 1500;
+//     widthInput.value = parseFloat(styleWidth);
+//   } else {
+//     widthUnit.value = "%";
+//     widthInput.max = 100;
+//     widthInput.value = getRealWidthPercent();
+//   }
+// }
 
 // ==========================================
 // 4. EVENT LISTENERS
