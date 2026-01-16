@@ -376,6 +376,9 @@ ol {
 
 li {
     margin-bottom: 0.5rem;
+}
+
+li:has(span[style*="color"]) ::marker {
     color: inherit;
 }
 
