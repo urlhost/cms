@@ -716,10 +716,8 @@ widthUnit.addEventListener("change", () => {
 
     if (widthUnit.value === "%") {
         widthInput.max = 100;
-        const parentWidth = currentlySelected.parentElement.offsetWidth;
-        const currentPx = currentlySelected.offsetWidth;
-        let convertedPercent = Math.round((currentPx / parentWidth) * 100);
-        widthInput.value = Math.min(100, convertedPercent);
+        widthInput.value = 100;
+        currentlySelected.style.width = ""; 
     } else {
         alert("Caution: Fixed pixel widths can cause horizontal scrolling on smaller screens. For best results, use percentages to keep your layout responsive. Use only if a fixed width is required.");
         widthInput.max = 1500;
