@@ -715,7 +715,7 @@ widthUnit.addEventListener("change", () => {
     if (widthUnit.value === "%") {
         widthInput.max = 100;
         if (widthInput.value > 100) widthInput.value = 100;
-    } else {s
+    } else {
         widthInput.max = 2000;
     }
     updateWidth(); 
