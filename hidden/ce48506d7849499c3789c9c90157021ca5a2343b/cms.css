@@ -1273,6 +1273,30 @@
     display: block;
 }
 
+.sidebar-input-with-unit {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.sidebar-input-with-unit input {
+    border: none;
+    flex-grow: 1;
+    padding: 5px;
+    outline: none;
+}
+
+.sidebar-input-unit-selector {
+    border: none;
+    border-left: 1px solid #ccc;
+    background: #f8f8f8;
+    padding: 5px;
+    cursor: pointer;
+    outline: none;
+}
+
 .accordion-content {
     display: block !important;
 }
