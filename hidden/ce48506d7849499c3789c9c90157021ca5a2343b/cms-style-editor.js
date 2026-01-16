@@ -721,6 +721,7 @@ widthUnit.addEventListener("change", () => {
         let convertedPercent = Math.round((currentPx / parentWidth) * 100);
         widthInput.value = Math.min(100, convertedPercent);
     } else {
+        alert("Caution: Fixed pixel widths can cause horizontal scrolling on smaller screens. For best results, use percentages to keep your layout responsive. Use only if a fixed width is required.");
         widthInput.max = 1500;
         const rect = currentlySelected.getBoundingClientRect();
         let convertedPx = Math.round(rect.width);
