@@ -442,6 +442,14 @@ function checkRestrictedControls() {
     backgroundImageControls.classList.add("content-hide");
   }
 
+  const hasBgImage = (isContainer || isColumn) && currentlySelected.style.backgroundImage !== "" && currentlySelected.style.backgroundImage !== "none";
+
+  if (hasBgImage) {
+    backgroundColorOpacityControls.classList.add("content-hide");
+  } else {
+    backgroundColorOpacityControls.classList.remove("content-hide");
+  }
+
   if (isButton) {
     backgroundColorOpacityControls.classList.add("content-hide");
     backgroundColorRemoveControls.classList.add("content-hide");
