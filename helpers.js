@@ -78,6 +78,14 @@ function initHelpers() {
   mobileMediaQuery.addEventListener('change', handleMobileChange);
   handleMobileChange(mobileMediaQuery);
 
+  var navigation = document.querySelector('.navigation');
+
+  if (params.get('mode') === 'editing') {
+    navigation.style.display = '';
+  } else {
+    navigation.style.display = 'none';
+  }
+
   if (params.get('mode') !== 'editing') {
     // Register the ScrollTrigger plugin
     gsap.registerPlugin(ScrollTrigger);
