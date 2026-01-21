@@ -83,7 +83,7 @@ function initHelpers() {
 
   if (params.get('mode') === 'editing') {
     navigation.style.display = '';
-    navigationButton.onclick = preventDefault();
+    navigationButton.onclick = (e) => e.preventDefault();
   } else {
     navigation.style.display = 'none';
     navigationButton.onclick = navigation.style.display = '';
