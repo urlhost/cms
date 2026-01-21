@@ -79,14 +79,17 @@ function initHelpers() {
   handleMobileChange(mobileMediaQuery);
 
   var navigation = document.querySelector('.navigation');
-  var navigationButton = document.querySelector('.navigation-button');
+  var navigationOpenButton = document.querySelector('.navigation-open-button');
+  var navigationCloseButton = document.querySelector('.navigation-close-button');
 
   if (params.get('mode') === 'editing') {
     navigation.style.display = '';
-    navigationButton.onclick = (e) => e.preventDefault();
+    navigationOpenButton.onclick = (e) => e.preventDefault();
+    navigationCloseButton.onclick = (e) => e.preventDefault();
   } else {
     navigation.style.display = 'none';
-    navigationButton.onclick = () => navigation.style.display = '';
+    navigationOpenButton.onclick = () => navigation.style.display = '';
+    navigationCloseButton.onclick = () => navigation.style.display = 'none';
   }
 
   if (params.get('mode') !== 'editing') {
