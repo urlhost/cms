@@ -79,11 +79,14 @@ function initHelpers() {
   handleMobileChange(mobileMediaQuery);
 
   var navigation = document.querySelector('.navigation');
+  var navigationButton = document.querySelector('.navigation-button');
 
   if (params.get('mode') === 'editing') {
     navigation.style.display = '';
+    navigationButton.onclick = preventDefault();
   } else {
     navigation.style.display = 'none';
+    navigationButton.onclick = navigation.style.display = '';
   }
 
   if (params.get('mode') !== 'editing') {
