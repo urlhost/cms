@@ -222,3 +222,15 @@ const button = `
     <p class="ql-align-center"><strong>Lorem ipsum</strong></p>
 </div>
 `;
+
+const navigation = `
+<div class="navigation">
+    <div class="building-container building-block building-block-align-center stretch-to-screen" data-name="Building Block: Building Container">
+        <div class="building-column-span-one">
+            <div class="building-column building-block building-block-align-center building-column-content-center" data-name="Building Block: Building Column">
+                <div class="placeholder-block"></div>
+            </div>
+        </div>
+    </div>
+</div>
+`;
