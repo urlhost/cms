@@ -78,19 +78,19 @@ function initHelpers() {
   mobileMediaQuery.addEventListener('change', handleMobileChange);
   handleMobileChange(mobileMediaQuery);
 
-  var navigation = document.querySelector('.navigation');
-  var navigationOpenButton = document.querySelector('.navigation-open-button');
-  var navigationCloseButton = document.querySelector('.navigation-close-button');
+var navigation = document.querySelector('.navigation');
+var navigationOpenButton = document.querySelector('.navigation-open-button');
+var navigationCloseButton = document.querySelector('.navigation-close-button');
 
-  if (params.get('mode') === 'editing') {
-    navigation.style.display = '';
-    navigationOpenButton.onclick = (e) => e.preventDefault();
-    navigationCloseButton.onclick = (e) => e.preventDefault();
-  } else {
-    navigation.style.display = 'none';
-    navigationOpenButton.onclick = () => navigation.style.display = '';
-    navigationCloseButton.onclick = () => navigation.style.display = 'none';
-  }
+if (params.get('mode') === 'editing') {
+  if (navigation) navigation.style.display = '';
+  if (navigationOpenButton) navigationOpenButton.onclick = (e) => e.preventDefault();
+  if (navigationCloseButton) navigationCloseButton.onclick = (e) => e.preventDefault();
+} else {
+  if (navigation) navigation.style.display = 'none';
+  if (navigationOpenButton) navigationOpenButton.onclick = () => navigation.style.display = '';
+  if (navigationCloseButton) navigationCloseButton.onclick = () => navigation.style.display = 'none';
+}
 
   if (params.get('mode') !== 'editing') {
     // Register the ScrollTrigger plugin
