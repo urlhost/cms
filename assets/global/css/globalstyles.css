@@ -832,5 +832,5 @@ footer {
 }
 
 .navigation {
-    position: static;
+    position: fixed;
 }
