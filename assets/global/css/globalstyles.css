@@ -833,3 +833,8 @@ footer {
 .drop-shadow-text {
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+
+.navigation {
+    position: fixed;
+    overflow: auto;
+}
