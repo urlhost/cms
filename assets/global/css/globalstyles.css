@@ -837,4 +837,5 @@ footer {
 .navigation {
     position: fixed;
     overflow: auto;
+    z-index: 100;
 }
