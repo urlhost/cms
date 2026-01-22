@@ -512,7 +512,7 @@ function checkRestrictedControls() {
 
   // Link controls
   toggle(controls.link, elementType.isImage || elementType.isButton);
-  const isInLinkWrapper = currentlySelected?.parentElement.classList.contains("building-block-link");
+  const isInLinkWrapper = currentlySelected?.classList.contains("building-block-link");
   toggle(controls.linkOption, isInLinkWrapper);
 
   // Width unit control
