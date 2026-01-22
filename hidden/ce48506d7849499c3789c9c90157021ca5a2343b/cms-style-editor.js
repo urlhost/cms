@@ -1074,6 +1074,7 @@ linkAdd.addEventListener("click", function() {
     checkRestrictedControls();
     loadStylesFromSelected();
   }
+
   if (currentlySelected && currentlySelected.classList.contains('image-element')) {
     const url = grabLink();
     if (url === null) return;
@@ -1109,17 +1110,16 @@ linkOpenInNewTab.addEventListener("change", function() {
       currentlySelected.removeAttribute("target");
     }
   }
+
   if (currentlySelected && currentlySelected.classList.contains('image-element')) {
-    const url = currentlySelected.getAttribute('data-link');
-    if (url) {
+    if (currentlySelected.hasAttribute('onclick')) {
       if (linkOpenInNewTab.checked) {
         currentlySelected.setAttribute('target', '_blank');
       } else {
         currentlySelected.removeAttribute('target');
       }
     }
-  }
-});
+  });
 
 
 // ==========================================
