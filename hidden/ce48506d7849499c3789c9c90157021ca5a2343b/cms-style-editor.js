@@ -1117,7 +1117,8 @@ linkOpenInNewTab.addEventListener("change", function() {
         currentlySelected.removeAttribute('target');
       }
     }
-  });
+  }
+});
 
 
 // ==========================================
