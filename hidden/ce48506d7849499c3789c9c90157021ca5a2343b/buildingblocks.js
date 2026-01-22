@@ -200,9 +200,7 @@ const test = `
 `;
 
 const image = `
-<a class="building-block-link" href="javascript:void(0)">
-    <img class="image-element default-image building-block building-block-align-center" data-name="Building Block: Image"></img>
-</a>
+<img class="image-element default-image building-block building-block-align-center" data-name="Building Block: Image"></img>
 `;
 
 const accordion = `
@@ -220,7 +218,7 @@ const accordion = `
 `;
 
 const button = `
-<a class="button-element text-element button building-block building-block-align-center" href="javascript:void(0)" data-name="Building Block: Button">
+<a class="button-element text-element button building-block building-block-align-center" data-name="Building Block: Button">
     <p class="ql-align-center"><strong>Lorem ipsum</strong></p>
 </a>
 `;
