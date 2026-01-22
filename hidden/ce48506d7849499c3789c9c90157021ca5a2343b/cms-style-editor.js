@@ -1066,7 +1066,7 @@ matchAdjacentHeight.addEventListener("change", function() {
 
 // --- Links ---
 linkAdd.addEventListener("click", function() {
-  if (currentlySelected) {
+  if (currentlySelected && currentlySelected.classList.contains('building-block-link')) {
     const url = grabLink();
     if (url === null) return;
     currentlySelected.href = url;
