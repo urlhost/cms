@@ -531,7 +531,9 @@ deleteButton.addEventListener("click", deleteElement);
 publishPage.addEventListener("click", publishPageCode);
 previewPage.addEventListener('click', checkCMSVisibilityState);
 
-// Global Functions
+// ==========================================
+// 7. GLOBAL FUNCTIONS
+// ==========================================
 
 // --- Links ---
 function getParentLink(element) {
