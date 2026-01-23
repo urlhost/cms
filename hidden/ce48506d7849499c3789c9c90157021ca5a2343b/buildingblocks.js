@@ -199,8 +199,14 @@ const test = `
 </div>
 `;
 
+// const image = `
+// <img class="image-element default-image building-block building-block-align-center" data-name="Building Block: Image"></img>
+// `;
+
 const image = `
-<img class="image-element default-image building-block building-block-align-center" data-name="Building Block: Image"></img>
+<a class="link-element building-block building-block building-block-align-center data-name="Building Block: Link Container" href="https://www.google.com">
+    <img class="image-element default-image building-block building-block-align-center" data-name="Building Block: Image"></img>
+</a>
 `;
 
 const accordion = `
