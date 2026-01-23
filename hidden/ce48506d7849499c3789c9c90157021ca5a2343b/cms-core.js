@@ -279,8 +279,8 @@ function formatHtml(node, level = 0, indentChar = '  ') {
             const indent = indentChar.repeat(level);
             
             // Only add newline/indent for block-level elements that aren't nested directly in inline content
-            const parent = node.parentElement;
-            const parentIsInline = parent && inlineTags.has(parent.tagName.toLowerCase());
+            const parentElement = node.parentElement;
+            const parentIsInline = parentElement && inlineTags.has(parentElement.tagName.toLowerCase());
 
             if (!isInline && level > 0 && !parentIsInline) {
                 result += '\n' + indent;
