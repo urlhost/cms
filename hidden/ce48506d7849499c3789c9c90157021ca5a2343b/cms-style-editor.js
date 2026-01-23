@@ -75,7 +75,6 @@ function invokeStyleMenu() {
     loadedPage.classList.add("sidebar-active");
     checkRestrictedControls();
     loadStylesFromSelected();
-    currentlySelected.classList.add("custom-styles");
   }
 }
 
@@ -1153,7 +1152,6 @@ linkOpenInNewTab.addEventListener("change", function() {
 
 styleButton.addEventListener("click", () => {
   if (currentlySelected) {
-
     invokeStyleMenu();
   }
 });
