@@ -48,6 +48,9 @@ function selectBuildingBlock(blockToSelect, originalTarget) {
     }
     deselectAll();
     currentlySelected = blockToSelect;
+    if currentlySelected.classList.contains('image-elemet') {
+        currentlySelected = currentlySelected.parentElement;
+    }
     currentlySelected.classList.add('selected');
 }
 
