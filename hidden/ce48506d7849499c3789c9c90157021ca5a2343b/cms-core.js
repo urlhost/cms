@@ -530,3 +530,11 @@ document.addEventListener("keydown", e => {
 deleteButton.addEventListener("click", deleteElement);
 publishPage.addEventListener("click", publishPageCode);
 previewPage.addEventListener('click', checkCMSVisibilityState);
+
+// Global Functions
+function getParentLink(element) {
+  if (element.parentElement && element.parentElement.tagName === 'A' && element.parentElement.classList.contains('link-element')) {
+    return element.parentElement;
+  }
+  return null;
+}
