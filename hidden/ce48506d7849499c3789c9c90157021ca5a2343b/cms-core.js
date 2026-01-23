@@ -48,7 +48,7 @@ function selectBuildingBlock(blockToSelect, originalTarget) {
     }
     deselectAll();
     currentlySelected = blockToSelect;
-    if (currentlySelected.classList.contains('image-elemet')) {
+    if (currentlySelected.classList.contains('image-element')) {
         let linkWrapper = getParentLink(currentlySelected);
 
         if (linkWrapper) {
