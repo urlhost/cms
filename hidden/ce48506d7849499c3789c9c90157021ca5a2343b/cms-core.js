@@ -543,6 +543,13 @@ function getParentLink(element) {
   return null;
 }
 
+function getLinkChild(element) {
+    if (element.classList.contains('link-element')) {
+        return element.firstElementChild;
+    }
+    return null;
+}
+
 // --- Image Uploading ---
 function grabImageLink() {
   const link = prompt("Enter a photo link:");
