@@ -417,7 +417,7 @@ if (textHoverColorValueSpan) {
   matchAdjacentHeight.checked = currentlySelected.classList.contains("match-adjacent-height");
   dropShadow.checked = currentlySelected?.matches('.drop-shadow, .drop-shadow-text');
 
-  linkOpenInNewTab.checked = currentlySelected.classList.contains("button-element") && currentlySelected.target === "_blank" || currentlySelected?.classList.contains("image-element") && getParentLink(currentlySelected);
+  linkOpenInNewTab.checked = currentlySelected.classList.contains("button-element") && currentlySelected.target === "_blank" || getParentLink(currentlySelected).target === "_blank";
 
   highlightActiveControls();
 }
@@ -507,8 +507,8 @@ function checkRestrictedControls() {
   // Link controls
   toggle(controls.link, elementType.isButton || elementType.isImage);
   const isButtonLink = currentlySelected?.classList.contains("button-element") && currentlySelected?.href !== '';
-  const isImageLink = currentlySelected?.classList.contains("image-element") && getParentLink(currentlySelected);
-  toggle(controls.linkOption, isButtonLink || isImageLink);
+  const isLink = getParentLink(currentlySelected);
+  toggle(controls.linkOption, isButtonLink || isLink);
 
   // Width unit control
   setControlState(widthUnit, !elementType.isImage);
