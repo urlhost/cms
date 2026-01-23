@@ -277,9 +277,12 @@ function formatHtml(node, level = 0, indentChar = '  ') {
             const isInline = inlineTags.has(tagName);
             const preserveWhitespace = preserveWhitespaceTags.has(tagName);
             const indent = indentChar.repeat(level);
+            
+            // Only add newline/indent for block-level elements that aren't nested directly in inline content
+            const parent = node.parentElement;
+            const parentIsInline = parent && inlineTags.has(parent.tagName.toLowerCase());
 
-            // Add newline and indentation before block-level tags
-            if (!isInline && level > 0) {
+            if (!isInline && level > 0 && !parentIsInline) {
                 result += '\n' + indent;
             }
 
@@ -351,6 +354,75 @@ function formatHtml(node, level = 0, indentChar = '  ') {
     }
 
     return result;
+}
+
+async function publishPageCode() {
+    deselectAll();
+    cleanWidth();
+
+    const liveWrapper = document.querySelector('#loaded-page');
+    if (!liveWrapper) {
+        alert('Could not find #loaded-page.');
+        return;
+    }
+
+    const wrapperParent = liveWrapper.parentNode;
+    const wrapperNextSibling = liveWrapper.nextSibling;
+
+    // ----- Step 1: Unwrap the live wrapper -----
+    const liveChildren = Array.from(liveWrapper.childNodes);
+    liveChildren.forEach(child => wrapperParent.insertBefore(child, liveWrapper));
+    wrapperParent.removeChild(liveWrapper);
+
+    try {
+        // ----- Step 2: Clone the live DOM -----
+        const tempDoc = document.cloneNode(true);
+
+        // ----- Step 3: Remove unwanted CMS/extension elements -----
+        const unwantedSelectors = [
+            '[data-name="cms menu bar"]',
+            '[data-name="cms environment"]',
+            '[data-name="cms stylesheet"]',
+            '[data-name="cms javascript"]',
+            '[id^="fa-"]',
+            'link[href^="chrome-extension://"]'
+        ].join(', ');
+
+        tempDoc.querySelectorAll(unwantedSelectors).forEach(el => el.remove());
+
+        // ----- Step 4: Unwrap #loaded-page in the tempDoc -----
+        const tempWrapper = tempDoc.querySelector('#loaded-page');
+        if (tempWrapper) {
+            tempWrapper.replaceWith(...tempWrapper.childNodes);
+        }
+
+        // ----- Step 5: Format and copy HTML -----
+        const formattedHtml = formatHtml(tempDoc.documentElement);
+        const cleanedHtml = '<!DOCTYPE html>\n' + formattedHtml;
+        await navigator.clipboard.writeText(cleanedHtml);
+
+        console.log('Formatted page HTML copied to clipboard!');
+        alert('Page HTML copied!');
+
+    } catch (err) {
+        console.error('Failed to copy HTML to clipboard:', err);
+        alert('Could not copy HTML.');
+    } finally {
+        // ----- Step 6: Safely rewrap the live DOM -----
+        const newWrapper = document.createElement('div');
+        newWrapper.id = 'loaded-page';
+        newWrapper.className = liveWrapper.className;
+
+        // Move all children back into the wrapper
+        Array.from(wrapperParent.childNodes).forEach(child => newWrapper.appendChild(child));
+
+        // Insert wrapper in original spot if possible
+        if (wrapperNextSibling && wrapperParent.contains(wrapperNextSibling)) {
+            wrapperParent.insertBefore(newWrapper, wrapperNextSibling);
+        } else {
+            wrapperParent.appendChild(newWrapper);
+        }
+    }
 }
 
 async function publishPageCode() {
