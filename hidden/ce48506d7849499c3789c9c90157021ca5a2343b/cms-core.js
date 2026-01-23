@@ -51,11 +51,11 @@ function selectBuildingBlock(blockToSelect, originalTarget) {
     let currentlySelectedParent = currentlySelected.parentElement;
 
     if (currentlySelectedParent) {
-        if (currentlySelectedParent.classlist.contains('link-element')) {
+        if (currentlySelectedParent.classList.contains('link-element')) {
             currentlySelected = blockToSelect.parentElement;
         }
     }
-    
+
     currentlySelected.classList.add('selected');
 }
 
