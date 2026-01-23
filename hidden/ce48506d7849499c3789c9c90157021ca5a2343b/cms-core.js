@@ -345,8 +345,8 @@ function formatHtml(node, level = 0, indentChar = '  ') {
             break;
 
         case Node.COMMENT_NODE:
-            const indent = indentChar.repeat(level);
-            result += `\n${indent}<!--${node.nodeValue}-->`;
+            const commentIndent = indentChar.repeat(level);
+            result += `\n${commentIndent}<!--${node.nodeValue}-->`;
             break;
     }
 
