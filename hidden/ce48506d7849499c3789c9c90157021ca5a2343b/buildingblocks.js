@@ -193,16 +193,6 @@ const orderedList = `
 </div>
 `;
 
-const test = `
-<div class="image-element building-block building-block-align-center" data-name="Building Block: Image">
-    <img class="default-image"></img>
-</div>
-`;
-
-// const image = `
-// <img class="image-element default-image building-block building-block-align-center" data-name="Building Block: Image"></img>
-// `;
-
 const image = `
 <img class="image-element default-image building-block building-block-align-center" data-name="Building Block: Image"></img>
 `;
