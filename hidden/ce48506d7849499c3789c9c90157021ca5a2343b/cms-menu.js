@@ -153,8 +153,7 @@ function validateEmbedCode(code) {
   
   const dangerousPatterns = [
     /javascript:/i,
-    /on\w+\s*=/i,
-    /<script[^>]*>(?!.*src=)/i,
+    /on\w+\s*=/i
   ];
   
   const hasDangerousPattern = dangerousPatterns.some(pattern => pattern.test(code));
