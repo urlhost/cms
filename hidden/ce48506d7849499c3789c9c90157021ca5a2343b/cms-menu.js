@@ -92,18 +92,22 @@ function insertImageLink(htmlContent) {
   }
 }
 
-async function insertEmbedContent() {
+function insertEmbedContent(htmlContent) {
   if (currentlySelected) {
-    const code = await grabEmbedCode();
+    const code = grabEmbedCode();
 
-    if (code) {
-      const embedWrapper = currentlySelected.querySelector('.embed-wrapper');
-      if (embedWrapper) {
-        embedWrapper.innerHTML = code;
-      }
-      
-      deselectAll();
+    if (code === null) {
+      return;
     }
+    
+    currentlySelected.insertAdjacentHTML('beforebegin', htmlContent);
+    const insertedEmbed = currentlySelected.previousElementSibling;
+
+    if (code && insertedEmbed) {
+      insertedEmbed.innerHTML = code;
+    }
+
+    deselectAll();
   }
 }
 
