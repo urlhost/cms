@@ -107,26 +107,6 @@ async function insertEmbedContent() {
   }
 }
 
-async function insertEmbedContent(htmlContent) {
-  if (currentlySelected) {
-    const code = await grabEmbedCode();
-
-    if (code) {
-      currentlySelected.insertAdjacentHTML("beforebegin", htmlContent);
-      const insertedEmbed = currentlySelected.previousElementSibling;
-
-      if (insertedEmbed) {
-        const embedWrapper = insertedEmbed.querySelector('.embed-wrapper');
-        if (embedWrapper) {
-          embedWrapper.innerHTML = code;
-        }
-      }
-      
-      deselectAll();
-    }
-  }
-}
-
 // --- Embed Code ---
 function grabEmbedCode() {
   const paste = prompt("Paste embed code:");
@@ -281,6 +261,9 @@ layoutElementAccordionButton.addEventListener('click', () => insertElement(accor
 // Images
 imageElementLinkButton.addEventListener('click', () => insertImageLink(image));
 imageElementUploadButton.addEventListener('click', () => insertImageUpload(image));
+
+//Embed
+embedElementButton.addEventListener('click', () => insertEmbedContent(embed));
 
 
 // ==========================================
