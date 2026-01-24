@@ -198,6 +198,10 @@
     height: auto !important;
 }
 
+.embed-element {
+    padding: 2rem;
+}
+
 /* CMS CSS Testing */
 
 .content-show {
