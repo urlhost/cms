@@ -198,8 +198,8 @@
     height: auto !important;
 }
 
-.embed-element {
-    padding: 1rem;
+.embed-element> :first-child {
+    pointer-events: none;
 }
 
 /* CMS CSS Testing */
