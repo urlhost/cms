@@ -69,13 +69,19 @@ function updateMovementArrows() {
         if (currentlySelected.classList.contains('building-column')) {
             moveUp.firstElementChild.className = 'fas fa-chevron-left';
             moveDown.firstElementChild.className = 'fas fa-chevron-right';
+            moveUp.title = "Move Left";
+            moveDown.title = "Move Right";
         } else {
             moveUp.firstElementChild.className = 'fas fa-chevron-up';
             moveDown.firstElementChild.className = 'fas fa-chevron-down';
+            moveUp.title = "Move Up";
+            moveDown.title = "Move Down";
         }
     } else {
         moveUp.firstElementChild.className = 'fas fa-chevron-up';
         moveDown.firstElementChild.className = 'fas fa-chevron-down';
+        moveUp.title = "Move Up";
+        moveDown.title = "Move Down";
     }
 }
 
