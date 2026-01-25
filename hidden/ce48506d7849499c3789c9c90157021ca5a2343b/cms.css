@@ -199,7 +199,7 @@
 }
 
 .embed-element::before {
-  content: "⚠️ Embed Preview (will appear on published page)";
+  content: "⚠️ Embed Preview (Will appear on preview and published page.)";
   display: block;
   padding: 40px;
   background: #f0f0f0;
