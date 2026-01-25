@@ -198,18 +198,18 @@
     height: auto !important;
 }
 
-.embed-element> :first-child {
-    pointer-events: none;
-}
-
 .embed-element::before {
-  content: "📺 Embed Preview (will appear on published page)";
+  content: "⚠️ Embed Preview (will appear on published page)";
   display: block;
   padding: 40px;
   background: #f0f0f0;
   border: 2px dashed #ccc;
   text-align: center;
   color: #666;
+}
+
+.embed-element> :first-child {
+    display: none;
 }
 
 /* CMS CSS Testing */
