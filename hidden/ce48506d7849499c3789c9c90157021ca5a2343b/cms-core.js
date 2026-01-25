@@ -55,12 +55,12 @@ function selectBuildingBlock(blockToSelect, originalTarget) {
 function updateSelectedLabel() {
     if (currentlySelected) {
         if (currentlySelected.dataset.name === undefined) {
-            selectedElementLabel.innerText = 'Building Block:';
+            selectedElementLabel.innerText = 'No Selection';
             return;
         }
         selectedElementLabel.innerText = currentlySelected.dataset.name;
     } else {
-        selectedElementLabel.innerText = 'Building Block:';
+        selectedElementLabel.innerText = 'No Selection';
     }
 }
 
