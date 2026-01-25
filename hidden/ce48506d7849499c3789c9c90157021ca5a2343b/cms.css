@@ -209,7 +209,7 @@
 }
 
 .embed-element> :first-child {
-    display: none;
+    display: none !important;
 }
 
 /* CMS CSS Testing */
