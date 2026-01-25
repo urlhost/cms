@@ -67,15 +67,15 @@ function updateSelectedLabel() {
 function updateMovementArrows() {
     if (currentlySelected) {
         if (currentlySelected.classList.contains('building-column')) {
-            moveUp.innerHTML = 'Move Left';
-            moveDown.innerHTML = 'Move Right';
+            moveUp.firstElementChild.className = 'fas fa-chevron-left';
+            moveDown.firstElementChild.className = 'fas fa-chevron-right';
         } else {
-            moveUp.innerHTML = 'Move Up';
-            moveDown.innerHTML = 'Move Down';
+            moveUp.firstElementChild.className = 'fas fa-chevron-up';
+            moveDown.firstElementChild.className = 'fas fa-chevron-down';
         }
     } else {
-        moveUp.innerHTML = 'Move Up';
-        moveDown.innerHTML = 'Move Down';
+        moveUp.firstElementChild.className = 'fas fa-chevron-up';
+        moveDown.firstElementChild.className = 'fas fa-chevron-down';
     }
 }
 
