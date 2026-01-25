@@ -52,7 +52,7 @@
 }
 
 .cms-menu-button .after-cms-menu-divider {
-    border-right: 1px solid #34495e;
+    border-left: 1px solid #34495e;
 }
 
 /* Remove border from the last item on the right group if desired */
