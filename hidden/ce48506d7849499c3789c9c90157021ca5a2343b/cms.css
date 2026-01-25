@@ -202,7 +202,7 @@
     pointer-events: none;
 }
 
-.embed-element> :first-child::before {
+.embed-element::before {
   content: "📺 Embed Preview (will appear on published page)";
   display: block;
   padding: 40px;
