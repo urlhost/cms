@@ -286,7 +286,6 @@ request.onupgradeneeded = (event) => {
 
 request.onsuccess = (event) => {
     cmsBackupDatabase = event.target.result;
-    // Auto-load on refresh
     loadSavedPage(); 
 };
 
@@ -294,15 +293,22 @@ request.onerror = (event) => {
     console.error("Database error: ", event.target.errorCode);
 };
 
+function getPageID() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const pageName = urlParams.get('page');
+    
+    if (pageName) {
+        return pageName;
+    }
+    
+    return window.location.pathname; 
+}
+
 const saveBtn = document.getElementById('save-page');
 if (saveBtn) {
     saveBtn.addEventListener('click', () => {
         saveCurrentPage();
     });
-}
-
-function getPageID() {
-    return window.location.href;
 }
 
 function saveCurrentPage() {
@@ -315,7 +321,7 @@ function saveCurrentPage() {
     selectedItems.forEach(el => el.classList.remove('selected'));
     
     const pageData = {
-        id: getPageID(), // <--- CHANGED: Unique ID per page
+        id: getPageID(),
         content: clone.innerHTML,
         timestamp: new Date().getTime()
     };
@@ -329,13 +335,15 @@ function saveCurrentPage() {
 }
 
 function flashSaveSuccess() {
+    if(!saveBtn) return;
     const saveIcon = saveBtn.querySelector('i');
     
+    const originalClass = saveIcon.className;
     saveIcon.className = 'fas fa-check';
     saveIcon.style.color = '#2ecc71';
 
     setTimeout(() => {
-        saveIcon.className = 'fas fa-floppy-disk';
+        saveIcon.className = originalClass;
         saveIcon.style.color = '';
     }, 1500);
 }
@@ -350,7 +358,12 @@ function loadSavedPage() {
     getRequest.onsuccess = (event) => {
         const result = event.target.result;
         if (result && result.content) {
-            document.getElementById('loaded-page').innerHTML = result.content;
+            const container = document.getElementById('loaded-page');
+            deselectAll();
+            container.innerHTML = result.content;
+            if (typeof initHelpers === 'function') {
+                initHelpers();
+            }
         }
     };
 }
@@ -361,7 +374,7 @@ if (clearBtn) {
         if (!cmsBackupDatabase) return;
         const transaction = cmsBackupDatabase.transaction([STORE_NAME], 'readonly');
         const store = transaction.objectStore(STORE_NAME);
-        const countRequest = store.count(getPageID()); // <--- CHANGED: Check THIS page
+        const countRequest = store.count(getPageID());
 
         countRequest.onsuccess = () => {
             if (countRequest.result > 0) {
@@ -380,6 +393,12 @@ function clearSavedPage() {
     const transaction = cmsBackupDatabase.transaction([STORE_NAME], 'readwrite');
     const store = transaction.objectStore(STORE_NAME);
     const deleteRequest = store.delete(getPageID());
+    
+    deleteRequest.onsuccess = () => {
+         const icon = clearBtn.querySelector('i');
+         icon.classList.add('fa-spin');
+         setTimeout(() => icon.classList.remove('fa-spin'), 500);
+    }
 }
 
 //Legacy Format
