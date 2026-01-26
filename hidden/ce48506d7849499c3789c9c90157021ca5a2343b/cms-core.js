@@ -2,7 +2,7 @@
 // 1. DOM ELEMENTS & STATE
 // ==========================================
 
-const cms = document.querySelector(".cms-menu");
+const cmsMenu = document.querySelector(".cms-menu-bar-container");
 const cmsMenuBar = document.querySelector(".cms-menu-bar");
 const selectedElementLabel = document.getElementById("selected-element-label");
 const styles = document.getElementById("style-editor-sidebar");
@@ -36,7 +36,7 @@ function deselectAll() {
         cms.classList.add("content-hide");
         styles.classList.add("content-hide");
         loadedPage.classList.remove("sidebar-active");
-        cmsMenuBar.classList.remove("sidebar-active");
+        cmsMenu.classList.remove("sidebar-active");
     }
 }
 

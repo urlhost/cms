@@ -74,7 +74,7 @@ function invokeStyleMenu() {
     currentlySelected = getLinkChild(currentlySelected) || currentlySelected;
     styles.classList.remove('content-hide');
     loadedPage.classList.add("sidebar-active");
-    cmsMenuBar.classList.add("sidebar-active");
+    cmsMenu.classList.add("sidebar-active");
     checkRestrictedControls();
     loadStylesFromSelected();
   }
