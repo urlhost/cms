@@ -336,16 +336,14 @@ function saveCurrentPage() {
 
 // --- Visual Feedback ---
 function flashSaveSuccess() {
-    const icon = saveBtn.querySelector('i');
+    const saveIcon = saveBtn.querySelector('i');
     
-    icon.classList.remove('fa-save');
-    icon.classList.add('fa-check');
-    icon.style.color = '#2ecc71';
+    saveIcon.className = 'fa-check';
+    saveIcon.style.color = '#2ecc71';
 
     setTimeout(() => {
-        icon.classList.remove('fa-check');
-        icon.classList.add('fa-save');
-        icon.style.color = '';
+        saveIcon.className = 'fa-floppy-disk';
+        saveIcon.style.color = '';
     }, 1500);
 }
 
