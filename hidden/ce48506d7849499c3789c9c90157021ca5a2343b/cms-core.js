@@ -3,7 +3,6 @@
 // ==========================================
 
 const cmsMainMenu = document.querySelector(".cms-main-menu");
-const cmsMenuBar = document.querySelector(".cms-menu-bar");
 const cmsMenu = document.querySelector("cms-menu");
 const selectedElementLabel = document.getElementById("selected-element-label");
 const styles = document.getElementById("style-editor-sidebar");
