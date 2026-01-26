@@ -2,7 +2,7 @@
 // 1. DOM ELEMENTS & STATE
 // ==========================================
 
-const cmsMenu = document.querySelector(".cms-menu-bar-container");
+const cmsMenu = document.querySelector(".cms-menu");
 const cmsMenuBar = document.querySelector(".cms-menu-bar");
 const selectedElementLabel = document.getElementById("selected-element-label");
 const styles = document.getElementById("style-editor-sidebar");
