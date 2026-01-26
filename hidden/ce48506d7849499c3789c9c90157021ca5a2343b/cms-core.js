@@ -387,11 +387,6 @@ function clearSavedPage() {
 
     deleteRequest.onsuccess = () => {
         alert("Saved data cleared. You won't be prompted to load on refresh.");
-        
-        // Optional: Visual feedback on the button
-        const icon = clearBtn.querySelector('i');
-        icon.classList.add('fa-spin'); // Spin the icon briefly
-        setTimeout(() => icon.classList.remove('fa-spin'), 500);
     };
 
     deleteRequest.onerror = () => {
