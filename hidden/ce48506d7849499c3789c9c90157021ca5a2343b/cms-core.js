@@ -43,8 +43,9 @@ function deselectAll() {
 
 function selectBuildingBlock(blockToSelect, originalTarget) {
     if (originalTarget.closest('.placeholder-block')) {
-        currentlySelected = originalTarget;
         deselectAll();
+        currentlySelected = originalTarget;
+        invokeCMSMenu();
         return;
     }
 
