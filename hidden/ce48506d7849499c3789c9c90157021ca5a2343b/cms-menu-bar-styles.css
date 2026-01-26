@@ -103,7 +103,7 @@
 }
 
 .placeholder-block {
-    display: block;
+    display: block !important;
     position: relative;
     margin: 1rem;
     width: calc(100% - 2rem) !important;
@@ -141,4 +141,13 @@
 
 .match-adjacent-height {
     height: auto !important;
+}
+
+.accordion-content {
+    display: block !important;
+}
+
+.accordion-label> :first-child::before {
+    content: "\25B2" !important;
+    color: magenta !important;
 }

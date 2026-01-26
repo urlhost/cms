@@ -10,6 +10,10 @@
     display: none !important;
 }
 
+.placeholder-block {
+    display: none;
+}
+
 #loaded-page {
     margin-top: 64px !important;
 }
@@ -1115,13 +1119,4 @@
     cursor: pointer;
     outline: none;
     box-sizing: border-box;
-}
-
-.accordion-content {
-    display: block !important;
-}
-
-.accordion-label> :first-child::before {
-    content: "\25B2" !important;
-    color: magenta !important;
 }
