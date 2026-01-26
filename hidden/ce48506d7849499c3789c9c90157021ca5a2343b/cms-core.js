@@ -2,8 +2,9 @@
 // 1. DOM ELEMENTS & STATE
 // ==========================================
 
-const cmsMenu = document.querySelector(".cms-main-menu");
+const cmsMainMenu = document.querySelector(".cms-main-menu");
 const cmsMenuBar = document.querySelector(".cms-menu-bar");
+const cms = document.querySelector(".cms-menu");
 const selectedElementLabel = document.getElementById("selected-element-label");
 const styles = document.getElementById("style-editor-sidebar");
 const loadedPage = document.getElementById("loaded-page");
@@ -36,7 +37,7 @@ function deselectAll() {
         cms.classList.add("content-hide");
         styles.classList.add("content-hide");
         loadedPage.classList.remove("sidebar-active");
-        cmsMenu.classList.remove("sidebar-active");
+        cmsMainMenu.classList.remove("sidebar-active");
     }
 }
 
