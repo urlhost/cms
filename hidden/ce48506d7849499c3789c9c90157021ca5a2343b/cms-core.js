@@ -4,7 +4,7 @@
 
 const cmsMainMenu = document.querySelector(".cms-main-menu");
 const selectedElementLabel = document.getElementById("selected-element-label");
-const elements = document.getElementById("page-editor-sidebar");
+const elements = document.getElementById("page-element-sidebar");
 const styles = document.getElementById("style-editor-sidebar");
 const loadedPage = document.getElementById("loaded-page");
 
