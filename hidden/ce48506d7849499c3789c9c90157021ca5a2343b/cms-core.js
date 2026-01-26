@@ -599,9 +599,6 @@ document.addEventListener("click", (e) => {
                     const next = currentlySelected.nextElementSibling;
                     if (next.classList.contains("placeholder-block") || next.classList.contains("accordion-content")) {
                         return;
-                    }
-                    if (!next) {
-                        return;
                     } else {
                         currentlySelected.parentElement.insertBefore(currentlySelected, next.nextElementSibling);
                     }
