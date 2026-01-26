@@ -379,13 +379,7 @@ function clearSavedPage() {
     if (!cmsBackupDatabase) return;
     const transaction = cmsBackupDatabase.transaction([STORE_NAME], 'readwrite');
     const store = transaction.objectStore(STORE_NAME);
-    const deleteRequest = store.delete(getPageID()); // <--- CHANGED: Deletes only THIS page
-
-    deleteRequest.onsuccess = () => {
-        const icon = clearBtn.querySelector('i');
-        icon.classList.add('fa-spin');
-        setTimeout(() => icon.classList.remove('fa-spin'), 500);
-    };
+    const deleteRequest = store.delete(getPageID());
 }
 
 //Legacy Format
