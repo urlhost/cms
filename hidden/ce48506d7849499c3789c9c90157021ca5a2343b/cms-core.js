@@ -571,8 +571,6 @@ async function publishPageCode() {
 // 6. EVENT LISTENERS
 // ==========================================
 
-
-if (cmsPreviewCounter === 0) {
 // Global Click (Selection & UI Logic)
 document.addEventListener("click", (e) => {
     const target = e.target;
@@ -697,7 +695,7 @@ document.addEventListener("keydown", e => {
 deleteButton.addEventListener("click", deleteElement);
 publishPage.addEventListener("click", publishPageCode);
 previewPage.addEventListener('click', checkCMSVisibilityState);
-}
+
 // ==========================================
 // 7. GLOBAL FUNCTIONS
 // ==========================================

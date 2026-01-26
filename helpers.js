@@ -23,9 +23,9 @@ function initHelpers() {
     initAccordionColors();
     initAccordionToggles();
     initResponsiveVisibility();
+    initNavigation();
     initScrollAnimations();
   } else {
-    // In edit mode, just ensure responsive classes are visible
     initResponsiveVisibility();
   }
 
@@ -71,6 +71,20 @@ function initHelpers() {
 
     mobileMediaQuery.addEventListener('change', handleMobileChange);
     handleMobileChange(mobileMediaQuery);
+  }
+
+  initNavigation() {
+    const navigation = document.querySelector(".navigation");
+    const navigationOpenButton = document.querySelector(".navigation-open-button");
+    const navigationCloseButton = document.querySelector(".navigation-close-button");
+
+    navigation.style.display = (isEditMode) ? '' : 'none';
+    navigationOpenButton.addEventListener('click', () => {
+      navigation.style.display = '';
+    });
+    navigationCloseButton.addEventListener('click', () => {
+      navigation.style.display = 'none';
+    });
   }
 
   function initScrollAnimations() {
