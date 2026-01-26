@@ -73,7 +73,7 @@ function initHelpers() {
     handleMobileChange(mobileMediaQuery);
   }
 
-  initNavigation() {
+  function initNavigation() {
     const navigation = document.querySelector(".navigation");
     const navigationOpenButton = document.querySelector(".navigation-open-button");
     const navigationCloseButton = document.querySelector(".navigation-close-button");
