@@ -3,8 +3,8 @@
 // ==========================================
 
 const cmsMainMenu = document.querySelector(".cms-main-menu");
-const cmsMenu = document.querySelector(".cms-menu");
 const selectedElementLabel = document.getElementById("selected-element-label");
+const elements = document.getElementById("page-editor-sidebar");
 const styles = document.getElementById("style-editor-sidebar");
 const loadedPage = document.getElementById("loaded-page");
 
@@ -33,7 +33,7 @@ function deselectAll() {
     if (currentlySelected) {
         currentlySelected.classList.remove('selected');
         currentlySelected = null;
-        cmsMenu.classList.add("content-hide");
+        elements.classList.add("content-hide");
         styles.classList.add("content-hide");
         loadedPage.classList.remove("sidebar-active");
         cmsMainMenu.classList.remove("sidebar-active");
@@ -577,11 +577,10 @@ document.addEventListener("click", (e) => {
 
     // Define the primary UI containers that should not trigger selection changes.
     const isInsideQuillUI = target.closest('.text-editor-pop');
-    const isInsideCmsUI = target.closest('.cms-menu');
+    const isInsideCmsSidebar = target.closest('.sidebar');
     const isInsideCmsMenuBar = target.closest('.cms-main-menu');
-    const isInsideStyleEditor = target.closest('#style-editor-sidebar');
 
-    if (isInsideQuillUI || isInsideCmsUI || isInsideStyleEditor) {
+    if (isInsideQuillUI || isInsideCmsSidebar) {
         return;
     }
 
