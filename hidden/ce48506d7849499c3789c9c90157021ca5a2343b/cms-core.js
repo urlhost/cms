@@ -41,7 +41,13 @@ function deselectAll() {
     }
 }
 
-function selectBuildingBlock(blockToSelect) {
+function selectBuildingBlock(blockToSelect, originalTarget) {
+    if (originalTarget.closest('.placeholder-block')) {
+        deselectAll();
+        currentlySelected = originalTarget;
+        return;
+    }
+    
     deselectAll();
     currentlySelected = blockToSelect;
     currentlySelected = getParentLink(currentlySelected) || currentlySelected;
