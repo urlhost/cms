@@ -3,7 +3,7 @@
 }
 
 #loaded-page {
-    margin-top: 40px;
+    margin-top: 64px !important;
 }
 
 #loaded-page.sidebar-active {
@@ -30,6 +30,13 @@
     padding: 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     box-sizing: border-box;
+}
+
+.cms-menu-bar.sidebar-active {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc(100% - 250px);
 }
 
 .cms-menu-group {
@@ -93,10 +100,6 @@
     overflow: hidden;
     text-align: center;
     text-overflow: ellipsis;
-}
-
-#loaded-page {
-    margin-top: 64px !important;
 }
 
 /*CMS Element Visibility*/
