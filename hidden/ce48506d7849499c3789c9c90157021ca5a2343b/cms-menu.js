@@ -155,7 +155,7 @@ embedElementButton.addEventListener('click', () => insertEmbedContent(embed));
 
 function invokeCMSMenu() {
     if (currentlySelected && currentlySelected.classList.contains('placeholder-block')) {
-        cms.classList.remove('content-hide');
+        cmsMenu.classList.remove('content-hide');
         loadedPage.classList.add("sidebar-active");
         cmsMainMenu.classList.add("sidebar-active");
     }
