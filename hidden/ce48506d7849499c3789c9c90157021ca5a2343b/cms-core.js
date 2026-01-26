@@ -222,7 +222,7 @@ function checkCMSVisibilityState() {
 
 function disableCMS() {
     // 1. Unload the CSS file
-    const stylesheet = document.querySelector('link[href="cms.css"][data-name="cms stylesheet"]');
+    const stylesheet = document.querySelector('link[href="cms-compatibility-styles.css"][data-name="cms stylesheet"]');
     if (stylesheet) {
         stylesheet.remove();
         console.log('CMS Stylesheet unloaded.');
@@ -244,10 +244,10 @@ function disableCMS() {
 
 function enableCMS() {
     // 1. Reload the CSS file
-    if (!document.querySelector('link[href="cms.css"][data-name="cms stylesheet"]')) {
+    if (!document.querySelector('link[href="cms-compatibility-styles.css"][data-name="cms stylesheet"]')) {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = 'cms.css';
+        link.href = 'cms-compatibility-styles.css';
         link.setAttribute('data-name', 'cms stylesheet');
         document.head.appendChild(link);
         console.log('CMS Stylesheet restored.');
