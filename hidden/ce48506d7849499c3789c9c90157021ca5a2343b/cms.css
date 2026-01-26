@@ -15,7 +15,7 @@
 
 /* --- New Top Menu Bar Styles --- */
 
-.cms-main-menu.sidebar-active> .cms-menu-bar .cms-status-bar {
+.cms-main-menu.sidebar-active {
     top: 0;
     right: 0;
     width: calc(100% - 250px);
