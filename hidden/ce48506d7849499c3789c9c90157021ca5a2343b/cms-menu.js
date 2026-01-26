@@ -160,3 +160,9 @@ function invokeCMSMenu() {
         cmsMainMenu.classList.add("sidebar-active");
     }
 }
+
+const placeHolders = document.querySelectorAll(".placeholder-block");
+
+placeHolders.forEach(placeHolder => {
+  placeHolder.addEventListener('click', invokeCMSMenu);
+});
