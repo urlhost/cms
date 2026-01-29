@@ -15,23 +15,6 @@ function initHelpers() {
     return null;
   }
 
-  function killScrollAnimations() {
-    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    gsap.killTweensOf("*");
-    
-    const elements = document.querySelectorAll("[data-anim]");
-    elements.forEach(el => {
-      gsap.set(el, { 
-        x: 0, 
-        y: 0, 
-        scale: 1, 
-        scaleX: 1, 
-        scaleY: 1,
-        clearProps: "transform"
-      });
-    });
-  }
-
   if (!isEditMode) {
     initAccordionColors();
     initAccordionToggles();
@@ -41,7 +24,6 @@ function initHelpers() {
   } else {
     initResponsiveVisibility();
     initNavigation();
-    killScrollAnimations();
   }
 
   function initAccordionColors() {
