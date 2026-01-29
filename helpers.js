@@ -21,7 +21,14 @@ function initHelpers() {
     
     const elements = document.querySelectorAll("[data-anim]");
     elements.forEach(el => {
-      gsap.set(el, { clearProps: "all" });
+      gsap.set(el, { 
+        x: 0, 
+        y: 0, 
+        scale: 1, 
+        scaleX: 1, 
+        scaleY: 1,
+        clearProps: "transform"
+      });
     });
   }
 
