@@ -229,12 +229,13 @@ function initHelpers() {
           settings.scale = 0.5;
           settings.ease = "elastic.out(1, 0.5)";
           break;
+          
         case "fade-out-shrink":
           gsap.to(el, {
             scrollTrigger: {
               trigger: el,
               start: "top 10%",
-              end: "top -90%",
+              end: "bottom top", // Ends when bottom of element hits top of viewport
               scrub: 1,
             },
             opacity: 0,
@@ -242,12 +243,13 @@ function initHelpers() {
             ease: "power2.inOut",
           });
           return;
+
         case "fade-out-grow":
           gsap.to(el, {
             scrollTrigger: {
               trigger: el,
               start: "top 10%",
-              end: "top -90%",
+              end: "bottom top",
               scrub: 1,
             },
             opacity: 0,
@@ -255,12 +257,13 @@ function initHelpers() {
             ease: "power2.inOut",
           });
           return;
+
         case "slide-out-left":
           gsap.to(el, {
             scrollTrigger: {
               trigger: el,
               start: "top 10%",
-              end: "top -90%",
+              end: "bottom top",
               scrub: 1,
             },
             opacity: 0,
@@ -268,12 +271,13 @@ function initHelpers() {
             ease: "power2.inOut",
           });
           return;
+
         case "slide-out-right":
           gsap.to(el, {
             scrollTrigger: {
               trigger: el,
               start: "top 10%",
-              end: "top -90%",
+              end: "bottom top",
               scrub: 1,
             },
             opacity: 0,
