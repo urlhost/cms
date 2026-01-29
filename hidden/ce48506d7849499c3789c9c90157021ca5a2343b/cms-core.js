@@ -37,6 +37,7 @@ function deselectAll() {
         currentlySelected = null;
         elements.classList.add("content-hide");
         styles.classList.add("content-hide");
+        animations.classList.add("content-hide");
         loadedPage.classList.remove("sidebar-active");
         cmsMainMenu.classList.remove("sidebar-active");
     }
@@ -637,6 +638,7 @@ document.addEventListener("keydown", e => {
     if (
         target.closest('.text-editor-pop') ||
         target.closest('.style-editor-sidebar') ||
+        target.closest('.animations-sidebar') ||
         target.tagName === 'INPUT' ||
         target.tagName === 'TEXTAREA' ||
         target.isContentEditable
