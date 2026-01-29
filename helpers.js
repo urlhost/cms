@@ -203,8 +203,8 @@ function initHelpers() {
           gsap.to(el, {
             scrollTrigger: {
               trigger: el,
-              start: "top 20%",
-              end: "top -20%",
+              start: "top 10%",
+              end: "top -50%",
               scrub: 1,
             },
             opacity: 0,
@@ -217,8 +217,8 @@ function initHelpers() {
           gsap.to(el, {
             scrollTrigger: {
               trigger: el,
-              start: "top 20%",
-              end: "top -20%",
+              start: "top 10%",
+              end: "top -50%",
               scrub: 1,
             },
             opacity: 0,
