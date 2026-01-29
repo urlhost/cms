@@ -108,6 +108,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 await loadScript('cms-menu.js');
                 await loadScript('cms-text-editor.js');
                 await loadScript('cms-style-editor.js');
+                await loadScript('cms-animations.js');
                 await loadScript('buildingblocks.js');
 
                 // Execute the inline validation script
