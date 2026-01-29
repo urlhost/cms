@@ -200,7 +200,7 @@ function initHelpers() {
           break;
 
         case "fade-out-shrink":
-          settings.scrollTrigger.start = "top 80%";
+          settings.scrollTrigger.start = "top 5%";
           gsap.to(el, {
             ...settings,
             opacity: 0,
@@ -209,7 +209,7 @@ function initHelpers() {
           return;
 
         case "fade-out-grow":
-          settings.scrollTrigger.start = "top 80%";
+          settings.scrollTrigger.start = "top 5%";
           gsap.to(el, {
             ...settings,
             opacity: 0,
