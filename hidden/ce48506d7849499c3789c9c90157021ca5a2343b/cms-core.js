@@ -228,14 +228,12 @@ function disableCMS() {
     const stylesheet = document.querySelector('link[href="cms-compatibility-styles.css"][data-name="cms stylesheet"]');
     if (stylesheet) {
         stylesheet.remove();
-        console.log('CMS Stylesheet unloaded.');
     }
 
     // 2. Hide the element with data-name "cms environment"
     const cmsEnvElement = document.querySelector('[data-name="cms environment"]');
     if (cmsEnvElement) {
         cmsEnvElement.style.display = 'none';
-        console.log('CMS Environment element hidden.');
     }
 
     const url = new URL(window.location.href);
@@ -243,6 +241,7 @@ function disableCMS() {
     window.history.pushState({}, '', url.toString());
 
     initHelpers();
+    enableScrollAnimations();
 }
 
 function enableCMS() {
@@ -253,14 +252,12 @@ function enableCMS() {
         link.href = 'cms-compatibility-styles.css';
         link.setAttribute('data-name', 'cms stylesheet');
         document.head.appendChild(link);
-        console.log('CMS Stylesheet restored.');
     }
 
     // 2. Show the data-name 'cms environment' element
     const cmsEnvElement = document.querySelector('[data-name="cms environment"]');
     if (cmsEnvElement) {
         cmsEnvElement.style.display = '';
-        console.log('CMS Environment element visible.');
     }
 
     const url = new URL(window.location.href);
@@ -268,6 +265,7 @@ function enableCMS() {
     window.history.pushState({}, '', url.toString());
 
     initHelpers();
+    disableScrollAnimations();
 }
 
 

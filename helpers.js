@@ -94,6 +94,18 @@ function initHelpers() {
     }
   }
 
+  function disableScrollAnimations() {
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.getAll().forEach(trigger => trigger.disable());
+    }
+  }
+
+  function enableScrollAnimations() {
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.getAll().forEach(trigger => trigger.enable());
+    }
+  }
+
   function initScrollAnimations() {
     gsap.registerPlugin(ScrollTrigger);
 
