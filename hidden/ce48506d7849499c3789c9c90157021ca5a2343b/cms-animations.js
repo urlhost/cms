@@ -30,7 +30,42 @@ function invokeAnimationMenu() {
     animations.classList.remove('content-hide');
     loadedPage.classList.add("sidebar-active");
     cmsMainMenu.classList.add("sidebar-active");
-    checkRestrictedControls();
-    loadStylesFromSelected();
+    loadAnimationsFromSelected();
   }
 }
+
+function loadAnimationsFromSelected() {
+    if (!currentlySelected) return;
+
+    const hasAnimation = currentlySelected.hasAttribute('data-anim');
+
+    if (!hasAnimation) return;
+    
+    // -- Fades --
+    animationFadeIn.checked = hasAnimation === 'fade-in';
+    animationFadeInUp.checked = hasAnimation === 'fade-in-up';
+    animationFadeInDown.checked = hasAnimation === 'fade-in-down';
+    animationFadeInLeft.checked = hasAnimation === 'fade-in-left';
+    animationFadeInRight.checked = hasAnimation === 'fade-in-right';
+
+    // -- Flys --
+    animationFlyInUp.checked = hasAnimation === 'fly-in-up';
+    animationFlyInDown.checked = hasAnimation === 'fly-in-down';
+    animationFlyInLeft.checked = hasAnimation === 'fly-in-left';
+    animationFlyInRight.checked = hasAnimation === 'fly-in-right';
+
+    // -- Grows --
+    animationGrowUp.checked = hasAnimation === 'grow-up';
+    animationGrowDown.checked = hasAnimation === 'grow-down';
+    animationGrowRight.checked = hasAnimation === 'grow-right';
+    animationGrowLeft.checked = hasAnimation === 'grow-left';
+
+    // -- Pop --
+    animationPopIn.checked = hasAnimation === 'pop-in';
+
+    // -- Scroll --
+    animationFadeOutShrink.checked = hasAnimation === 'fade-out-shrink';
+    animationFadeOutGrow.checked = hasAnimation === 'fade-out-grow';
+}
+
+    linkWrapper.setAttribute('data-name', 'Building Block: Linked Image');
