@@ -68,4 +68,82 @@ function loadAnimationsFromSelected() {
     animationFadeOutGrow.checked = hasAnimation === 'fade-out-grow';
 }
 
-    linkWrapper.setAttribute('data-name', 'Building Block: Linked Image');
+function setAnimation(animationType) {
+  if (!currentlySelected) return;
+  
+  uncheckAllAnimations();
+  
+  currentlySelected.setAttribute('data-anim', animationType);
+  
+  const checkbox = document.getElementById(`animation-${animationType}-checkbox`);
+
+  if (checkbox) {
+    checkbox.checked = true;
+  }
+
+}
+
+function removeAnimation() {
+  if (!currentlySelected) return;
+  
+  currentlySelected.removeAttribute('data-anim');
+  
+  uncheckAllAnimations();
+}
+
+function uncheckAllAnimations() {
+  // -- Fades --
+  animationFadeIn.checked = false;
+  animationFadeInUp.checked = false;
+  animationFadeInDown.checked = false;
+  animationFadeInLeft.checked = false;
+  animationFadeInRight.checked = false;
+
+  // -- Flys --
+  animationFlyInUp.checked = false;
+  animationFlyInDown.checked = false;
+  animationFlyInLeft.checked = false;
+  animationFlyInRight.checked = false;
+
+  // -- Grows --
+  animationGrowUp.checked = false;
+  animationGrowDown.checked = false;
+  animationGrowRight.checked = false;
+  animationGrowLeft.checked = false;
+
+  // -- Pop --
+  animationPopIn.checked = false;
+
+  // -- Scroll --
+  animationFadeOutShrink.checked = false;
+  animationFadeOutGrow.checked = false;
+}
+
+const animationCheckboxes = [
+  { checkbox: animationFadeIn, type: 'fade-in' },
+  { checkbox: animationFadeInUp, type: 'fade-in-up' },
+  { checkbox: animationFadeInDown, type: 'fade-in-down' },
+  { checkbox: animationFadeInLeft, type: 'fade-in-left' },
+  { checkbox: animationFadeInRight, type: 'fade-in-right' },
+  { checkbox: animationFlyInUp, type: 'fly-in-up' },
+  { checkbox: animationFlyInDown, type: 'fly-in-down' },
+  { checkbox: animationFlyInLeft, type: 'fly-in-left' },
+  { checkbox: animationFlyInRight, type: 'fly-in-right' },
+  { checkbox: animationGrowUp, type: 'grow-up' },
+  { checkbox: animationGrowDown, type: 'grow-down' },
+  { checkbox: animationGrowRight, type: 'grow-right' },
+  { checkbox: animationGrowLeft, type: 'grow-left' },
+  { checkbox: animationPopIn, type: 'pop-in' },
+  { checkbox: animationFadeOutShrink, type: 'fade-out-shrink' },
+  { checkbox: animationFadeOutGrow, type: 'fade-out-grow' }
+];
+
+animationCheckboxes.forEach(({ checkbox, type }) => {
+  checkbox.addEventListener('change', () => {
+    if (checkbox.checked) {
+      setAnimation(type);
+    } else {
+      removeAnimation();
+    }
+  });
+});
