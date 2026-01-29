@@ -200,20 +200,30 @@ function initHelpers() {
           break;
 
         case "fade-out-shrink":
-          settings.scrollTrigger.start = "top 5%";
           gsap.to(el, {
-            ...settings,
+            scrollTrigger: {
+              trigger: el,
+              start: "top 20%",
+              end: "top 5%",
+              scrub: true,
+            },
             opacity: 0,
             scale: 0,
+            ease: "none",
           });
           return;
 
         case "fade-out-grow":
-          settings.scrollTrigger.start = "top 5%";
           gsap.to(el, {
-            ...settings,
+            scrollTrigger: {
+              trigger: el,
+              start: "top 20%",
+              end: "top 5%",
+              scrub: true,
+            },
             opacity: 0,
             scale: 1.5,
+            ease: "none",
           });
           return;
       }
