@@ -147,3 +147,23 @@ animationCheckboxes.forEach(({ checkbox, type }) => {
     }
   });
 });
+
+animateButton.addEventListener("click", () => {
+  if (currentlySelected) {
+    invokeAnimationMenu();
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  const isStyleEditorVisible = window.getComputedStyle(styles).display !== "none";
+  const isTextEditorVisible = window.getComputedStyle(editorPop).display !== "none";
+  const isAnimationEditorVisible = window.getComputedStyle(animations).display !== "none";
+  if (isTextEditorVisible || isStyleEditorVisible || isAnimationEditorVisible) return;
+  
+  if (e.key === 'a') {
+    e.preventDefault();
+    if (currentlySelected) {
+      invokeAnimationMenu();
+    }
+  }
+});

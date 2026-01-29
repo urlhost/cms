@@ -11,6 +11,7 @@ const loadedPage = document.getElementById("loaded-page");
 
 // Buttons
 const styleButton = document.getElementById("style-element");
+const animationButton = document.getElementById("animate-element");
 const deleteButton = document.getElementById("delete-element");
 const moveUp = document.getElementById("move-element-up");
 const moveDown = document.getElementById("move-element-down");

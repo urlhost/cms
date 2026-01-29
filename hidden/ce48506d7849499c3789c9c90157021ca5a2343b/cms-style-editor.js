@@ -992,7 +992,8 @@ styleButton.addEventListener("click", () => {
 document.addEventListener("keydown", (e) => {
   const isStyleEditorVisible = window.getComputedStyle(styles).display !== "none";
   const isTextEditorVisible = window.getComputedStyle(editorPop).display !== "none";
-  if (isTextEditorVisible || isStyleEditorVisible) return;
+  const isAnimationEditorVisible = window.getComputedStyle(animations).display !== "none";
+  if (isTextEditorVisible || isStyleEditorVisible || isAnimationEditorVisible) return;
   
   if (e.key === 's') {
     e.preventDefault();
