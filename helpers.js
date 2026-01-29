@@ -226,6 +226,34 @@ function initHelpers() {
             ease: "power2.inOut",
           });
           return;
+
+        case "slide-out-left":
+          gsap.to(el, {
+            scrollTrigger: {
+              trigger: el,
+              start: "top 10%",
+              end: "top -90%",
+              scrub: 1,
+            },
+            opacity: 0,
+            x: -200,
+            ease: "power2.inOut",
+          });
+          return;
+
+        case "slide-out-right":
+          gsap.to(el, {
+            scrollTrigger: {
+              trigger: el,
+              start: "top 10%",
+              end: "top -90%",
+              scrub: 1,
+            },
+            opacity: 0,
+            x: 200,
+            ease: "power2.inOut",
+          });
+          return;
       }
 
       gsap.from(el, settings);
