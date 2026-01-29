@@ -23,6 +23,8 @@ const animationPopIn = document.getElementById('animation-pop-in-checkbox');
 // -- Scroll --
 const animationFadeOutShrink = document.getElementById('animation-fade-out-shrink-checkbox');
 const animationFadeOutGrow = document.getElementById('animation-fade-out-grow-checkbox');
+const animationSlideOutLeft = document.getElementById('animation-slide-out-left-checkbox');
+const animationSlideOutRight = document.getElementById('animation-slide-out-right-checkbox');
 
 function invokeAnimationMenu() {
   if (currentlySelected) {
@@ -44,7 +46,7 @@ function loadAnimationsFromSelected() {
   if (!animationType) return;
   
   const checkbox = document.getElementById(`animation-${animationType}-checkbox`);
-  
+
   if (checkbox) {
     checkbox.checked = true;
   }
@@ -73,34 +75,6 @@ function removeAnimation() {
   uncheckAllAnimations();
 }
 
-function uncheckAllAnimations() {
-  // -- Fades --
-  animationFadeIn.checked = false;
-  animationFadeInUp.checked = false;
-  animationFadeInDown.checked = false;
-  animationFadeInLeft.checked = false;
-  animationFadeInRight.checked = false;
-
-  // -- Flys --
-  animationFlyInUp.checked = false;
-  animationFlyInDown.checked = false;
-  animationFlyInLeft.checked = false;
-  animationFlyInRight.checked = false;
-
-  // -- Grows --
-  animationGrowUp.checked = false;
-  animationGrowDown.checked = false;
-  animationGrowRight.checked = false;
-  animationGrowLeft.checked = false;
-
-  // -- Pop --
-  animationPopIn.checked = false;
-
-  // -- Scroll --
-  animationFadeOutShrink.checked = false;
-  animationFadeOutGrow.checked = false;
-}
-
 const animationCheckboxes = [
   { checkbox: animationFadeIn, type: 'fade-in' },
   { checkbox: animationFadeInUp, type: 'fade-in-up' },
@@ -117,8 +91,16 @@ const animationCheckboxes = [
   { checkbox: animationGrowLeft, type: 'grow-left' },
   { checkbox: animationPopIn, type: 'pop-in' },
   { checkbox: animationFadeOutShrink, type: 'fade-out-shrink' },
-  { checkbox: animationFadeOutGrow, type: 'fade-out-grow' }
+  { checkbox: animationFadeOutGrow, type: 'fade-out-grow' },
+  { checkbox: animationSlideOutLeft, type: 'slide-out-left' },
+  { checkbox: animationSlideOutRight, type: 'slide-out-right' }
 ];
+
+function uncheckAllAnimations() {
+  animationCheckboxes.forEach(({ checkbox }) => {
+    checkbox.checked = false;
+  });
+}
 
 animationCheckboxes.forEach(({ checkbox, type }) => {
   checkbox.addEventListener('change', () => {
