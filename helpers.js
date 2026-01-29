@@ -204,7 +204,7 @@ function initHelpers() {
             scrollTrigger: {
               trigger: el,
               start: "top 10%",
-              end: "top -50%",
+              end: "top -90%",
               scrub: 1,
             },
             opacity: 0,
@@ -218,7 +218,7 @@ function initHelpers() {
             scrollTrigger: {
               trigger: el,
               start: "top 10%",
-              end: "top -50%",
+              end: "top -90%",
               scrub: 1,
             },
             opacity: 0,
