@@ -140,7 +140,7 @@ function initHelpers() {
       duration: 0.8,
       ease: "power2.out",
       toggleActions: "play none none reverse",
-      start: "top 66%",
+      start: "top 50%",
     };
 
     const elements = document.querySelectorAll("[data-anim]");
@@ -234,7 +234,7 @@ function initHelpers() {
           gsap.to(el, {
             scrollTrigger: {
               trigger: el,
-              start: "top 33%",
+              start: "top 50%",
               end: "bottom top",
               scrub: 1,
             },
@@ -248,7 +248,7 @@ function initHelpers() {
           gsap.to(el, {
             scrollTrigger: {
               trigger: el,
-              start: "top 33%",
+              start: "top 50%",
               end: "bottom top",
               scrub: 1,
             },
@@ -262,7 +262,7 @@ function initHelpers() {
           gsap.to(el, {
             scrollTrigger: {
               trigger: el,
-              start: "top 33%",
+              start: "top 50%",
               end: "bottom top",
               scrub: 1,
             },
@@ -276,7 +276,7 @@ function initHelpers() {
           gsap.to(el, {
             scrollTrigger: {
               trigger: el,
-              start: "top 33%",
+              start: "top 50%",
               end: "bottom top",
               scrub: 1,
             },
