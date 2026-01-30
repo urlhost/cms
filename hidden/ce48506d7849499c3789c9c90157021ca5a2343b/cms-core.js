@@ -637,8 +637,7 @@ document.addEventListener("keydown", e => {
     // Ignore keystrokes inside editors OR form fields
     if (
         target.closest('.text-editor-pop') ||
-        target.closest('.style-editor-sidebar') ||
-        target.closest('.animations-sidebar') ||
+        target.closest('.sidebar') ||
         target.tagName === 'INPUT' ||
         target.tagName === 'TEXTAREA' ||
         target.isContentEditable

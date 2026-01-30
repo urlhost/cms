@@ -665,14 +665,10 @@ borderRadiusInput?.addEventListener("input", () => {
 // --- Drop Shadow ---
 dropShadow.addEventListener("change", function() {
   if (currentlySelected && dropShadow.checked) {
-    if (currentlySelected.classList.contains("text-element")) {
+    if (currentlySelected.classList.contains("text-element") && !currentlySelected.classList.contains("button")) {
         currentlySelected.classList.add("drop-shadow-text");
     } else {
         currentlySelected.classList.add("drop-shadow");
-    }
-
-    if (currentlySelected.classList.contains("button")) {
-        currentlySelected.parentElement.classList.add("drop-shadow");
     }
   } else {
     currentlySelected.classList.remove("drop-shadow", "drop-shadow-text");
