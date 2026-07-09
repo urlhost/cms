@@ -1,0 +1,8 @@
+{
+  "names": {
+    "hi": "7464c8b8a25a7f1aff383af9dd2e02b2113843c800806fe792140c57d884a208"
+  },
+  "relays": {
+    "7464c8b8a25a7f1aff383af9dd2e02b2113843c800806fe792140c57d884a208": ["wss://relay.damus.io", "wss://nos.lol"]
+  }
+}
